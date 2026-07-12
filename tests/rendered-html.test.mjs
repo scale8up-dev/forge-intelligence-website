@@ -30,11 +30,11 @@ test("server-renders the Forge Intelligence AI landing page", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Forge Intelligence AI \| Strategy, software &amp; AI automations<\/title>/i);
-  assert.match(html, /Turn clear strategy/);
+  assert.match(html, /Make strategy feel/);
   assert.match(html, /Strategy · Development · AI automations/);
   assert.match(html, /Software development/);
-  assert.match(html, /How quickly can we launch an MVP\?/);
-  assert.match(html, /Start a conversation/);
+  assert.match(html, /How do you scope an engagement\?/);
+  assert.match(html, /Open email draft/);
 });
 
 test("keeps the production page free of starter preview dependencies", async () => {
@@ -48,9 +48,10 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(page, /useState/);
   assert.match(page, /aria-expanded/);
   assert.match(page, /checkValidity/);
-  assert.match(page, /How quickly can we launch an MVP/);
+  assert.match(page, /How do you scope an engagement/);
   assert.match(page, /forge-intelligence-logo\.png/);
-  assert.match(page, /aria-roledescription="carousel"/);
+  assert.match(page, /mailto:hello@forgeintelligence\.ai/);
+  assert.doesNotMatch(page, /Northstar|Pulse financial|Jordan Lee|Samira Patel|Marcus Reed/);
   assert.match(layout, /Forge Intelligence AI/);
   assert.doesNotMatch(page, /_sites-preview|codex-preview|SkeletonPreview|react-loading-skeleton/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|_sites-preview/);
