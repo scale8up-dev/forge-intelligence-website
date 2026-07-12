@@ -29,12 +29,12 @@ test("server-renders the Forge Intelligence AI landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Forge Intelligence AI \| Strategy, software &amp; AI automations<\/title>/i);
-  assert.match(html, /Make strategy feel/);
+  assert.match(html, /<title>Forge Intelligence AI \| Development, strategy &amp; AI automations<\/title>/i);
+  assert.match(html, /Build smarter/);
   assert.match(html, /Strategy · Development · AI automations/);
-  assert.match(html, /Software development/);
-  assert.match(html, /How do you scope an engagement\?/);
-  assert.match(html, /Open email draft/);
+  assert.match(html, /AI-powered workflows/);
+  assert.match(html, /What can you help us build\?/);
+  assert.match(html, /Book a discovery call/);
 });
 
 test("keeps the production page free of starter preview dependencies", async () => {
@@ -48,7 +48,7 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(page, /useState/);
   assert.match(page, /aria-expanded/);
   assert.match(page, /checkValidity/);
-  assert.match(page, /How do you scope an engagement/);
+  assert.match(page, /What can you help us build/);
   assert.match(page, /forge-intelligence-logo\.png/);
   assert.match(page, /mailto:hello@forgeintelligence\.ai/);
   assert.doesNotMatch(page, /Northstar|Pulse financial|Jordan Lee|Samira Patel|Marcus Reed/);

@@ -13,14 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Forge Intelligence AI | Strategy, software & AI automations",
+  title: "Forge Intelligence AI | Development, strategy & AI automations",
   description:
-    "Forge Intelligence AI brings product strategy, software development, and AI automations together for ambitious teams.",
+    "Forge Intelligence AI helps ambitious businesses build smarter through expert development, clear strategy, and practical AI automation.",
   keywords: ["product strategy", "SaaS development", "AI automations", "software development", "Forge Intelligence AI"],
   openGraph: {
-    title: "Forge Intelligence AI | Strategy, software & AI automations",
+    title: "Forge Intelligence AI | Development, strategy & AI automations",
     description:
-      "Turn clear strategy into software that moves the business.",
+      "Build smarter, move faster, and automate more with Forge Intelligence AI.",
     type: "website",
   },
   icons: {
