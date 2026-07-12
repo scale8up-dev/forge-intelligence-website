@@ -74,10 +74,8 @@ export default function Home() {
     const updateScrollDepth = () => {
       frame = 0;
       const depth = Math.min(window.scrollY, 900);
-      root.style.setProperty("--hero-shift", `${depth * -0.035}px`);
       root.style.setProperty("--liquid-shift", `${depth * 0.07}px`);
       root.style.setProperty("--liquid-shift-inverse", `${depth * -0.046}px`);
-      root.style.setProperty("--holo-tilt", `${depth * 0.008}deg`);
     };
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(updateScrollDepth);
@@ -90,10 +88,8 @@ export default function Home() {
       window.removeEventListener("scroll", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
       root.classList.remove("scroll-ready");
-      root.style.removeProperty("--hero-shift");
       root.style.removeProperty("--liquid-shift");
       root.style.removeProperty("--liquid-shift-inverse");
-      root.style.removeProperty("--holo-tilt");
     };
   }, []);
 
