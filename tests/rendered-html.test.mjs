@@ -49,6 +49,8 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(page, /aria-expanded/);
   assert.match(page, /checkValidity/);
   assert.match(page, /How quickly can we launch an MVP/);
+  assert.match(page, /forge-intelligence-logo\.png/);
+  assert.match(page, /aria-roledescription="carousel"/);
   assert.match(layout, /Forge Intelligence AI/);
   assert.doesNotMatch(page, /_sites-preview|codex-preview|SkeletonPreview|react-loading-skeleton/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|_sites-preview/);
