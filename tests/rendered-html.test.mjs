@@ -29,10 +29,10 @@ test("server-renders the Forge Intelligence AI landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Forge Intelligence AI \| Production-ready software<\/title>/i);
-  assert.match(html, /Turn your next/);
-  assert.match(html, /production-ready SaaS MVPs/);
-  assert.match(html, /MVP engineering/);
+  assert.match(html, /<title>Forge Intelligence AI \| Strategy, software &amp; AI automations<\/title>/i);
+  assert.match(html, /Turn clear strategy/);
+  assert.match(html, /Strategy · Development · AI automations/);
+  assert.match(html, /Software development/);
   assert.match(html, /How quickly can we launch an MVP\?/);
   assert.match(html, /Start a conversation/);
 });
