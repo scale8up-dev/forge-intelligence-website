@@ -128,25 +128,26 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="container hero-grid">
           <div className="hero-copy reveal-up">
-            <p className="eyebrow"><span className="eyebrow-dot" /> Strategy · Development · AI automations</p>
-            <div className="availability-note"><i /> Development-led delivery for ambitious businesses</div>
-            <h1>Build smarter.<br />Move faster.<br /><em>Automate more.</em></h1>
+            <p className="eyebrow"><span className="eyebrow-dot" /> Development · Strategy · AI automations</p>
+            <div className="availability-note"><i /> Build smarter. Move faster. Automate more.</div>
+            <h1>Build the right<br /><em>system next.</em></h1>
             <p className="hero-lede">We help ambitious businesses turn ideas into powerful digital products through strategic thinking, expert development, and intelligent AI automation.</p>
             <div className="hero-actions"><a className="button button-primary" href="#contact">Start your project <Icon name="arrow" /></a><a className="text-link" href="#services">Explore our services <Icon name="arrow" /></a></div>
-            <div className="capability-rail" aria-label="Forge core capabilities"><span>Strategy</span><span>Development</span><span>AI automations</span></div>
-            <p className="hero-note">From websites and custom platforms to automated workflows and AI-powered systems, we build solutions designed for lasting business value.</p>
+            <div className="capability-rail" aria-label="Forge core capabilities"><span>Digital products</span><span>SaaS development</span><span>AI workflows</span></div>
           </div>
           <div className="hero-visual holo-shell" role="img" aria-label="Forge delivery system: strategy, development, and AI automations working together">
-            <div className="holo-orb holo-orb-one" /><div className="holo-orb holo-orb-two" /><div className="holo-scanline" /><div className="liquid-ribbon liquid-ribbon-one" /><div className="liquid-ribbon liquid-ribbon-two" />
-            <div className="visual-topline"><span>FORGE / CAPABILITY MAP</span><span className="live-status"><i /> CONNECTED WORKFLOWS</span></div>
-            <div className="visual-heading"><span className="visual-kicker">A clear path through the work</span><strong>Strategy, software,<br />and automation—connected.</strong></div>
-            <div className="system-map">
-              <div className="map-line line-one" /><div className="map-line line-two" /><div className="map-line line-three" />
-              <div className="map-node node-one glass-card"><span>01</span><strong>Strategy</strong><small>Focus on the decision that matters</small></div>
-              <div className="map-node node-two active glass-card"><span>02</span><strong>Develop</strong><small>Shape the useful system</small><b>Build with intent</b></div>
-              <div className="map-node node-three glass-card"><span>03</span><strong>Automate</strong><small>Make the workflow keep moving</small></div>
+            <div className="holo-orb holo-orb-one" /><div className="holo-orb holo-orb-two" /><div className="liquid-ribbon liquid-ribbon-one" />
+            <div className="visual-topline"><span>FORGE / DELIVERY SYSTEM</span><span className="live-status"><i /> BUILD READY</span></div>
+            <div className="hero-visual-core">
+              <span>FROM BRIEF TO BUSINESS VALUE</span>
+              <strong>One clear path.<br />Built to move.</strong>
+              <p>Strategy, development, and automation in one delivery loop.</p>
             </div>
-            <div className="visual-foot"><span>STRATEGY → DELIVERY</span><strong>ONE CONNECTED LOOP</strong><span className="mini-bar"><i /></span></div>
+            <div className="delivery-stack" aria-hidden="true">
+              <div className="delivery-step"><span>01</span><strong>Strategise</strong><small>Define the right move</small></div>
+              <div className="delivery-step active"><span>02</span><strong>Develop</strong><small>Build the useful system</small></div>
+              <div className="delivery-step"><span>03</span><strong>Automate</strong><small>Keep work moving</small></div>
+            </div>
           </div>
         </div>
       </section>

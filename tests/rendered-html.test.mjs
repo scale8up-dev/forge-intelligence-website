@@ -31,7 +31,9 @@ test("server-renders the Forge Intelligence AI landing page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Forge Intelligence AI \| Development, strategy &amp; AI automations<\/title>/i);
   assert.match(html, /Build smarter/);
-  assert.match(html, /Strategy · Development · AI automations/);
+  assert.match(html, /Development · Strategy · AI automations/);
+  assert.match(html, /Build the right/);
+  assert.match(html, /One clear path/);
   assert.match(html, /AI-powered workflows/);
   assert.match(html, /What can you help us build\?/);
   assert.match(html, /Book a discovery call/);
