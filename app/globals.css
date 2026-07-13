@@ -979,6 +979,8 @@ body.menu-open { overflow: hidden; }
 .featured-project-copy > p:not(:first-child), .project-card-body > p:not(:first-child) { margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 20px 0; }
 .project-tags span { padding: 6px 9px; border: 1px solid rgba(173,197,219,.7); border-radius: 999px; color: #55728c; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.featured-projects-footer { display: flex; justify-content: center; margin-top: 42px; }
+.featured-projects-footer .button { min-height: 56px; padding-inline: 28px; border-radius: 999px; font-size: 15px; }
 
 .projects-page { background: linear-gradient(160deg, #f8fafb 0%, #eff8ff 38%, #fff 72%); }
 .projects-hero { position: relative; z-index: 1; padding: 172px 0 92px; border-bottom: 1px solid rgba(201,211,221,.72); }
@@ -1021,13 +1023,23 @@ body.menu-open { overflow: hidden; }
   .featured-project-grid, .projects-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .featured-project-copy, .project-card-body { padding: 22px; }
   .projects-hero { padding: 126px 0 58px; }
-  .projects-page .services-nav { display: none; }
+  .projects-page .services-nav { display: flex; }
+  .projects-page .services-nav > a:not(.nav-cta) { display: none; }
+  .projects-page .services-nav .nav-cta { max-width: 132px; min-height: 42px; overflow: hidden; padding-inline: 13px; font-size: 12px; text-overflow: ellipsis; }
   .projects-hero h1 { max-width: 100%; font-size: clamp(40px, 11.5vw, 50px); overflow-wrap: anywhere; }
   .projects-catalogue { padding-top: 28px; }
   .projects-catalogue-head { margin-bottom: 24px; }
   .projects-catalogue-head span:last-child { display: none; }
   .projects-closing-inner { padding: 30px 24px; border-radius: 20px; }
   .projects-closing h2 { font-size: clamp(38px, 11vw, 52px); }
+}
+
+@media (max-width: 650px) {
+  .site-header .mobile-menu { display: grid; }
+  .site-header .main-nav { display: none; position: absolute; top: 76px; right: 0; left: 0; flex-direction: column; align-items: stretch; gap: 0; width: 100%; max-width: none; margin: 0; padding: 12px 20px 18px; border-radius: 0 0 20px 20px; }
+  .site-header .main-nav.open { display: flex; }
+  .site-header .main-nav a { padding: 12px 0; white-space: normal; }
+  .site-header .main-nav .nav-cta { justify-content: center; margin-top: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

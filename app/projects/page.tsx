@@ -19,7 +19,7 @@ export default function ProjectsPage() {
       <header className="site-header services-header">
         <div className="container nav-wrap">
           <a className="brand" href="/" aria-label="Forge Intelligence AI home"><span className="brand-mark"><Image src="/forge-intelligence-logo.png" alt="" width={48} height={48} priority unoptimized /></span><span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span></a>
-          <nav className="services-nav" aria-label="Projects navigation"><a href="/#about">About</a><a href="/services">Services</a><a href="/#process">Approach</a><a href="/#outcomes">What we build</a><a className="nav-cta" href="/#contact">Start a project <Arrow /></a></nav>
+          <nav className="services-nav" aria-label="Projects navigation"><a href="/#about">About</a><a href="/services">Services</a><a href="/#process">Approach</a><a href="/projects">Projects</a><a href="/#outcomes">What we build</a><a className="nav-cta" href="/#contact">Start a project <Arrow /></a></nav>
         </div>
       </header>
 

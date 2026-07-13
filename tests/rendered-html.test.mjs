@@ -37,7 +37,9 @@ test("server-renders the Forge Intelligence AI landing page", async () => {
   assert.match(html, /AI-powered workflows/);
   assert.match(html, /Selected projects/);
   assert.match(html, /CORY AI Premium Intelligence/);
+  assert.match(html, /CuerPOWER/);
   assert.match(html, /View all projects/);
+  assert.doesNotMatch(html, /Envision HR 360|Vennture/);
   assert.match(html, /Solution stories/);
   assert.match(html, /Scope/);
   assert.match(html, /Strategy before development/);
@@ -53,13 +55,16 @@ test("server-renders the complete Forge projects catalogue", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Projects \| Forge Intelligence AI<\/title>/i);
-  assert.match(html, /20(?:<!-- -->)? projects/i);
+  assert.match(html, /19(?:<!-- -->)? projects/i);
   assert.match(html, /Strategic Divorce Directory/);
   assert.match(html, /CORY AI Premium Intelligence/);
+  assert.match(html, /CuerPOWER/);
   assert.match(html, /OnyxFlow/);
   assert.match(html, /CastlR Mobile/);
   assert.match(html, /\/projects\/praxis-media\.jpg/);
+  assert.match(html, /\/projects\/cuerpower\.png/);
   assert.match(html, /mailto:domingo@oneenterprise\.ai/);
+  assert.doesNotMatch(html, /Envision HR 360|Vennture/);
 });
 
 test("server-renders detailed Forge services without placeholder proof", async () => {
@@ -128,7 +133,8 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(page, /mailto:domingo@oneenterprise\.ai/);
   assert.match(servicesPage, /mailto:domingo@oneenterprise\.ai/);
   assert.match(projectsPage, /mailto:domingo@oneenterprise\.ai/);
-  assert.equal((projectData.match(/name: "/g) ?? []).length, 20);
+  assert.equal((projectData.match(/name: "/g) ?? []).length, 19);
+  assert.doesNotMatch(projectData, /Envision HR 360|Vennture/);
   assert.doesNotMatch(page, /hello@forgeintelligence\.ai/);
   assert.doesNotMatch(servicesPage, /hello@forgeintelligence\.ai/);
   assert.doesNotMatch(projectsPage, /hello@forgeintelligence\.ai/);
