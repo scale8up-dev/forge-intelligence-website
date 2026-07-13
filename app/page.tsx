@@ -26,6 +26,21 @@ const faqs = [
   ["Can you support the product after launch?", "Yes. We support launch, monitor performance, and continue improving the product as your business grows—or hand over a documented, maintainable system to your team."],
 ];
 
+const processSteps = [
+  ["01", "Discover", "We begin by understanding your business, users, challenges, and goals."],
+  ["02", "Strategise", "We define the solution, scope, priorities, user experience, and technical roadmap."],
+  ["03", "Design", "We create clear, intuitive interfaces that make your product easy and enjoyable to use."],
+  ["04", "Develop", "We build, integrate, test, and optimise your solution using reliable technologies."],
+  ["05", "Launch and improve", "We support the launch, monitor performance, and continue improving the product as your business grows."],
+];
+
+const solutionStories = [
+  ["01", "Digital presence", "Websites that drive results", "Modern, responsive, conversion-focused websites that communicate your value and support business growth."],
+  ["02", "Business systems", "Custom digital platforms", "Tailored applications built around your workflows, customers, and operational requirements."],
+  ["03", "Connected operations", "AI-powered workflows", "Connected systems that manage repetitive tasks, move information, and support better decisions."],
+  ["04", "Product ventures", "Scalable SaaS products", "From early MVPs to production-ready platforms, we help bring software ideas to market and prepare them for growth."],
+];
+
 function Icon({ name }: { name: string }) {
   const common = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
   if (name === "arrow") return <svg {...common}><path d="M5 12h13" /><path d="m13 6 6 6-6 6" /></svg>;
@@ -43,6 +58,9 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [formState, setFormState] = useState<"idle" | "error">("idle");
+  const [activeSection, setActiveSection] = useState("top");
+  const [activeProcessStep, setActiveProcessStep] = useState(0);
+  const [solutionIndex, setSolutionIndex] = useState(0);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -94,6 +112,33 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const targets = Array.from(document.querySelectorAll<HTMLElement>("section[id]"));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const activeEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (activeEntry) setActiveSection(activeEntry.target.id);
+      },
+      { rootMargin: "-22% 0px -66%", threshold: [0.01, 0.3, 0.6] },
+    );
+    targets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const steps = Array.from(document.querySelectorAll<HTMLElement>("[data-process-step]"));
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) setActiveProcessStep(Number(entry.target.dataset.processStep ?? 0));
+      }),
+      { rootMargin: "-28% 0px -42%", threshold: 0.18 },
+    );
+    steps.forEach((step) => observer.observe(step));
+    return () => observer.disconnect();
+  }, []);
+
   function submitForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -119,7 +164,7 @@ export default function Home() {
           </a>
           <button className="mobile-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="main-navigation"><Icon name={menuOpen ? "close" : "menu"} /></button>
           <nav id="main-navigation" className={menuOpen ? "main-nav open" : "main-nav"} aria-label="Main navigation">
-            {navItems.map(([label, href]) => <a key={href} href={`#${href}`} onClick={() => setMenuOpen(false)}>{label}</a>)}
+            {navItems.map(([label, href]) => <a className={activeSection === href ? "active" : undefined} key={href} href={`#${href}`} onClick={() => { setMenuOpen(false); setActiveSection(href); }}>{label}</a>)}
             <a className="nav-cta" href="#contact" onClick={() => setMenuOpen(false)}>Start a project <Icon name="arrow" /></a>
           </nav>
         </div>
@@ -160,9 +205,9 @@ export default function Home() {
 
       <section className="section about" id="about" data-reveal><div className="container about-grid"><div className="about-panel glass-card"><div className="about-hologram"><Image unoptimized src="/forge-intelligence-logo.png" alt="Forge Intelligence AI" width={280} height={280} /></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="about-panel-label">FROM IDEA TO EXECUTION</div><div className="about-panel-stat"><strong>3</strong><span>connected disciplines,<br />one practical solution</span></div></div><div className="about-copy"><p className="eyebrow">From strategy to scalable digital solutions</p><h2>Technology that works<br /><em>for your business.</em></h2><p>Great technology starts with a clear direction. We work closely with your team to understand your goals, identify opportunities, and create the right solution for your business.</p><p>Whether you need a new digital product, a stronger technology strategy, or smarter ways to automate daily operations, we help you move from idea to execution.</p><div className="stat-row"><div><strong>Discover</strong><span>understand the opportunity</span></div><div><strong>Build</strong><span>create the right solution</span></div><div><strong>Improve</strong><span>grow with confidence</span></div></div><a className="text-link" href="#process">How we work <Icon name="arrow" /></a></div></div></section>
 
-      <section className="section process" id="process" data-reveal><div className="container process-layout"><div className="process-intro"><p className="eyebrow">How we work</p><h2>From the right question<br />to the <em>right system.</em></h2><p className="section-note">A clear delivery path that keeps business goals, product decisions, software, and automation in the same conversation.</p><a className="text-link" href="#contact">Tell us about your project <Icon name="arrow" /></a></div><div className="process-grid">{[["01", "Discover", "We begin by understanding your business, users, challenges, and goals."], ["02", "Strategise", "We define the solution, scope, priorities, user experience, and technical roadmap."], ["03", "Design", "We create clear, intuitive interfaces that make your product easy and enjoyable to use."], ["04", "Develop", "We build, integrate, test, and optimise your solution using reliable technologies."], ["05", "Launch and improve", "We support the launch, monitor performance, and continue improving the product as your business grows."]].map(([number, title, text]) => <article className="process-step glass-card" key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
+      <section className="section process" id="process" data-reveal><div className="container process-layout"><div className="process-intro"><p className="eyebrow">How we work</p><h2>From the right question<br />to the <em>right system.</em></h2><p className="section-note">A clear delivery path that keeps business goals, product decisions, software, and automation in the same conversation.</p><div className="process-progress" aria-hidden="true"><span>{String(activeProcessStep + 1).padStart(2, "0")}</span><i><b style={{ transform: `scaleX(${(activeProcessStep + 1) / processSteps.length})` }} /></i><span>05</span></div><a className="text-link" href="#contact">Tell us about your project <Icon name="arrow" /></a></div><div className="process-grid">{processSteps.map(([number, title, text], index) => <article className={activeProcessStep === index ? "process-step glass-card is-active" : "process-step glass-card"} data-process-step={index} key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
 
-      <section className="section outcomes" id="outcomes" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">What we can build</p><h2>Solutions that create<br /><em>lasting value.</em></h2></div><p className="section-note">Modern digital products and workflows shaped around your customers, operations, and the growth you are building toward.</p></div><div className="outcome-grid"><article className="outcome-card"><span>01</span><h3>Websites that drive results</h3><p>Modern, responsive, conversion-focused websites that communicate your value and support business growth.</p></article><article className="outcome-card"><span>02</span><h3>Custom digital platforms</h3><p>Tailored applications built around your workflows, customers, and operational requirements.</p></article><article className="outcome-card"><span>03</span><h3>AI-powered workflows</h3><p>Connected systems that manage repetitive tasks, move information, and support better decisions.</p></article><article className="outcome-card"><span>04</span><h3>Scalable SaaS products</h3><p>From early MVPs to production-ready platforms, we help bring software ideas to market and prepare them for growth.</p></article></div></div></section>
+      <section className="section outcomes" id="outcomes" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Solution stories</p><h2>Systems built around<br /><em>real work.</em></h2></div><p className="section-note">A focused look at the products and workflows we can shape around your customers, operations, and next stage of growth.</p></div><div className="solution-carousel" role="region" aria-roledescription="carousel" aria-label="Forge solution stories"><div className="solution-viewport"><div className="solution-track" style={{ transform: `translateX(-${solutionIndex * 100}%)` }}>{solutionStories.map(([number, label, title, text], index) => <article className="solution-slide" aria-hidden={solutionIndex !== index} key={number}><div className="solution-index"><span>{number}</span><i /></div><div className="solution-copy"><p>{label}</p><h3>{title}</h3><p>{text}</p><a className="text-link" href="#contact" tabIndex={solutionIndex === index ? 0 : -1}>Discuss this system <Icon name="arrow" /></a></div><div className="solution-art" aria-hidden="true"><div className="solution-orbit" /><div className="solution-line line-a" /><div className="solution-line line-b" /><span>{number}</span></div></article>)}</div></div><div className="solution-controls"><p aria-live="polite">{String(solutionIndex + 1).padStart(2, "0")} <span>/ 0{solutionStories.length}</span></p><div><button type="button" aria-label="Show previous solution story" onClick={() => setSolutionIndex((index) => (index - 1 + solutionStories.length) % solutionStories.length)}><Icon name="arrow" /></button><button type="button" aria-label="Show next solution story" onClick={() => setSolutionIndex((index) => (index + 1) % solutionStories.length)}><Icon name="arrow" /></button></div><div className="solution-dots">{solutionStories.map(([number], index) => <button type="button" className={solutionIndex === index ? "is-active" : undefined} aria-label={`Show solution story ${index + 1}`} aria-current={solutionIndex === index ? "true" : undefined} key={number} onClick={() => setSolutionIndex(index)} />)}</div></div></div></div></section>
 
       <section className="section principles" data-reveal><div className="container principles-grid"><div><p className="eyebrow">Why work with us</p><h2>Built for clear decisions<br />and <em>long-term growth.</em></h2><p className="section-note">Technology should make your business simpler, not more complicated. We build with the context and care that makes each next move easier.</p></div><div className="principle-list">{[["01", "Strategy before development", "We do not build technology without understanding the business problem behind it."], ["02", "Solutions built around you", "Every product and automation is tailored to your goals, processes, and users."], ["03", "Development and AI expertise", "We combine dependable software development with modern AI and automation capabilities."], ["04", "Clear communication", "You receive regular updates, transparent timelines, and full visibility throughout the project."], ["05", "Built for long-term growth", "We create scalable solutions that can evolve as your customers, team, and business grow."]].map(([number, title, text]) => <div key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></div>)}</div></div></section>
 

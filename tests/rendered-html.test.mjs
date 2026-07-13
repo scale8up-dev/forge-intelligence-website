@@ -35,6 +35,8 @@ test("server-renders the Forge Intelligence AI landing page", async () => {
   assert.match(html, /Build the right/);
   assert.match(html, /One clear path/);
   assert.match(html, /AI-powered workflows/);
+  assert.match(html, /Solution stories/);
+  assert.match(html, /aria-roledescription="carousel"/);
   assert.match(html, /What can you help us build\?/);
   assert.match(html, /Book a discovery call/);
 });
