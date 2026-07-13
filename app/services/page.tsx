@@ -87,6 +87,7 @@ export default function ServicesPage() {
             <a href="#development">Development</a>
             <a href="#strategy">Strategy</a>
             <a href="#ai-automations">AI automations</a>
+            <a href="/projects">Projects</a>
             <a className="nav-cta" href="/#contact">Start a project <Arrow /></a>
           </nav>
         </div>
@@ -194,7 +195,7 @@ export default function ServicesPage() {
         <div className="container footer-top">
           <a className="brand footer-brand" href="/"><span className="brand-mark"><Image unoptimized src="/forge-intelligence-logo.png" alt="" width={42} height={42} /></span><span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span></a>
           <p>Development, strategy, and AI automation<br />for ambitious businesses.</p>
-          <div className="footer-links"><div><span>Explore</span><a href="/#about">About</a><a href="#development">Development</a><a href="#strategy">Strategy</a></div><div><span>Connect</span><a href="mailto:domingo@oneenterprise.ai">Email us</a><a href="/#contact">Start a project</a><a href="/#faq">FAQ</a></div></div>
+          <div className="footer-links"><div><span>Explore</span><a href="/#about">About</a><a href="#development">Development</a><a href="#strategy">Strategy</a><a href="/projects">Projects</a></div><div><span>Connect</span><a href="mailto:domingo@oneenterprise.ai">Email us</a><a href="/#contact">Start a project</a><a href="/#faq">FAQ</a></div></div>
         </div>
         <div className="container footer-bottom"><span>© 2026 Forge Intelligence AI</span><span>Built with intent <span className="footer-dot">●</span></span><span><a href="/">Privacy</a><a href="/">Terms</a></span></div>
       </footer>
