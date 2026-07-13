@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 const navItems = [
   ["About", "about"],
   ["Services", "services"],
-  ["What we build", "outcomes"],
   ["Approach", "process"],
+  ["What we build", "outcomes"],
   ["FAQ", "faq"],
 ];
 

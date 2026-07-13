@@ -97,6 +97,7 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(page, /useForm\("mkodnbyq"\)/);
   assert.match(page, /@formspree\/react/);
   assert.match(page, /formState\.submitting/);
+  assert.match(page, /\["Services", "services"\],\s+\["Approach", "process"\],\s+\["What we build", "outcomes"\]/);
   assert.match(page, /What can you help us build/);
   assert.match(page, /forge-intelligence-logo\.png/);
   assert.match(page, /mailto:domingo@oneenterprise\.ai/);
@@ -115,6 +116,7 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(css, /\.site-main > \.site-header \{[^}]*position: fixed[^}]*top: 0/);
   assert.match(css, /\.process-layout \{ grid-template-columns: minmax\(0, 1fr\); gap: 36px; \}/);
   assert.match(css, /\.process-grid \{ grid-template-columns: minmax\(0, 1fr\); width: 100%; \}/);
+  assert.match(css, /\.main-nav \{ background: rgba\(248, 252, 255, \.98\)/);
   assert.doesNotMatch(css, /\.site-main\s*\{[^}]*padding-top/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.match(page, /forge-delivery-flow\.webp/);
