@@ -41,6 +41,7 @@ test("server-renders the Forge Intelligence AI landing page", async () => {
   assert.match(html, /aria-roledescription="carousel"/);
   assert.match(html, /What can you help us build\?/);
   assert.match(html, /Book a discovery call/);
+  assert.match(html, /mailto:domingo@oneenterprise\.ai/);
 });
 
 test("server-renders detailed Forge services without placeholder proof", async () => {
@@ -57,6 +58,7 @@ test("server-renders detailed Forge services without placeholder proof", async (
   assert.match(html, /FORGE \/ DELIVERY CURRENT/);
   assert.match(html, /Strategy → software → automation/);
   assert.match(html, /FORGE \/ WORKFLOW/);
+  assert.match(html, /mailto:domingo@oneenterprise\.ai/);
   assert.doesNotMatch(html, /Northstar|Pulse financial|Jordan Lee|Samira Patel|Marcus Reed/);
 });
 
@@ -80,8 +82,9 @@ test("exports Netlify-ready static routes", async () => {
 });
 
 test("keeps the production page free of starter preview dependencies", async () => {
-  const [page, layout, css, packageJson, deliveryImage, architectureImage] = await Promise.all([
+  const [page, servicesPage, layout, css, packageJson, deliveryImage, architectureImage] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
@@ -96,17 +99,22 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(page, /formState\.submitting/);
   assert.match(page, /What can you help us build/);
   assert.match(page, /forge-intelligence-logo\.png/);
-  assert.match(page, /mailto:hello@forgeintelligence\.ai/);
+  assert.match(page, /mailto:domingo@oneenterprise\.ai/);
+  assert.match(servicesPage, /mailto:domingo@oneenterprise\.ai/);
+  assert.doesNotMatch(page, /hello@forgeintelligence\.ai/);
+  assert.doesNotMatch(servicesPage, /hello@forgeintelligence\.ai/);
   assert.doesNotMatch(page, /Northstar|Pulse financial|Jordan Lee|Samira Patel|Marcus Reed/);
   assert.match(layout, /Forge Intelligence AI/);
   assert.doesNotMatch(page, /_sites-preview|codex-preview|SkeletonPreview|react-loading-skeleton/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|_sites-preview/);
   assert.doesNotMatch(css, /react-loading-skeleton|sites-skeleton/);
   assert.match(css, /html \{[^}]*scroll-behavior: smooth/);
-  assert.doesNotMatch(css, /html \{[^}]*scroll-padding-top:/);
+  assert.match(css, /html \{[^}]*scroll-padding-top: 96px/);
   assert.match(css, /body \{[^}]*overflow-x: clip/);
   assert.doesNotMatch(css, /\.site-main \{[^}]*overflow-x:/);
-  assert.match(css, /\.site-header \{[^}]*position: relative/);
+  assert.match(css, /\.site-main > \.site-header \{[^}]*position: fixed[^}]*top: 0/);
+  assert.match(css, /\.process-layout \{ grid-template-columns: minmax\(0, 1fr\); gap: 36px; \}/);
+  assert.match(css, /\.process-grid \{ grid-template-columns: minmax\(0, 1fr\); width: 100%; \}/);
   assert.doesNotMatch(css, /\.site-main\s*\{[^}]*padding-top/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.match(page, /forge-delivery-flow\.webp/);

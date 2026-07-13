@@ -19,7 +19,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
 body { margin: 0; overflow-x: clip; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 button, input, textarea { font: inherit; }
@@ -900,7 +900,7 @@ body.menu-open { overflow: hidden; }
 }
 
 /* Final visual/performance pass: one glass layer per region, optimized imagery, and editorial accents. */
-.site-header { position: relative; z-index: 200; backdrop-filter: blur(26px) saturate(165%); -webkit-backdrop-filter: blur(26px) saturate(165%); }
+.site-main > .site-header { position: fixed; top: 0; right: 0; left: 0; width: 100%; z-index: 200; backdrop-filter: blur(26px) saturate(165%); -webkit-backdrop-filter: blur(26px) saturate(165%); }
 .button:disabled { cursor: wait; opacity: .72; transform: none; }
 .form-field-error { color: #ffd1ca; font-size: 13px; line-height: 1.4; }
 .form-field-error:empty { display: none; }
@@ -911,6 +911,16 @@ body.menu-open { overflow: hidden; }
 .scroll-ready [data-reveal] { filter: none; transform: translate3d(0, 18px, 0); transition: opacity .42s ease-out, transform .48s cubic-bezier(.2,.75,.25,1); }
 .scroll-ready [data-reveal].is-visible { filter: none; }
 .ambient-field i { animation: none; }
+
+@media (max-width: 650px) {
+  .mobile-menu { display: grid; min-width: 44px; min-height: 44px; place-items: center; padding: 0; }
+  .process-layout { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .process-intro { max-width: 100%; }
+  .process-intro h2 { max-width: 12ch; font-size: clamp(38px, 10vw, 50px); overflow-wrap: anywhere; }
+  .process-grid { grid-template-columns: minmax(0, 1fr); width: 100%; }
+  .process-step.glass-card { grid-template-columns: 42px minmax(0, 1fr); width: 100%; padding: 22px; }
+  .process-step > span { width: 42px; height: 42px; }
+}
 
 .about-architecture { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .28; mix-blend-mode: multiply; mask-image: linear-gradient(135deg, #000, rgba(0,0,0,.58) 64%, transparent); }
 .about-hologram, .about-panel-label, .about-panel-stat, .about-panel .orbit { z-index: 1; }
