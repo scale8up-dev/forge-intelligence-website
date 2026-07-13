@@ -12,10 +12,18 @@ const navItems = [
 ];
 
 const services = [
-  { number: "01", icon: "layers", title: "Development", description: "High-performing digital products that are fast, scalable, easy to use, and ready for the real work behind them." },
-  { number: "02", icon: "spark", title: "Strategy", description: "The product, features, technology, and roadmap shaped around the business outcome before development begins." },
-  { number: "03", icon: "chart", title: "AI automations", description: "Practical AI systems that reduce manual work, connect your tools, and help the team operate more efficiently." },
-  { number: "04", icon: "shield", title: "Launch & scale", description: "Reliable integrations, testing, optimisation, and ongoing improvement as the product and business grow." },
+  { number: "01", icon: "layers", title: "Development", description: "High-performing digital products that are fast, scalable, easy to use, and ready for the real work behind them.", flow: ["Scope", "Build", "Release"] },
+  { number: "02", icon: "spark", title: "Strategy", description: "The product, features, technology, and roadmap shaped around the business outcome before development begins.", flow: ["Discover", "Prioritise", "Align"] },
+  { number: "03", icon: "chart", title: "AI automations", description: "Practical AI systems that reduce manual work, connect your tools, and help the team operate more efficiently.", flow: ["Signal", "Route", "Assist"] },
+  { number: "04", icon: "shield", title: "Launch & scale", description: "Reliable integrations, testing, optimisation, and ongoing improvement as the product and business grow.", flow: ["Test", "Launch", "Improve"] },
+];
+
+const principles = [
+  ["01", "Strategy before development", "We do not build technology without understanding the business problem behind it."],
+  ["02", "Built around you", "Every product and automation is tailored to your goals, processes, and users."],
+  ["03", "Development and AI expertise", "We combine dependable software development with modern AI and automation capabilities."],
+  ["04", "Clear communication", "You receive regular updates, transparent timelines, and full visibility throughout the project."],
+  ["05", "Built for long-term growth", "We create scalable solutions that can evolve as your customers, team, and business grow."],
 ];
 
 const faqs = [
@@ -63,7 +71,6 @@ export default function Home() {
   const [solutionIndex, setSolutionIndex] = useState(0);
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = document.documentElement;
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
 
@@ -82,33 +89,9 @@ export default function Home() {
     );
     sections.forEach((section) => observer.observe(section));
 
-    if (reduceMotion) {
-      return () => {
-        observer.disconnect();
-        root.classList.remove("scroll-ready");
-      };
-    }
-
-    let frame = 0;
-    const updateScrollDepth = () => {
-      frame = 0;
-      const depth = Math.min(window.scrollY, 900);
-      root.style.setProperty("--liquid-shift", `${depth * 0.07}px`);
-      root.style.setProperty("--liquid-shift-inverse", `${depth * -0.046}px`);
-    };
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(updateScrollDepth);
-    };
-
-    updateScrollDepth();
-    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      if (frame) window.cancelAnimationFrame(frame);
       root.classList.remove("scroll-ready");
-      root.style.removeProperty("--liquid-shift");
-      root.style.removeProperty("--liquid-shift-inverse");
     };
   }, []);
 
@@ -131,7 +114,9 @@ export default function Home() {
     const steps = Array.from(document.querySelectorAll<HTMLElement>("[data-process-step]"));
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveProcessStep(Number(entry.target.dataset.processStep ?? 0));
+        if (entry.isIntersecting) {
+          setActiveProcessStep(Number((entry.target as HTMLElement).dataset.processStep ?? 0));
+        }
       }),
       { rootMargin: "-28% 0px -42%", threshold: 0.18 },
     );
@@ -164,7 +149,7 @@ export default function Home() {
           </a>
           <button className="mobile-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="main-navigation"><Icon name={menuOpen ? "close" : "menu"} /></button>
           <nav id="main-navigation" className={menuOpen ? "main-nav open" : "main-nav"} aria-label="Main navigation">
-            {navItems.map(([label, href]) => <a className={activeSection === href ? "active" : undefined} key={href} href={`#${href}`} onClick={() => { setMenuOpen(false); setActiveSection(href); }}>{label}</a>)}
+            {navItems.map(([label, href]) => <a className={activeSection === href && label !== "Services" ? "active" : undefined} key={href} href={label === "Services" ? "/services" : `#${href}`} onClick={() => { setMenuOpen(false); if (label !== "Services") setActiveSection(href); }}>{label}</a>)}
             <a className="nav-cta" href="#contact" onClick={() => setMenuOpen(false)}>Start a project <Icon name="arrow" /></a>
           </nav>
         </div>
@@ -177,7 +162,7 @@ export default function Home() {
             <div className="availability-note"><i /> Build smarter. Move faster. Automate more.</div>
             <h1>Build the right<br /><em>system next.</em></h1>
             <p className="hero-lede">We help ambitious businesses turn ideas into powerful digital products through strategic thinking, expert development, and intelligent AI automation.</p>
-            <div className="hero-actions"><a className="button button-primary" href="#contact">Start your project <Icon name="arrow" /></a><a className="text-link" href="#services">Explore our services <Icon name="arrow" /></a></div>
+            <div className="hero-actions"><a className="button button-primary" href="#contact">Start your project <Icon name="arrow" /></a><a className="text-link" href="/services">Explore our services <Icon name="arrow" /></a></div>
             <div className="capability-rail" aria-label="Forge core capabilities"><span>Digital products</span><span>SaaS development</span><span>AI workflows</span></div>
           </div>
           <div className="hero-visual holo-shell" role="img" aria-label="Forge delivery system: strategy, development, and AI automations working together">
@@ -201,21 +186,21 @@ export default function Home() {
 
       <section className="capability-ticker" aria-label="Forge capabilities"><div className="ticker-track"><span>PRODUCT STRATEGY</span><i>✦</i><span>SOFTWARE DEVELOPMENT</span><i>✦</i><span>AI AUTOMATIONS</span><i>✦</i><span>PRODUCT STRATEGY</span><i aria-hidden="true">✦</i><span aria-hidden="true">SOFTWARE DEVELOPMENT</span><i aria-hidden="true">✦</i><span aria-hidden="true">AI AUTOMATIONS</span><i aria-hidden="true">✦</i></div></section>
 
-      <section className="section services" id="services" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Our services</p><h2>Development-led.<br /><em>Strategy-backed.</em></h2></div><p className="section-note">We bring development, strategy, and AI automation together so the right solution moves from idea to execution without losing its purpose.</p></div><div className="service-grid">{services.map((service) => <article className="service-card glass-card" key={service.number}><div className="service-top"><span className="service-number">{service.number}</span><span className="icon-box"><Icon name={service.icon} /></span></div><h3>{service.title}</h3><p>{service.description}</p><a href="#contact" className="card-link">Explore service <Icon name="arrow" /></a></article>)}</div></div></section>
+      <section className="section services" id="services" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Our services</p><h2>Development-led.<br /><em>Strategy-backed.</em></h2></div><div><p className="section-note">We bring development, strategy, and AI automation together so the right solution moves from idea to execution without losing its purpose.</p><a className="text-link section-detail-link" href="/services">See detailed services <Icon name="arrow" /></a></div></div><div className="service-grid capability-deck">{services.map((service) => <article className="service-card glass-card" key={service.number}><div className="service-top"><span className="service-number">{service.number}</span><span className="icon-box"><Icon name={service.icon} /></span></div><h3>{service.title}</h3><p>{service.description}</p><div className="service-mini-flow" aria-label={`${service.title} workflow`}>{service.flow.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, "0")}</i>{step}</span>)}</div><a href={service.title === "Strategy" ? "/services#strategy" : service.title === "AI automations" ? "/services#ai-automations" : "/services#development"} className="card-link">Explore service <Icon name="arrow" /></a></article>)}</div></div></section>
 
-      <section className="section about" id="about" data-reveal><div className="container about-grid"><div className="about-panel glass-card"><div className="about-hologram"><Image unoptimized src="/forge-intelligence-logo.png" alt="Forge Intelligence AI" width={280} height={280} /></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="about-panel-label">FROM IDEA TO EXECUTION</div><div className="about-panel-stat"><strong>3</strong><span>connected disciplines,<br />one practical solution</span></div></div><div className="about-copy"><p className="eyebrow">From strategy to scalable digital solutions</p><h2>Technology that works<br /><em>for your business.</em></h2><p>Great technology starts with a clear direction. We work closely with your team to understand your goals, identify opportunities, and create the right solution for your business.</p><p>Whether you need a new digital product, a stronger technology strategy, or smarter ways to automate daily operations, we help you move from idea to execution.</p><div className="stat-row"><div><strong>Discover</strong><span>understand the opportunity</span></div><div><strong>Build</strong><span>create the right solution</span></div><div><strong>Improve</strong><span>grow with confidence</span></div></div><a className="text-link" href="#process">How we work <Icon name="arrow" /></a></div></div></section>
+      <section className="section about" id="about" data-reveal><div className="container about-grid"><div className="about-panel glass-card"><Image className="about-architecture" unoptimized src="/images/forge-glass-architecture.webp" alt="" aria-hidden="true" width={960} height={601} sizes="(max-width: 900px) 100vw, 48vw" /><div className="about-hologram"><Image unoptimized src="/forge-intelligence-logo.png" alt="Forge Intelligence AI" width={280} height={280} /></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="about-panel-label">FROM IDEA TO EXECUTION</div><div className="about-panel-stat"><strong>3</strong><span>connected disciplines,<br />one practical solution</span></div></div><div className="about-copy"><p className="eyebrow">From strategy to scalable digital solutions</p><h2>Technology that works<br /><em>for your business.</em></h2><p>Great technology starts with a clear direction. We work closely with your team to understand your goals, identify opportunities, and create the right solution for your business.</p><p>Whether you need a new digital product, a stronger technology strategy, or smarter ways to automate daily operations, we help you move from idea to execution.</p><div className="stat-row"><div><strong>Discover</strong><span>understand the opportunity</span></div><div><strong>Build</strong><span>create the right solution</span></div><div><strong>Improve</strong><span>grow with confidence</span></div></div><a className="text-link" href="#process">How we work <Icon name="arrow" /></a></div></div></section>
 
       <section className="section process" id="process" data-reveal><div className="container process-layout"><div className="process-intro"><p className="eyebrow">How we work</p><h2>From the right question<br />to the <em>right system.</em></h2><p className="section-note">A clear delivery path that keeps business goals, product decisions, software, and automation in the same conversation.</p><div className="process-progress" aria-hidden="true"><span>{String(activeProcessStep + 1).padStart(2, "0")}</span><i><b style={{ transform: `scaleX(${(activeProcessStep + 1) / processSteps.length})` }} /></i><span>05</span></div><a className="text-link" href="#contact">Tell us about your project <Icon name="arrow" /></a></div><div className="process-grid">{processSteps.map(([number, title, text], index) => <article className={activeProcessStep === index ? "process-step glass-card is-active" : "process-step glass-card"} data-process-step={index} key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
 
-      <section className="section outcomes" id="outcomes" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Solution stories</p><h2>Systems built around<br /><em>real work.</em></h2></div><p className="section-note">A focused look at the products and workflows we can shape around your customers, operations, and next stage of growth.</p></div><div className="solution-carousel" role="region" aria-roledescription="carousel" aria-label="Forge solution stories"><div className="solution-viewport"><div className="solution-track" style={{ transform: `translateX(-${solutionIndex * 100}%)` }}>{solutionStories.map(([number, label, title, text], index) => <article className="solution-slide" aria-hidden={solutionIndex !== index} key={number}><div className="solution-index"><span>{number}</span><i /></div><div className="solution-copy"><p>{label}</p><h3>{title}</h3><p>{text}</p><a className="text-link" href="#contact" tabIndex={solutionIndex === index ? 0 : -1}>Discuss this system <Icon name="arrow" /></a></div><div className="solution-art" aria-hidden="true"><div className="solution-orbit" /><div className="solution-line line-a" /><div className="solution-line line-b" /><span>{number}</span></div></article>)}</div></div><div className="solution-controls"><p aria-live="polite">{String(solutionIndex + 1).padStart(2, "0")} <span>/ 0{solutionStories.length}</span></p><div><button type="button" aria-label="Show previous solution story" onClick={() => setSolutionIndex((index) => (index - 1 + solutionStories.length) % solutionStories.length)}><Icon name="arrow" /></button><button type="button" aria-label="Show next solution story" onClick={() => setSolutionIndex((index) => (index + 1) % solutionStories.length)}><Icon name="arrow" /></button></div><div className="solution-dots">{solutionStories.map(([number], index) => <button type="button" className={solutionIndex === index ? "is-active" : undefined} aria-label={`Show solution story ${index + 1}`} aria-current={solutionIndex === index ? "true" : undefined} key={number} onClick={() => setSolutionIndex(index)} />)}</div></div></div></div></section>
+      <section className="section outcomes" id="outcomes" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Solution stories</p><h2>Systems built around<br /><em>real work.</em></h2></div><p className="section-note">A focused look at the products and workflows we can shape around your customers, operations, and next stage of growth.</p></div><div className="solution-carousel" role="region" aria-roledescription="carousel" aria-label="Forge solution stories"><div className="solution-viewport"><div className="solution-track" style={{ transform: `translateX(-${solutionIndex * 100}%)` }}>{solutionStories.map(([number, label, title, text], index) => <article className="solution-slide" aria-hidden={solutionIndex !== index} key={number}><div className="solution-index"><span>{number}</span><i /></div><div className="solution-copy"><p>{label}</p><h3>{title}</h3><p>{text}</p><a className="text-link" href="#contact" tabIndex={solutionIndex === index ? 0 : -1}>Discuss this system <Icon name="arrow" /></a></div><div className={number === "03" ? "solution-art has-flow-image" : "solution-art"} aria-hidden="true">{number === "03" && <Image className="solution-art-image" unoptimized src="/images/forge-delivery-flow.webp" alt="" width={960} height={601} sizes="(max-width: 900px) 100vw, 33vw" />}<div className="solution-orbit" /><div className="solution-line line-a" /><div className="solution-line line-b" /><span>{number}</span></div></article>)}</div></div><div className="solution-controls"><p aria-live="polite">{String(solutionIndex + 1).padStart(2, "0")} <span>/ 0{solutionStories.length}</span></p><div><button type="button" aria-label="Show previous solution story" onClick={() => setSolutionIndex((index) => (index - 1 + solutionStories.length) % solutionStories.length)}><Icon name="arrow" /></button><button type="button" aria-label="Show next solution story" onClick={() => setSolutionIndex((index) => (index + 1) % solutionStories.length)}><Icon name="arrow" /></button></div><div className="solution-dots">{solutionStories.map(([number], index) => <button type="button" className={solutionIndex === index ? "is-active" : undefined} aria-label={`Show solution story ${index + 1}`} aria-current={solutionIndex === index ? "true" : undefined} key={number} onClick={() => setSolutionIndex(index)} />)}</div></div></div></div></section>
 
-      <section className="section principles" data-reveal><div className="container principles-grid"><div><p className="eyebrow">Why work with us</p><h2>Built for clear decisions<br />and <em>long-term growth.</em></h2><p className="section-note">Technology should make your business simpler, not more complicated. We build with the context and care that makes each next move easier.</p></div><div className="principle-list">{[["01", "Strategy before development", "We do not build technology without understanding the business problem behind it."], ["02", "Solutions built around you", "Every product and automation is tailored to your goals, processes, and users."], ["03", "Development and AI expertise", "We combine dependable software development with modern AI and automation capabilities."], ["04", "Clear communication", "You receive regular updates, transparent timelines, and full visibility throughout the project."], ["05", "Built for long-term growth", "We create scalable solutions that can evolve as your customers, team, and business grow."]].map(([number, title, text]) => <div key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></div>)}</div></div></section>
+      <section className="section principles" data-reveal><div className="container principles-grid"><div><p className="eyebrow">Why work with us</p><h2>Built for clear decisions<br />and <em>long-term growth.</em></h2><p className="section-note">Technology should make your business simpler, not more complicated. We build with the context and care that makes each next move easier.</p></div><div className="principle-list principle-bento">{principles.map(([number, title, text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
       <section className="section faq" id="faq" data-reveal><div className="container faq-grid"><div><p className="eyebrow">Questions, answered</p><h2>A little more<br /><em>context.</em></h2><p className="section-note">Tell us whether you need development, strategy, AI automation, or the full connected solution.</p><a className="button button-outline" href="#contact">Ask us anything <Icon name="arrow" /></a></div><div className="faq-list">{faqs.map(([question, answer], index) => <div className={openFaq === index ? "faq-item open" : "faq-item"} key={question}><button type="button" onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index} aria-controls={`faq-answer-${index}`}><span>{question}</span><i>+</i></button><div className="faq-answer" id={`faq-answer-${index}`} role="region" aria-label={question}><p>{answer}</p></div></div>)}</div></div></section>
 
       <section className="cta" id="contact" data-reveal><div className="container cta-inner"><div><p className="eyebrow">Ready to build something better?</p><h2>Turn the right idea<br />into a <em>scalable solution.</em></h2></div><div className="cta-form-wrap glass-card"><p>Tell us about your idea, challenge, or business process. We will help identify the right strategy and turn it into a scalable digital solution.</p><form onSubmit={submitForm} noValidate><div className="form-row"><label><span>Name</span><input name="name" required placeholder="Your name" /></label><label><span>Work email</span><input name="email" type="email" required placeholder="you@company.com" /></label></div><label><span>What are you working on?</span><textarea name="message" required rows={3} placeholder="A few details about the product, workflow, or opportunity..." /></label><div className="form-footer"><button className="button button-light" type="submit">Book a discovery call <Icon name="arrow" /></button>{formState === "error" && <span className="form-message error">Please complete the required fields.</span>}</div></form></div></div></section>
 
-      <footer className="site-footer"><div className="container footer-top"><a className="brand footer-brand" href="#top"><span className="brand-mark"><Image unoptimized src="/forge-intelligence-logo.png" alt="" width={42} height={42} /></span><span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span></a><p>Development, strategy, and AI automation<br />for ambitious businesses.</p><div className="footer-links"><div><span>Explore</span><a href="#about">About</a><a href="#services">Services</a><a href="#outcomes">What we build</a></div><div><span>Connect</span><a href="mailto:hello@forgeintelligence.ai">Email us</a><a href="#contact">Start your project</a><a href="#faq">FAQ</a></div></div></div><div className="container footer-bottom"><span>© 2026 Forge Intelligence AI</span><span>Built with intent <span className="footer-dot">●</span></span><span><a href="#top">Privacy</a><a href="#top">Terms</a></span></div></footer>
+      <footer className="site-footer"><div className="container footer-top"><a className="brand footer-brand" href="#top"><span className="brand-mark"><Image unoptimized src="/forge-intelligence-logo.png" alt="" width={42} height={42} /></span><span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span></a><p>Development, strategy, and AI automation<br />for ambitious businesses.</p><div className="footer-links"><div><span>Explore</span><a href="#about">About</a><a href="/services">Services</a><a href="#outcomes">What we build</a></div><div><span>Connect</span><a href="mailto:hello@forgeintelligence.ai">Email us</a><a href="#contact">Start your project</a><a href="#faq">FAQ</a></div></div></div><div className="container footer-bottom"><span>© 2026 Forge Intelligence AI</span><span>Built with intent <span className="footer-dot">●</span></span><span><a href="#top">Privacy</a><a href="#top">Terms</a></span></div></footer>
     </main>
   );
 }

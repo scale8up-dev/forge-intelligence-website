@@ -88,9 +88,23 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 ## Useful Commands
 
 - `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
+- `npm run build`: create the standard Vinext production build
+- `npm run build:static`: pre-render all routes for static hosting
+- `npm test`: verify the static production build and rendered pages
 - `npm run db:generate`: generate Drizzle migrations after schema changes
+
+## Netlify Deployment
+
+This site is configured for Netlify static hosting. The committed
+[`netlify.toml`](./netlify.toml) runs `npm run build:static` and publishes
+`dist/client`, which includes pre-rendered HTML for the public routes.
+
+In Netlify, import the repository and leave the build settings detected from
+`netlify.toml`. If you need to enter them manually, use:
+
+- Build command: `npm run build:static`
+- Publish directory: `dist/client`
+- Node version: `22.13.0`
 
 ## Learn More
 
