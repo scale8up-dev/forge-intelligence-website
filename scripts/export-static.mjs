@@ -27,7 +27,7 @@ for (const filename of await readdir(sourceDirectory)) {
   if (filename.endsWith(".rsc")) {
     const route = filename.slice(0, -".rsc".length);
     const target = route === "index"
-      ? join(publishDirectory, ".rsc")
+      ? join(publishDirectory, "index.rsc")
       : join(publishDirectory, filename);
 
     await cp(source, target);
@@ -49,9 +49,8 @@ const headersPath = join(publishDirectory, "_headers");
 const headers = await readFile(headersPath, "utf8");
 await writeFile(headersPath, `${headers.trimEnd()}
 
-/.rsc
-  Content-Type: text/x-component; charset=utf-8
-
 /*.rsc
   Content-Type: text/x-component; charset=utf-8
 `);
+
+await writeFile(join(publishDirectory, "_redirects"), "/.rsc /index.rsc 200\n");

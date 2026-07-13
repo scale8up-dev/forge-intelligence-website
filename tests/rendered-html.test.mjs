@@ -61,12 +61,13 @@ test("server-renders detailed Forge services without placeholder proof", async (
 });
 
 test("exports Netlify-ready static routes", async () => {
-  const [home, services, homeRsc, servicesRsc, headers] = await Promise.all([
+  const [home, services, homeRsc, servicesRsc, headers, redirects] = await Promise.all([
     readFile(new URL("../dist/client/index.html", import.meta.url), "utf8"),
     readFile(new URL("../dist/client/services/index.html", import.meta.url), "utf8"),
-    readFile(new URL("../dist/client/.rsc", import.meta.url), "utf8"),
+    readFile(new URL("../dist/client/index.rsc", import.meta.url), "utf8"),
     readFile(new URL("../dist/client/services.rsc", import.meta.url), "utf8"),
     readFile(new URL("../dist/client/_headers", import.meta.url), "utf8"),
+    readFile(new URL("../dist/client/_redirects", import.meta.url), "utf8"),
   ]);
 
   assert.match(home, /Build the right/);
@@ -75,6 +76,7 @@ test("exports Netlify-ready static routes", async () => {
   assert.match(homeRsc, /"__route":"route:\/"/);
   assert.match(servicesRsc, /"__route":"route:\/services"/);
   assert.match(headers, /Content-Type: text\/x-component/);
+  assert.match(redirects, /^\/.rsc \/index\.rsc 200$/m);
 });
 
 test("keeps the production page free of starter preview dependencies", async () => {
