@@ -91,7 +91,9 @@ test("keeps the production page free of starter preview dependencies", async () 
 
   assert.match(page, /useState/);
   assert.match(page, /aria-expanded/);
-  assert.match(page, /checkValidity/);
+  assert.match(page, /useForm\("mkodnbyq"\)/);
+  assert.match(page, /@formspree\/react/);
+  assert.match(page, /formState\.submitting/);
   assert.match(page, /What can you help us build/);
   assert.match(page, /forge-intelligence-logo\.png/);
   assert.match(page, /mailto:hello@forgeintelligence\.ai/);
@@ -104,6 +106,7 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(css, /body \{[^}]*overflow-x: clip/);
   assert.doesNotMatch(css, /\.site-main \{[^}]*overflow-x:/);
   assert.match(css, /\.site-header \{[^}]*position: fixed[^}]*top: 0/);
+  assert.doesNotMatch(css, /\.site-main\s*\{[^}]*padding-top/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.match(page, /forge-delivery-flow\.webp/);
   assert.match(page, /forge-glass-architecture\.webp/);

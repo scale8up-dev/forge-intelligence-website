@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
+import { ValidationError, useForm } from "@formspree/react";
+import { useEffect, useState } from "react";
 
 const navItems = [
   ["About", "about"],
@@ -65,10 +66,10 @@ function Icon({ name }: { name: string }) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [formState, setFormState] = useState<"idle" | "error">("idle");
   const [activeSection, setActiveSection] = useState("top");
   const [activeProcessStep, setActiveProcessStep] = useState(0);
   const [solutionIndex, setSolutionIndex] = useState(0);
+  const [formState, submitForm] = useForm("mkodnbyq");
 
   useEffect(() => {
     const root = document.documentElement;
@@ -123,20 +124,6 @@ export default function Home() {
     steps.forEach((step) => observer.observe(step));
     return () => observer.disconnect();
   }, []);
-
-  function submitForm(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.checkValidity()) {
-      setFormState("error");
-      form.reportValidity();
-      return;
-    }
-    const data = new FormData(form);
-    const subject = encodeURIComponent(`Forge Intelligence AI — ${data.get("name")}`);
-    const body = encodeURIComponent(`Name: ${data.get("name")}\nEmail: ${data.get("email")}\n\nProject:\n${data.get("message")}`);
-    window.location.href = `mailto:hello@forgeintelligence.ai?subject=${subject}&body=${body}`;
-  }
 
   return (
     <main className="site-main">
@@ -198,7 +185,7 @@ export default function Home() {
 
       <section className="section faq" id="faq" data-reveal><div className="container faq-grid"><div><p className="eyebrow">Questions, answered</p><h2>A little more<br /><em>context.</em></h2><p className="section-note">Tell us whether you need development, strategy, AI automation, or the full connected solution.</p><a className="button button-outline" href="#contact">Ask us anything <Icon name="arrow" /></a></div><div className="faq-list">{faqs.map(([question, answer], index) => <div className={openFaq === index ? "faq-item open" : "faq-item"} key={question}><button type="button" onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index} aria-controls={`faq-answer-${index}`}><span>{question}</span><i>+</i></button><div className="faq-answer" id={`faq-answer-${index}`} role="region" aria-label={question}><p>{answer}</p></div></div>)}</div></div></section>
 
-      <section className="cta" id="contact" data-reveal><div className="container cta-inner"><div><p className="eyebrow">Ready to build something better?</p><h2>Turn the right idea<br />into a <em>scalable solution.</em></h2></div><div className="cta-form-wrap glass-card"><p>Tell us about your idea, challenge, or business process. We will help identify the right strategy and turn it into a scalable digital solution.</p><form onSubmit={submitForm} noValidate><div className="form-row"><label><span>Name</span><input name="name" required placeholder="Your name" /></label><label><span>Work email</span><input name="email" type="email" required placeholder="you@company.com" /></label></div><label><span>What are you working on?</span><textarea name="message" required rows={3} placeholder="A few details about the product, workflow, or opportunity..." /></label><div className="form-footer"><button className="button button-light" type="submit">Book a discovery call <Icon name="arrow" /></button>{formState === "error" && <span className="form-message error">Please complete the required fields.</span>}</div></form></div></div></section>
+      <section className="cta" id="contact" data-reveal><div className="container cta-inner"><div><p className="eyebrow">Ready to build something better?</p><h2>Turn the right idea<br />into a <em>scalable solution.</em></h2></div><div className="cta-form-wrap glass-card"><p>Tell us about your idea, challenge, or business process. We will help identify the right strategy and turn it into a scalable digital solution.</p>{formState.succeeded ? <div className="form-success" role="status"><strong>Message sent.</strong><p>Thanks for reaching out. We will be in touch soon.</p></div> : <form onSubmit={submitForm}><input type="hidden" name="_subject" value="New Forge Intelligence AI project enquiry" /><div className="form-row"><label><span>Name</span><input name="name" required placeholder="Your name" autoComplete="name" /></label><label><span>Work email</span><input name="email" type="email" required placeholder="you@company.com" autoComplete="email" /><div className="form-field-error"><ValidationError prefix="Email" field="email" errors={formState.errors} /></div></label></div><label><span>What are you working on?</span><textarea name="message" required rows={3} placeholder="A few details about the product, workflow, or opportunity..." /><div className="form-field-error"><ValidationError prefix="Message" field="message" errors={formState.errors} /></div></label><div className="form-footer"><button className="button button-light" type="submit" disabled={formState.submitting}>{formState.submitting ? "Sending..." : <>Book a discovery call <Icon name="arrow" /></>}</button>{formState.errors && <span className="form-message error">We could not send your message. Please try again.</span>}</div></form>}</div></div></section>
 
       <footer className="site-footer"><div className="container footer-top"><a className="brand footer-brand" href="#top"><span className="brand-mark"><Image unoptimized src="/forge-intelligence-logo.png" alt="" width={42} height={42} /></span><span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span></a><p>Development, strategy, and AI automation<br />for ambitious businesses.</p><div className="footer-links"><div><span>Explore</span><a href="#about">About</a><a href="/services">Services</a><a href="#outcomes">What we build</a></div><div><span>Connect</span><a href="mailto:hello@forgeintelligence.ai">Email us</a><a href="#contact">Start your project</a><a href="#faq">FAQ</a></div></div></div><div className="container footer-bottom"><span>© 2026 Forge Intelligence AI</span><span>Built with intent <span className="footer-dot">●</span></span><span><a href="#top">Privacy</a><a href="#top">Terms</a></span></div></footer>
     </main>
