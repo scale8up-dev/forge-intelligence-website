@@ -102,10 +102,11 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.doesNotMatch(page, /_sites-preview|codex-preview|SkeletonPreview|react-loading-skeleton/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|_sites-preview/);
   assert.doesNotMatch(css, /react-loading-skeleton|sites-skeleton/);
-  assert.match(css, /html \{[^}]*scroll-behavior: smooth[^}]*scroll-padding-top: 96px/);
+  assert.match(css, /html \{[^}]*scroll-behavior: smooth/);
+  assert.doesNotMatch(css, /html \{[^}]*scroll-padding-top:/);
   assert.match(css, /body \{[^}]*overflow-x: clip/);
   assert.doesNotMatch(css, /\.site-main \{[^}]*overflow-x:/);
-  assert.match(css, /\.site-header \{[^}]*position: fixed[^}]*top: 0/);
+  assert.match(css, /\.site-header \{[^}]*position: relative/);
   assert.doesNotMatch(css, /\.site-main\s*\{[^}]*padding-top/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.match(page, /forge-delivery-flow\.webp/);
