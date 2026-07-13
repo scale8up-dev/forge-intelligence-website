@@ -966,6 +966,12 @@ body.menu-open { overflow: hidden; }
 .ticker-track { gap: 0; padding-inline: 0; }
 .ticker-group { display: flex; flex: 0 0 auto; align-items: center; gap: 34px; padding-right: 34px; }
 
+/* Keep the capability strip centered instead of letting the ticker clip at the viewport edge. */
+.capability-ticker { overflow: visible; }
+.capability-ticker .ticker-track { width: 100%; min-height: 70px; justify-content: center; gap: 0; padding: 0 24px; animation: none; white-space: normal; }
+.capability-ticker .ticker-group { justify-content: center; flex-wrap: wrap; gap: 22px 28px; padding: 0; }
+.capability-ticker .ticker-group[aria-hidden="true"] { display: none; }
+
 .featured-projects { background: linear-gradient(155deg, rgba(244,250,255,.9), rgba(255,255,255,.78) 52%, rgba(226,247,252,.62)); }
 .featured-project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
 .featured-project-card, .project-card { min-width: 0; overflow: hidden; border: 1px solid rgba(178,202,225,.58); border-radius: 22px; background: rgba(255,255,255,.7); box-shadow: 0 24px 65px rgba(24,83,157,.1); }
@@ -1020,7 +1026,9 @@ body.menu-open { overflow: hidden; }
 
 @media (max-width: 650px) {
   .delivery-stack { right: 17px; left: 17px; }
-  .ticker-group { gap: 21px; padding-right: 21px; }
+  .capability-ticker .ticker-track { min-height: 92px; padding: 16px 20px; }
+  .capability-ticker .ticker-group { gap: 12px 16px; }
+  .capability-ticker .ticker-group span { font-size: 9px; letter-spacing: .12em; }
   .featured-project-grid, .projects-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .featured-project-copy, .project-card-body { padding: 22px; }
   .projects-hero { padding: 126px 0 58px; }
