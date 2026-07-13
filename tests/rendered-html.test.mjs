@@ -61,14 +61,20 @@ test("server-renders detailed Forge services without placeholder proof", async (
 });
 
 test("exports Netlify-ready static routes", async () => {
-  const [home, services] = await Promise.all([
+  const [home, services, homeRsc, servicesRsc, headers] = await Promise.all([
     readFile(new URL("../dist/client/index.html", import.meta.url), "utf8"),
     readFile(new URL("../dist/client/services/index.html", import.meta.url), "utf8"),
+    readFile(new URL("../dist/client/.rsc", import.meta.url), "utf8"),
+    readFile(new URL("../dist/client/services.rsc", import.meta.url), "utf8"),
+    readFile(new URL("../dist/client/_headers", import.meta.url), "utf8"),
   ]);
 
   assert.match(home, /Build the right/);
   assert.match(home, /\/_vinext\/fonts\//);
   assert.match(services, /Three disciplines/);
+  assert.match(homeRsc, /"__route":"route:\/"/);
+  assert.match(servicesRsc, /"__route":"route:\/services"/);
+  assert.match(headers, /Content-Type: text\/x-component/);
 });
 
 test("keeps the production page free of starter preview dependencies", async () => {
@@ -95,7 +101,7 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(css, /html \{[^}]*scroll-behavior: smooth[^}]*scroll-padding-top: 96px/);
   assert.match(css, /body \{[^}]*overflow-x: clip/);
   assert.doesNotMatch(css, /\.site-main \{[^}]*overflow-x:/);
-  assert.match(css, /\.site-header \{[^}]*position: sticky[^}]*top: 0/);
+  assert.match(css, /\.site-header \{[^}]*position: fixed[^}]*top: 0/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.match(page, /forge-delivery-flow\.webp/);
   assert.match(page, /forge-glass-architecture\.webp/);

@@ -22,6 +22,18 @@ function rewriteFontPaths(html) {
 await cp(sourceFontsDirectory, publishFontsDirectory, { recursive: true });
 
 for (const filename of await readdir(sourceDirectory)) {
+  const source = join(sourceDirectory, filename);
+
+  if (filename.endsWith(".rsc")) {
+    const route = filename.slice(0, -".rsc".length);
+    const target = route === "index"
+      ? join(publishDirectory, ".rsc")
+      : join(publishDirectory, filename);
+
+    await cp(source, target);
+    continue;
+  }
+
   if (!filename.endsWith(".html")) continue;
 
   const route = filename.slice(0, -".html".length);
@@ -30,5 +42,16 @@ for (const filename of await readdir(sourceDirectory)) {
     : join(publishDirectory, route, "index.html");
 
   await mkdir(resolve(target, ".."), { recursive: true });
-  await writeFile(target, rewriteFontPaths(await readFile(join(sourceDirectory, filename), "utf8")));
+  await writeFile(target, rewriteFontPaths(await readFile(source, "utf8")));
 }
+
+const headersPath = join(publishDirectory, "_headers");
+const headers = await readFile(headersPath, "utf8");
+await writeFile(headersPath, `${headers.trimEnd()}
+
+/.rsc
+  Content-Type: text/x-component; charset=utf-8
+
+/*.rsc
+  Content-Type: text/x-component; charset=utf-8
+`);
