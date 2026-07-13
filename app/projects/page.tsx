@@ -12,6 +12,10 @@ function Arrow() {
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h13" /><path d="m13 6 6 6-6 6" /></svg>;
 }
 
+function MenuIcon() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>;
+}
+
 export default function ProjectsPage() {
   return (
     <main className="site-main projects-page">
@@ -20,6 +24,10 @@ export default function ProjectsPage() {
         <div className="container nav-wrap">
           <a className="brand" href="/" aria-label="Forge Intelligence AI home"><span className="brand-mark"><Image src="/forge-intelligence-logo.png" alt="" width={48} height={48} priority unoptimized /></span><span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span></a>
           <nav className="services-nav" aria-label="Projects navigation"><a href="/#about">About</a><a href="/services">Services</a><a href="/#process">Approach</a><a href="/projects">Projects</a><a href="/#outcomes">What we build</a><a className="nav-cta" href="/#contact">Start a project <Arrow /></a></nav>
+          <details className="static-mobile-menu">
+            <summary aria-label="Open navigation"><MenuIcon /></summary>
+            <nav aria-label="Mobile projects navigation"><a href="/#about">About</a><a href="/services">Services</a><a href="/#process">Approach</a><a href="/projects">Projects</a><a href="/#outcomes">What we build</a><a href="/#faq">FAQ</a><a className="nav-cta" href="/#contact">Start a project <Arrow /></a></nav>
+          </details>
         </div>
       </header>
 

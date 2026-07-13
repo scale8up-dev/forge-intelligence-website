@@ -72,6 +72,10 @@ function Arrow() {
   );
 }
 
+function MenuIcon() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>;
+}
+
 export default function ServicesPage() {
   return (
     <main className="site-main services-page">
@@ -90,6 +94,12 @@ export default function ServicesPage() {
             <a href="/projects">Projects</a>
             <a className="nav-cta" href="/#contact">Start a project <Arrow /></a>
           </nav>
+          <details className="static-mobile-menu">
+            <summary aria-label="Open navigation"><MenuIcon /></summary>
+            <nav aria-label="Mobile services navigation">
+              <a href="/#about">About</a><a href="/services">Services</a><a href="/#process">Approach</a><a href="/projects">Projects</a><a href="/#outcomes">What we build</a><a href="/#faq">FAQ</a><a className="nav-cta" href="/#contact">Start a project <Arrow /></a>
+            </nav>
+          </details>
         </div>
       </header>
 
