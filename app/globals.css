@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./ui-enhancements.css";
 
 :root {
   --ink: #07101e;

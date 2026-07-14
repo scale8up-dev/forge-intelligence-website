@@ -1,0 +1,567 @@
+
+/* ============================================================
+   FORGE INTELLIGENCE – PREMIUM UI ENHANCEMENT LAYER
+   Adds holographic shimmer, gradient accents, micro-animations,
+   color vibrancy, and cinematic depth across all pages.
+   ============================================================ */
+
+/* ---------- Enhanced Color Palette & Design Tokens ---------- */
+:root {
+  --holo-start: #1769ff;
+  --holo-mid: #13c8ec;
+  --holo-end: #7c6cff;
+  --glow-cyan: rgba(19, 200, 236, 0.35);
+  --glow-blue: rgba(23, 105, 255, 0.25);
+  --glow-violet: rgba(124, 108, 255, 0.2);
+  --surface-premium: linear-gradient(135deg, rgba(248, 252, 255, 0.95), rgba(230, 248, 255, 0.6) 50%, rgba(241, 235, 255, 0.45));
+}
+
+/* ---------- Holographic Shimmer Keyframes ---------- */
+@keyframes holoShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; filter: blur(40px); }
+  50% { opacity: 0.8; filter: blur(55px); }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(19, 200, 236, 0.2); }
+  50% { border-color: rgba(23, 105, 255, 0.35); }
+}
+
+@keyframes subtleBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmerSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ---------- Page Background – Subtle Gradient Wash ---------- */
+body {
+  background: linear-gradient(175deg, #f4f7fc 0%, #eef6ff 35%, #f8f5ff 65%, #f4f7fc 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* ---------- Floating Navbar – Rainbow Glass Border ---------- */
+.site-header {
+  border: 1px solid transparent !important;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+    linear-gradient(105deg, rgba(23, 105, 255, 0.18), rgba(19, 200, 236, 0.22), rgba(124, 108, 255, 0.18)) !important;
+  background-origin: padding-box, border-box !important;
+  background-clip: padding-box, border-box !important;
+}
+
+.site-header .nav-cta {
+  background: linear-gradient(135deg, rgba(23, 105, 255, 0.06), rgba(19, 200, 236, 0.06)) !important;
+  border-color: rgba(19, 200, 236, 0.32) !important;
+  transition: all 0.28s ease !important;
+}
+.site-header .nav-cta:hover {
+  background: linear-gradient(135deg, rgba(23, 105, 255, 0.12), rgba(19, 200, 236, 0.12)) !important;
+  box-shadow: 0 8px 24px rgba(19, 200, 236, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ---------- CTA Buttons – Holographic Gradient ---------- */
+.button-primary {
+  background: linear-gradient(135deg, #07101e 0%, #0d2454 50%, #14356b 100%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(19, 200, 236, 0.18) !important;
+}
+.button-primary::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(105deg, transparent 30%, rgba(19, 200, 236, 0.15) 50%, transparent 70%) !important;
+  background-size: 200% 100% !important;
+  animation: holoShimmer 3s ease-in-out infinite !important;
+  pointer-events: none !important;
+}
+.button-primary:hover {
+  box-shadow: 0 14px 36px rgba(23, 105, 255, 0.22), 0 0 0 1px rgba(19, 200, 236, 0.3) !important;
+}
+
+/* ---------- Hero – Enhanced Background Orbs ---------- */
+.hero {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(19, 200, 236, 0.14), transparent 30%),
+    radial-gradient(circle at 12% 85%, rgba(124, 108, 255, 0.08), transparent 28%),
+    radial-gradient(circle at 50% 50%, rgba(23, 105, 255, 0.04), transparent 45%),
+    var(--paper) !important;
+}
+
+/* ---------- Hero Visual Card – Holographic Border ---------- */
+.hero-visual {
+  border: 1px solid transparent !important;
+  background-clip: padding-box !important;
+  box-shadow:
+    0 32px 80px rgba(15, 42, 101, 0.25),
+    0 0 0 1px rgba(19, 200, 236, 0.12),
+    inset 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+.hero-visual::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: -1px !important;
+  border-radius: inherit !important;
+  padding: 1px !important;
+  background: linear-gradient(135deg, rgba(23, 105, 255, 0.35), rgba(19, 200, 236, 0.5), rgba(124, 108, 255, 0.35)) !important;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+  mask-composite: exclude !important;
+  -webkit-mask-composite: xor !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+/* ---------- Capability Rail Pills – Glass Gradient ---------- */
+.capability-rail span {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(230, 245, 255, 0.5)) !important;
+  border-color: rgba(19, 200, 236, 0.22) !important;
+  transition: all 0.25s ease !important;
+}
+.capability-rail span:hover {
+  border-color: rgba(19, 200, 236, 0.45) !important;
+  box-shadow: 0 6px 18px rgba(19, 200, 236, 0.12) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ---------- Trust Strip – Subtle Shimmer ---------- */
+.trust-strip {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.72), rgba(230, 248, 255, 0.5), rgba(255, 255, 255, 0.72)) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.trust-strip::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(90deg, transparent 0%, rgba(19, 200, 236, 0.06) 50%, transparent 100%) !important;
+  background-size: 200% 100% !important;
+  animation: holoShimmer 6s ease-in-out infinite !important;
+  pointer-events: none !important;
+}
+
+/* ---------- Service Cards – Holographic Hover Border ---------- */
+.service-card {
+  position: relative !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+.service-card:hover {
+  border-color: rgba(19, 200, 236, 0.4) !important;
+  box-shadow: 0 20px 48px rgba(23, 105, 255, 0.12), 0 0 0 1px rgba(19, 200, 236, 0.15) !important;
+}
+.service-card:hover .icon-box {
+  border-color: rgba(19, 200, 236, 0.5) !important;
+  background: linear-gradient(135deg, rgba(23, 105, 255, 0.08), rgba(19, 200, 236, 0.08)) !important;
+  box-shadow: 0 4px 12px rgba(19, 200, 236, 0.15) !important;
+}
+
+/* ---------- Section Backgrounds – Premium Gradient Washes ---------- */
+.about {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.72), rgba(230, 248, 255, 0.4) 50%, rgba(241, 235, 255, 0.3)) !important;
+}
+.process {
+  background: linear-gradient(175deg, #f4f7fc, #eef6ff 40%, #f4f3ff 80%, #f4f7fc) !important;
+}
+.work {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.72), rgba(230, 248, 255, 0.5) 55%, rgba(255, 255, 255, 0.72)) !important;
+}
+.principles {
+  background: linear-gradient(168deg, #f4f7fc, #edf6ff 45%, #f7f4ff 75%, #f4f7fc) !important;
+}
+.testimonials {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.72), rgba(220, 248, 255, 0.45) 50%, rgba(245, 240, 255, 0.35)) !important;
+}
+.faq {
+  background: linear-gradient(175deg, #f4f7fc, #edf6ff 42%, #f4f7fc) !important;
+}
+
+/* ---------- About Panel – Enhanced Holographic Sphere ---------- */
+.about-panel {
+  background:
+    radial-gradient(circle at 60% 40%, rgba(19, 200, 236, 0.22), transparent 28%),
+    radial-gradient(circle at 30% 70%, rgba(124, 108, 255, 0.1), transparent 30%),
+    linear-gradient(145deg, #e8f0fb, #f0f0ff, #f9fbff) !important;
+  box-shadow: 0 24px 64px rgba(23, 105, 255, 0.08), inset 0 1px rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ---------- Process Timeline – Gradient Connector Line ---------- */
+.process-grid::before {
+  background: linear-gradient(90deg, rgba(23, 105, 255, 0.2), rgba(19, 200, 236, 0.55), rgba(124, 108, 255, 0.35), rgba(19, 200, 236, 0.2)) !important;
+  background-size: 200% 100% !important;
+  animation: gradientFlow 8s ease-in-out infinite !important;
+}
+
+/* ---------- Process Step Circles – Gradient Ring ---------- */
+.process-step > span {
+  border: 2px solid transparent !important;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, var(--holo-start), var(--holo-mid), var(--holo-end)) !important;
+  background-origin: padding-box, border-box !important;
+  background-clip: padding-box, border-box !important;
+  box-shadow: 0 0 0 6px var(--paper), 0 4px 12px rgba(19, 200, 236, 0.15) !important;
+  transition: box-shadow 0.3s ease !important;
+}
+
+/* ---------- Carousel Cards – Holographic Glow on Hover ---------- */
+.carousel {
+  border: 1px solid rgba(220, 230, 242, 0.6) !important;
+  box-shadow: 0 24px 64px rgba(29, 80, 159, 0.06), inset 0 1px rgba(255, 255, 255, 0.9) !important;
+  transition: box-shadow 0.4s ease !important;
+}
+.carousel:hover {
+  box-shadow: 0 28px 72px rgba(23, 105, 255, 0.1), 0 0 0 1px rgba(19, 200, 236, 0.12) !important;
+}
+
+/* ---------- Principle List – Left Border Gradient Accent ---------- */
+.principle-list > div {
+  position: relative !important;
+  transition: background 0.3s ease !important;
+}
+.principle-list > div:hover {
+  background: linear-gradient(90deg, rgba(19, 200, 236, 0.04), transparent 60%) !important;
+}
+.principle-list > div::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -1px !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 2px !important;
+  background: linear-gradient(180deg, transparent, rgba(19, 200, 236, 0.5), transparent) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+.principle-list > div:hover::before {
+  opacity: 1 !important;
+}
+
+/* ---------- Testimonial Cards – Glass Shimmer ---------- */
+.testimonial-card.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(230, 248, 255, 0.3), rgba(245, 240, 255, 0.25)) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.testimonial-card.glass-card::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 50% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent) !important;
+  transition: left 0.6s ease !important;
+  pointer-events: none !important;
+}
+.testimonial-card.glass-card:hover::before {
+  left: 120% !important;
+}
+.testimonial-card.glass-card:hover {
+  border-color: rgba(19, 200, 236, 0.4) !important;
+  box-shadow: 0 24px 56px rgba(23, 105, 255, 0.1), inset 0 1px rgba(255, 255, 255, 0.95) !important;
+}
+
+/* ---------- FAQ Items – Accent Glow on Open ---------- */
+.faq-item.open {
+  background: linear-gradient(90deg, rgba(19, 200, 236, 0.04), transparent 70%) !important;
+  border-radius: 8px !important;
+}
+.faq-item button {
+  transition: color 0.25s ease !important;
+}
+.faq-item:hover button {
+  color: var(--blue) !important;
+}
+
+/* ---------- CTA Section – Deeper Holographic Background ---------- */
+.cta {
+  background:
+    radial-gradient(circle at 80% 22%, rgba(19, 200, 236, 0.25), transparent 26%),
+    radial-gradient(circle at 20% 75%, rgba(124, 108, 255, 0.15), transparent 30%),
+    radial-gradient(circle at 50% 50%, rgba(23, 105, 255, 0.08), transparent 50%),
+    linear-gradient(135deg, #07101e, #0c1940, #0a0f2a) !important;
+}
+
+/* ---------- CTA Form Wrap – Rainbow Glass Border ---------- */
+.cta-form-wrap {
+  border: 1px solid transparent !important;
+  background-image: linear-gradient(rgba(10, 26, 57, 0.6), rgba(10, 26, 57, 0.6)),
+    linear-gradient(135deg, rgba(23, 105, 255, 0.35), rgba(19, 200, 236, 0.4), rgba(124, 108, 255, 0.35)) !important;
+  background-origin: padding-box, border-box !important;
+  background-clip: padding-box, border-box !important;
+}
+
+/* ---------- CTA Input Focus – Cyan Glow ---------- */
+.cta input:focus,
+.cta textarea:focus {
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 0 3px rgba(19, 200, 236, 0.18), 0 0 16px rgba(19, 200, 236, 0.1) !important;
+}
+
+/* ---------- Footer – Refined Gradient Border ---------- */
+.site-footer {
+  background: linear-gradient(180deg, #fff, #f8fbff) !important;
+}
+.footer-bottom {
+  border-top: 1px solid transparent !important;
+  border-image: linear-gradient(90deg, transparent, rgba(19, 200, 236, 0.3), rgba(23, 105, 255, 0.2), transparent) 1 !important;
+}
+
+/* ---------- Glass Cards – Enhanced Hover Glow ---------- */
+.glass-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+/* ---------- Eyebrow Dot – Breathing Animation ---------- */
+.eyebrow-dot {
+  animation: subtleBreathe 2.5s ease-in-out infinite !important;
+}
+
+/* ---------- Team Cards – Photo Gradient Overlay ---------- */
+.team-photo-wrap {
+  position: relative !important;
+}
+.team-photo-wrap::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  background: linear-gradient(180deg, transparent 60%, rgba(7, 16, 30, 0.08)) !important;
+  pointer-events: none !important;
+}
+.team-card:hover .team-photo {
+  transform: scale(1.03) !important;
+}
+.team-photo {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* ---------- Team Card – Holographic Border on Hover ---------- */
+.team-card:hover {
+  border-color: rgba(19, 200, 236, 0.35) !important;
+  box-shadow: 0 28px 64px rgba(23, 105, 255, 0.08), 0 0 0 1px rgba(19, 200, 236, 0.12), inset 0 1px #fff !important;
+}
+
+/* ---------- Method Cards – Step Number Gradient ---------- */
+.method-step {
+  background: linear-gradient(135deg, rgba(23, 105, 255, 0.1), rgba(19, 200, 236, 0.08)) !important;
+  color: var(--blue) !important;
+}
+
+/* ---------- About Closing CTA – Gradient Glow ---------- */
+.about-closing-inner {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(216, 247, 255, 0.5), rgba(241, 235, 255, 0.35)) !important;
+  box-shadow: 0 24px 64px rgba(29, 80, 159, 0.06), inset 0 1px rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ---------- Projects Cards – Hover Shimmer ---------- */
+.project-card,
+.featured-project-card {
+  position: relative !important;
+  overflow: hidden !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+.project-card:hover,
+.featured-project-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(19, 200, 236, 0.35) !important;
+  box-shadow: 0 24px 56px rgba(23, 105, 255, 0.1), 0 0 0 1px rgba(19, 200, 236, 0.12) !important;
+}
+.project-card::before,
+.featured-project-card::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 50% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent) !important;
+  transition: left 0.5s ease !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+.project-card:hover::before,
+.featured-project-card:hover::before {
+  left: 120% !important;
+}
+
+/* ---------- Projects Closing – Holographic Banner ---------- */
+.projects-closing-inner {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(216, 247, 255, 0.5), rgba(241, 235, 255, 0.35)) !important;
+  box-shadow: 0 24px 64px rgba(29, 80, 159, 0.06), inset 0 1px rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(220, 230, 242, 0.6) !important;
+}
+
+/* ---------- Featured Projects Section – Premium Background ---------- */
+.featured-projects {
+  background: linear-gradient(155deg, rgba(244, 250, 255, 0.95), rgba(230, 248, 255, 0.65) 52%, rgba(241, 235, 255, 0.45)) !important;
+}
+
+/* ---------- Services Hero – Depth Gradient ---------- */
+.services-hero {
+  background:
+    radial-gradient(circle at 88% 15%, rgba(19, 200, 236, 0.12), transparent 30%),
+    radial-gradient(circle at 12% 80%, rgba(124, 108, 255, 0.06), transparent 28%),
+    linear-gradient(135deg, #f8fcfd, #f0f7ff 50%, #f4f3ff) !important;
+}
+
+/* ---------- Service Detail Sections – Alternating Subtle Tones ---------- */
+.service-detail:nth-child(even) {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.5), rgba(230, 248, 255, 0.25)) !important;
+}
+
+/* ---------- Services Flow Cards – Depth & Glow ---------- */
+.service-flow-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+}
+.service-flow-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 24px 56px rgba(23, 105, 255, 0.12) !important;
+}
+
+/* ---------- Services Closing – Holographic Gradient ---------- */
+.services-closing-inner {
+  position: relative !important;
+  overflow: hidden !important;
+}
+.services-closing-inner::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(105deg, transparent 30%, rgba(19, 200, 236, 0.08) 50%, transparent 70%) !important;
+  background-size: 200% 100% !important;
+  animation: holoShimmer 4s ease-in-out infinite !important;
+  pointer-events: none !important;
+}
+
+/* ---------- Carousel Dots – Gradient Active State ---------- */
+.carousel-dots button.is-active {
+  background: linear-gradient(135deg, var(--holo-start), var(--holo-mid)) !important;
+  box-shadow: 0 0 14px rgba(19, 200, 236, 0.5) !important;
+}
+
+/* ---------- Text Links – Gradient Underline on Hover ---------- */
+.text-link {
+  position: relative !important;
+  border-bottom: none !important;
+}
+.text-link::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: -2px !important;
+  width: 100% !important;
+  height: 1.5px !important;
+  background: linear-gradient(90deg, var(--holo-start), var(--holo-mid)) !important;
+  transform: scaleX(0.6) !important;
+  transform-origin: left !important;
+  transition: transform 0.3s ease !important;
+}
+.text-link:hover::after {
+  transform: scaleX(1) !important;
+}
+
+/* ---------- Card Link Arrows – Gradient Color ---------- */
+.card-link {
+  transition: color 0.25s ease !important;
+}
+.card-link:hover {
+  color: #13c8ec !important;
+}
+
+/* ---------- Section Intros – Eyebrow Gradient ---------- */
+.eyebrow {
+  background: linear-gradient(105deg, #5b7893, #3d8fb0) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* ---------- Scroll Reveal – Enhanced Animation ---------- */
+.scroll-ready [data-reveal] {
+  transition: opacity 0.5s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease !important;
+  filter: blur(2px) !important;
+}
+.scroll-ready [data-reveal].is-visible {
+  filter: blur(0) !important;
+}
+
+/* ---------- About Hero & Projects Hero – Enhanced Orbs ---------- */
+.about-hero-orb,
+.projects-hero-orb {
+  animation: glowPulse 6s ease-in-out infinite !important;
+}
+
+/* ---------- Ambient Field – Enhanced Colors ---------- */
+.ambient-field {
+  background:
+    radial-gradient(circle at 8% 14%, rgba(23, 105, 255, 0.13), transparent 22%),
+    radial-gradient(circle at 92% 52%, rgba(19, 200, 236, 0.12), transparent 25%),
+    radial-gradient(circle at 55% 85%, rgba(124, 108, 255, 0.08), transparent 22%) !important;
+}
+
+/* ---------- Live Status Dot – Enhanced Glow ---------- */
+.live-status i {
+  animation: subtleBreathe 2s ease-in-out infinite !important;
+  box-shadow: 0 0 12px rgba(118, 229, 193, 0.8), 0 0 24px rgba(118, 229, 193, 0.4) !important;
+}
+
+/* ---------- Mini Progress Bar – Gradient Animation ---------- */
+.mini-bar i {
+  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--blue)) !important;
+  background-size: 200% 100% !important;
+  animation: gradientFlow 3s ease-in-out infinite !important;
+}
+
+/* ---------- Map Node Active – Vivid Glow ---------- */
+.map-node.active {
+  border-color: rgba(19, 200, 236, 0.8) !important;
+  box-shadow: 0 0 0 1px rgba(19, 200, 236, 0.3), 0 0 32px rgba(19, 200, 236, 0.2), 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ---------- Solution Art Panels – Vibrancy ---------- */
+.art-pulse {
+  background: linear-gradient(145deg, #e4eafb, #d0f4f6, #e8e0ff) !important;
+}
+.art-helio {
+  background: linear-gradient(145deg, #e8e2ff, #d0f8fb, #f0e8ff) !important;
+}
+
+/* ---------- Brand Mark – Subtle Glow ---------- */
+.brand-mark {
+  box-shadow: 0 0 0 1px rgba(19, 200, 236, 0.28), 0 8px 24px rgba(23, 105, 255, 0.22), 0 0 12px rgba(19, 200, 236, 0.1) !important;
+}
+
+/* ---------- Delivery Current Visual – Deeper Blue ---------- */
+.delivery-current-visual {
+  background:
+    radial-gradient(circle at 68% 37%, rgba(20, 210, 241, 0.22), transparent 22%),
+    radial-gradient(circle at 20% 82%, rgba(23, 105, 255, 0.25), transparent 30%),
+    radial-gradient(circle at 85% 85%, rgba(124, 108, 255, 0.1), transparent 28%),
+    linear-gradient(135deg, #0a111d, #101c2c 58%, #09111c) !important;
+}
+
+/* ---------- Respect user preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .button-primary::after,
+  .trust-strip::before,
+  .testimonial-card.glass-card::before,
+  .project-card::before,
+  .featured-project-card::before,
+  .services-closing-inner::before {
+    animation: none !important;
+  }
+}
