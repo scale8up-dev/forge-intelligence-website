@@ -960,7 +960,9 @@ body.menu-open { overflow: hidden; }
 }
 
 /* Project catalogue and overflow repairs. */
-.delivery-stack { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (min-width: 651px) {
+  .delivery-stack { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 .delivery-step { min-width: 0; }
 
 .ticker-track { gap: 0; padding-inline: 0; }
