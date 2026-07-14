@@ -55,7 +55,7 @@ test("server-renders the complete Forge projects catalogue", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Projects \| Forge Intelligence AI<\/title>/i);
-  assert.match(html, /19(?:<!-- -->)? projects/i);
+  assert.match(html, /class="projects-count">19/i);
   assert.match(html, /Strategic Divorce Directory/);
   assert.match(html, /CORY AI Premium Intelligence/);
   assert.match(html, /CuerPOWER/);
@@ -98,7 +98,7 @@ test("exports Netlify-ready static routes", async () => {
   ]);
 
   assert.match(home, /Build the right/);
-  assert.match(home, /\/_vinext\/fonts\//);
+  assert.match(home, /\/_vinext(?:_fonts|\/fonts)\//);
   assert.match(services, /Three disciplines/);
   assert.match(projects, /Strategic Divorce Directory/);
   assert.match(homeRsc, /"__route":"route:\/"/);
@@ -109,7 +109,7 @@ test("exports Netlify-ready static routes", async () => {
 });
 
 test("keeps the production page free of starter preview dependencies", async () => {
-  const [page, servicesPage, projectsPage, projectData, layout, css, packageJson, deliveryImage, architectureImage, projectImage] = await Promise.all([
+  const [page, servicesPage, projectsPage, projectData, layout, css, packageJson, deliveryImage, architectureImage, projectImage, headerFile] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/projects/page.tsx", import.meta.url), "utf8"),
@@ -120,6 +120,7 @@ test("keeps the production page free of starter preview dependencies", async () 
     readFile(new URL("../public/images/forge-delivery-flow.webp", import.meta.url)),
     readFile(new URL("../public/images/forge-glass-architecture.webp", import.meta.url)),
     readFile(new URL("../public/projects/cory-ai.png", import.meta.url)),
+    readFile(new URL("../app/Header.tsx", import.meta.url), "utf8"),
   ]);
 
   assert.match(page, /useState/);
@@ -127,7 +128,7 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(page, /useForm\("mkodnbyq"\)/);
   assert.match(page, /@formspree\/react/);
   assert.match(page, /formState\.submitting/);
-  assert.match(page, /\["Services", "services"\],\s+\["Approach", "process"\],\s+\["Projects", "projects"\],\s+\["What we build", "outcomes"\]/);
+  assert.match(headerFile, /\["Home", "\/"\],\s+\["Services", "\/services"\],\s+\["Projects", "\/projects"\]/);
   assert.match(page, /What can you help us build/);
   assert.match(page, /forge-intelligence-logo\.png/);
   assert.match(page, /mailto:domingo@oneenterprise\.ai/);

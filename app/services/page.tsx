@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Static hosting uses document navigation between pre-rendered routes. */
 import Image from "next/image";
+import Header from "../Header";
 
 const serviceDetails = [
   {
@@ -38,7 +39,7 @@ const serviceDetails = [
       "Process improvement",
       "Growth and scalability planning",
     ],
-    flow: ["Discover", "Prioritise", "Roadmap", "Align"],
+    flow: ["Discover", "Prioritize", "Roadmap", "Align"],
     note: "One focused direction for the business problem, product experience, and technical plan.",
   },
   {
@@ -80,28 +81,7 @@ export default function ServicesPage() {
   return (
     <main className="site-main services-page">
       <div className="services-ambient" aria-hidden="true"><i /><i /></div>
-      <header className="site-header services-header">
-        <div className="container nav-wrap">
-          <a className="brand" href="/" aria-label="Forge Intelligence AI home">
-            <span className="brand-mark"><Image src="/forge-intelligence-logo.png" alt="" width={48} height={48} priority unoptimized /></span>
-            <span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span>
-          </a>
-          <nav className="services-nav" aria-label="Services navigation">
-            <a href="/#about">About</a>
-            <a href="#development">Development</a>
-            <a href="#strategy">Strategy</a>
-            <a href="#ai-automations">AI automations</a>
-            <a href="/projects">Projects</a>
-            <a className="nav-cta" href="/#contact">Start a project <Arrow /></a>
-          </nav>
-          <details className="static-mobile-menu">
-            <summary aria-label="Open navigation"><MenuIcon /></summary>
-            <nav aria-label="Mobile services navigation">
-              <a href="/#about">About</a><a href="/services">Services</a><a href="/#process">Approach</a><a href="/projects">Projects</a><a href="/#outcomes">What we build</a><a href="/#faq">FAQ</a><a className="nav-cta" href="/#contact">Start a project <Arrow /></a>
-            </nav>
-          </details>
-        </div>
-      </header>
+      <Header />
 
       <section className="services-hero">
         <div className="container services-hero-grid">

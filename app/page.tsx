@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ValidationError, useForm } from "@formspree/react";
 import { useEffect, useState } from "react";
 import { featuredProjects } from "./projects/data";
+import Header from "./Header";
 
 const navItems = [
   ["About", "about"],
@@ -16,7 +17,7 @@ const navItems = [
 
 const services = [
   { number: "01", icon: "layers", title: "Development", description: "High-performing digital products that are fast, scalable, easy to use, and ready for the real work behind them.", flow: ["Scope", "Build", "Release"] },
-  { number: "02", icon: "spark", title: "Strategy", description: "The product, features, technology, and roadmap shaped around the business outcome before development begins.", flow: ["Discover", "Prioritise", "Align"] },
+  { number: "02", icon: "spark", title: "Strategy", description: "The product, features, technology, and roadmap shaped around the business outcome before development begins.", flow: ["Discover", "Prioritize", "Align"] },
   { number: "03", icon: "chart", title: "AI automations", description: "Practical AI systems that reduce manual work, connect your tools, and help the team operate more efficiently.", flow: ["Signal", "Route", "Assist"] },
   { number: "04", icon: "shield", title: "Launch & scale", description: "Reliable integrations, testing, optimisation, and ongoing improvement as the product and business grow.", flow: ["Test", "Launch", "Improve"] },
 ];
@@ -52,6 +53,32 @@ const solutionStories = [
   ["04", "Product ventures", "Scalable SaaS products", "From early MVPs to production-ready platforms, we help bring software ideas to market and prepare them for growth."],
 ];
 
+const testimonials = [
+  {
+    text: "The team at Forge Intelligence AI was incredible to work with. Domingo’s leadership, Hamza’s technical brilliance, Greg’s responsiveness, and Michael’s GoHighLevel mastery made everything come together beautifully. I couldn’t have asked for a better team.",
+    author: "Susan Ann Marion, M.S.",
+    role: "Founder of Prep For Independence",
+    avatarClass: "avatar-blue",
+    initials: "SM"
+  },
+  {
+    text: "Working with the team has been simple, easy, and such a positive experience. They quickly understood what I wanted, suggested possible options, and helped me to see the full potential of the website. The Forge Intelligence AI team is quick to respond to questions and has managed the project ahead of schedule and with features that enhance the user-experience. As a non-tech person, I was worried about working directly with a development team, but they are absolutely fantastic. Everything is explained in detail, and they are very open to answering questions, listening to my ideas, and implementing them in the project. I would highly recommend the Forge Intelligence AI team to anyone looking for a custom designed website that offers automation and unique features and options.",
+    author: "Mardi Winder",
+    role: "Be Your Success · Positive Communication Systems, LLC",
+    websites: ["www.poscs.com", "www.divorcecoach4women.com"],
+    phone: "(903) 573-6634",
+    avatarClass: "avatar-sand",
+    initials: "MW"
+  },
+  {
+    text: "Before meeting Domingo and the team, I had no knowledge of how to implement my idea at creating an Ai driven fitness and nutrition app. I wanted to create something unique to the market and for people over 40. There are a ton of fitness apps out there, but none that do all that our app does. After the initial meeting with Domingo, I knew this was the company that could make this happen. The entire team has been very professional. They have always met deadlines and stayed exactly on budget. Their work is fantastic and because of them, my idea has become a reality. To anyone checking these guys out, they are the real deal and can most definitely help you to bring your vision to reality.",
+    author: "Michael Evors",
+    role: "Owner, Prime Age Fit, LLC",
+    tagline: "AI-driven fitness and nutrition app",
+    image: "/images/michael-evors.png"
+  }
+];
+
 function Icon({ name }: { name: string }) {
   const common = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
   if (name === "arrow") return <svg {...common}><path d="M5 12h13" /><path d="m13 6 6 6-6 6" /></svg>;
@@ -66,12 +93,55 @@ function Icon({ name }: { name: string }) {
 }
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [activeSection, setActiveSection] = useState("top");
   const [activeProcessStep, setActiveProcessStep] = useState(0);
   const [solutionIndex, setSolutionIndex] = useState(0);
+  const [projectIndex, setProjectIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
+
   const [formState, submitForm] = useForm("mkodnbyq");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 650) {
+        setVisibleCount(1);
+      } else if (window.innerWidth <= 992) {
+        setVisibleCount(2);
+      } else {
+        setVisibleCount(3);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const maxProjectIndex = featuredProjects.length - visibleCount;
+
+  const nextProject = () => {
+    setProjectIndex((prev) => (prev >= maxProjectIndex ? 0 : prev + 1));
+  };
+
+  const prevProject = () => {
+    setProjectIndex((prev) => (prev <= 0 ? maxProjectIndex : prev - 1));
+  };
+
+  const getTransformStyle = () => {
+    if (visibleCount === 3) {
+      return `calc(-${projectIndex} * (33.333% + 9.33px))`;
+    } else if (visibleCount === 2) {
+      return `calc(-${projectIndex} * (50% + 14px))`;
+    } else {
+      return `calc(-${projectIndex} * (100% + 20px))`;
+    }
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProjectIndex((prev) => (prev >= maxProjectIndex ? 0 : prev + 1));
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [projectIndex, maxProjectIndex]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -98,20 +168,7 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    const targets = Array.from(document.querySelectorAll<HTMLElement>("section[id]"));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const activeEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (activeEntry) setActiveSection(activeEntry.target.id);
-      },
-      { rootMargin: "-22% 0px -66%", threshold: [0.01, 0.3, 0.6] },
-    );
-    targets.forEach((target) => observer.observe(target));
-    return () => observer.disconnect();
-  }, []);
+
 
   useEffect(() => {
     const steps = Array.from(document.querySelectorAll<HTMLElement>("[data-process-step]"));
@@ -130,19 +187,7 @@ export default function Home() {
   return (
     <main className="site-main">
       <div className="ambient-field" aria-hidden="true"><i /><i /><i /></div>
-      <header className="site-header">
-        <div className="container nav-wrap">
-          <a className="brand" href="#top" aria-label="Forge Intelligence AI home">
-            <span className="brand-mark"><Image src="/forge-intelligence-logo.png" alt="" width={48} height={48} priority unoptimized /></span>
-            <span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span>
-          </a>
-          <button className="mobile-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="main-navigation"><Icon name={menuOpen ? "close" : "menu"} /></button>
-          <nav id="main-navigation" className={menuOpen ? "main-nav open" : "main-nav"} aria-label="Main navigation">
-            {navItems.map(([label, href]) => <a className={activeSection === href && label !== "Services" && label !== "Projects" ? "active" : undefined} key={href} href={label === "Services" ? "/services" : label === "Projects" ? "/projects" : `#${href}`} onClick={() => { setMenuOpen(false); if (label !== "Services" && label !== "Projects") setActiveSection(href); }}>{label}</a>)}
-            <a className="nav-cta" href="#contact" onClick={() => setMenuOpen(false)}>Start a project <Icon name="arrow" /></a>
-          </nav>
-        </div>
-      </header>
+      <Header isHome />
 
       <section className="hero" id="top">
         <div className="container hero-grid">
@@ -161,11 +206,11 @@ export default function Home() {
               <span>FROM BRIEF TO BUSINESS VALUE</span>
               <strong>One clear path.<br />Built to move.</strong>
               <p>Strategy, development, and automation in one delivery loop.</p>
-            </div>
-            <div className="delivery-stack" aria-hidden="true">
-              <div className="delivery-step"><span>01</span><strong>Strategise</strong><small>Define the right move</small></div>
-              <div className="delivery-step active"><span>02</span><strong>Develop</strong><small>Build the useful system</small></div>
-              <div className="delivery-step"><span>03</span><strong>Automate</strong><small>Keep work moving</small></div>
+              <div className="delivery-stack" aria-hidden="true">
+                <div className="delivery-step"><span>01</span><strong>Strategise</strong><small>Define the right move</small></div>
+                <div className="delivery-step active"><span>02</span><strong>Develop</strong><small>Build the useful system</small></div>
+                <div className="delivery-step"><span>03</span><strong>Automate</strong><small>Keep work moving</small></div>
+              </div>
             </div>
           </div>
         </div>
@@ -173,19 +218,122 @@ export default function Home() {
 
       <section className="trust-strip" data-reveal><div className="container trust-inner"><p>From strategy to scalable digital solutions</p><div className="trust-items"><span>DISCOVER</span><span>STRATEGISE</span><span>DESIGN</span><span>DEVELOP</span><span>IMPROVE</span></div></div></section>
 
-      <section className="capability-ticker" aria-label="Forge capabilities"><div className="ticker-track">{[0, 1].map((group) => <div className="ticker-group" aria-hidden={group === 1} key={group}><span>PRODUCT STRATEGY</span><i>✦</i><span>SOFTWARE DEVELOPMENT</span><i>✦</i><span>AI AUTOMATIONS</span><i>✦</i></div>)}</div></section>
+      <section className="capability-ticker" aria-label="Forge capabilities"><div className="ticker-track">{[0, 1, 2, 3, 4, 5].map((group) => <div className="ticker-group" aria-hidden={group > 0} key={group}><i>✦</i><span>PRODUCT STRATEGY</span><i>✦</i><span>SOFTWARE DEVELOPMENT</span><i>✦</i><span>AI AUTOMATIONS</span></div>)}</div></section>
 
       <section className="section services" id="services" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Our services</p><h2>Development-led.<br /><em>Strategy-backed.</em></h2></div><div><p className="section-note">We bring development, strategy, and AI automation together so the right solution moves from idea to execution without losing its purpose.</p><a className="text-link section-detail-link" href="/services">See detailed services <Icon name="arrow" /></a></div></div><div className="service-grid capability-deck">{services.map((service) => <article className="service-card glass-card" key={service.number}><div className="service-top"><span className="service-number">{service.number}</span><span className="icon-box"><Icon name={service.icon} /></span></div><h3>{service.title}</h3><p>{service.description}</p><div className="service-mini-flow" aria-label={`${service.title} workflow`}>{service.flow.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, "0")}</i>{step}</span>)}</div><a href={service.title === "Strategy" ? "/services#strategy" : service.title === "AI automations" ? "/services#ai-automations" : "/services#development"} className="card-link">Explore service <Icon name="arrow" /></a></article>)}</div></div></section>
 
-      <section className="section about" id="about" data-reveal><div className="container about-grid"><div className="about-panel glass-card"><Image className="about-architecture" unoptimized src="/images/forge-glass-architecture.webp" alt="" aria-hidden="true" width={960} height={601} sizes="(max-width: 900px) 100vw, 48vw" /><div className="about-hologram"><Image unoptimized src="/forge-intelligence-logo.png" alt="Forge Intelligence AI" width={280} height={280} /></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="about-panel-label">FROM IDEA TO EXECUTION</div><div className="about-panel-stat"><strong>3</strong><span>connected disciplines,<br />one practical solution</span></div></div><div className="about-copy"><p className="eyebrow">From strategy to scalable digital solutions</p><h2>Technology that works<br /><em>for your business.</em></h2><p>Great technology starts with a clear direction. We work closely with your team to understand your goals, identify opportunities, and create the right solution for your business.</p><p>Whether you need a new digital product, a stronger technology strategy, or smarter ways to automate daily operations, we help you move from idea to execution.</p><div className="stat-row"><div><strong>Discover</strong><span>understand the opportunity</span></div><div><strong>Build</strong><span>create the right solution</span></div><div><strong>Improve</strong><span>grow with confidence</span></div></div><a className="text-link" href="#process">How we work <Icon name="arrow" /></a></div></div></section>
+      <section className="section about" id="about" data-reveal><div className="container about-grid"><div className="about-panel glass-card"><Image className="about-architecture" unoptimized src="/images/forge-glass-architecture.webp" alt="" aria-hidden="true" width={960} height={601} sizes="(max-width: 900px) 100vw, 48vw" /><div className="about-hologram"><div className="hologram-logo-wrap"><Image unoptimized src="/forge-mark.png" alt="Forge Intelligence AI Logo" width={60} height={60} /><span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span></div></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="about-panel-label">FROM IDEA TO EXECUTION</div><div className="about-panel-stat"><strong>3</strong><span>connected disciplines,<br />one practical solution</span></div></div><div className="about-copy"><p className="eyebrow">From strategy to scalable digital solutions</p><h2>Technology that works<br /><em>for your business.</em></h2><p>Great technology starts with a clear direction. We work closely with your team to understand your goals, identify opportunities, and create the right solution for your business.</p><p>Whether you need a new digital product, a stronger technology strategy, or smarter ways to automate daily operations, we help you move from idea to execution.</p><div className="stat-row"><div><strong>Discover</strong><span>understand the opportunity</span></div><div><strong>Build</strong><span>create the right solution</span></div><div><strong>Improve</strong><span>grow with confidence</span></div></div><a className="text-link" href="#process">How we work <Icon name="arrow" /></a></div></div></section>
 
       <section className="section process" id="process" data-reveal><div className="container process-layout"><div className="process-intro"><p className="eyebrow">How we work</p><h2>From the right question<br />to the <em>right system.</em></h2><p className="section-note">A clear delivery path that keeps business goals, product decisions, software, and automation in the same conversation.</p><div className="process-progress" aria-hidden="true"><span>{String(activeProcessStep + 1).padStart(2, "0")}</span><i><b style={{ transform: `scaleX(${(activeProcessStep + 1) / processSteps.length})` }} /></i><span>05</span></div><a className="text-link" href="#contact">Tell us about your project <Icon name="arrow" /></a></div><div className="process-grid">{processSteps.map(([number, title, text], index) => <article className={activeProcessStep === index ? "process-step glass-card is-active" : "process-step glass-card"} data-process-step={index} key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
 
-      <section className="section featured-projects" id="projects" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Selected projects</p><h2>Products made for<br /><em>real momentum.</em></h2></div><div><p className="section-note">A selection of digital products and AI systems shaped around real customers, workflows, and growth opportunities.</p><a className="text-link section-detail-link" href="/projects">View all projects <Icon name="arrow" /></a></div></div><div className="featured-project-grid">{featuredProjects.map((project, index) => <article className="featured-project-card" key={project.name}><a className="project-image" href={project.url} target="_blank" rel="noreferrer" aria-label={`Visit ${project.name}`}><Image src={project.image} alt={`${project.name} project interface`} width={960} height={560} sizes="(max-width: 700px) 100vw, 50vw" unoptimized /><span>{String(index + 1).padStart(2, "0")}</span></a><div className="featured-project-copy"><p>{project.category}</p><h3>{project.name}</h3><p>{project.description}</p><div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><a className="text-link" href={project.url} target="_blank" rel="noreferrer">View project <Icon name="arrow" /></a></div></article>)}</div><div className="featured-projects-footer"><a className="button button-primary" href="/projects">View all projects <Icon name="arrow" /></a></div></div></section>
+      <section className="section featured-projects" id="projects" data-reveal>
+        <div className="container">
+          <div className="section-intro">
+            <div>
+              <p className="eyebrow">Selected projects</p>
+              <h2>Products made for<br /><em>real momentum.</em></h2>
+            </div>
+            <div>
+              <p className="section-note">A selection of digital products and AI systems shaped around real customers, workflows, and growth opportunities.</p>
+              <a className="text-link section-detail-link" href="/projects">View all projects <Icon name="arrow" /></a>
+            </div>
+          </div>
 
-      <section className="section outcomes" id="outcomes" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Solution stories</p><h2>Systems built around<br /><em>real work.</em></h2></div><p className="section-note">A focused look at the products and workflows we can shape around your customers, operations, and next stage of growth.</p></div><div className="solution-carousel" role="region" aria-roledescription="carousel" aria-label="Forge solution stories"><div className="solution-viewport"><div className="solution-track" style={{ transform: `translateX(-${solutionIndex * 100}%)` }}>{solutionStories.map(([number, label, title, text], index) => <article className="solution-slide" aria-hidden={solutionIndex !== index} key={number}><div className="solution-index"><span>{number}</span><i /></div><div className="solution-copy"><p>{label}</p><h3>{title}</h3><p>{text}</p><a className="text-link" href="#contact" tabIndex={solutionIndex === index ? 0 : -1}>Discuss this system <Icon name="arrow" /></a></div><div className={number === "03" ? "solution-art has-flow-image" : "solution-art"} aria-hidden="true">{number === "03" && <Image className="solution-art-image" unoptimized src="/images/forge-delivery-flow.webp" alt="" width={960} height={601} sizes="(max-width: 900px) 100vw, 33vw" />}<div className="solution-orbit" /><div className="solution-line line-a" /><div className="solution-line line-b" /><span>{number}</span></div></article>)}</div></div><div className="solution-controls"><p aria-live="polite">{String(solutionIndex + 1).padStart(2, "0")} <span>/ 0{solutionStories.length}</span></p><div><button type="button" aria-label="Show previous solution story" onClick={() => setSolutionIndex((index) => (index - 1 + solutionStories.length) % solutionStories.length)}><Icon name="arrow" /></button><button type="button" aria-label="Show next solution story" onClick={() => setSolutionIndex((index) => (index + 1) % solutionStories.length)}><Icon name="arrow" /></button></div><div className="solution-dots">{solutionStories.map(([number], index) => <button type="button" className={solutionIndex === index ? "is-active" : undefined} aria-label={`Show solution story ${index + 1}`} aria-current={solutionIndex === index ? "true" : undefined} key={number} onClick={() => setSolutionIndex(index)} />)}</div></div></div></div></section>
+          <div className="featured-project-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects">
+            <div className="project-viewport">
+              <div className="project-track" style={{ transform: `translateX(${getTransformStyle()})` }}>
+                {featuredProjects.map((project, index) => (
+                  <article className="featured-project-card" key={project.name}>
+                    <a className="project-image" href={project.url} target="_blank" rel="noreferrer" aria-label={`Visit ${project.name}`}>
+                      <Image src={project.image} alt={`${project.name} project interface`} width={960} height={560} sizes="(max-width: 700px) 100vw, 50vw" unoptimized />
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                    </a>
+                    <div className="featured-project-copy">
+                      <p>{project.category}</p>
+                      <h3>{project.name}</h3>
+                      <p>{project.description}</p>
+                      <div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                      <a className="text-link" href={project.url} target="_blank" rel="noreferrer">View project <Icon name="arrow" /></a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+            
+            <div className="solution-controls">
+              <p aria-live="polite">{String(projectIndex + 1).padStart(2, "0")} <span>/ 0{maxProjectIndex + 1}</span></p>
+              <div>
+                <button type="button" aria-label="Show previous project" onClick={prevProject}><Icon name="arrow" /></button>
+                <button type="button" aria-label="Show next project" onClick={nextProject}><Icon name="arrow" /></button>
+              </div>
+              <div className="solution-dots">
+                {Array.from({ length: maxProjectIndex + 1 }).map((_, index) => (
+                  <button type="button" className={projectIndex === index ? "is-active" : undefined} aria-label={`Show project ${index + 1}`} key={index} onClick={() => setProjectIndex(index)} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section outcomes" id="outcomes" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Solution stories</p><h2>Systems built around<br /><em>real work.</em></h2></div><p className="section-note">A focused look at the products and workflows we can shape around your customers, operations, and next stage of growth.</p></div><div className="solution-carousel" role="region" aria-roledescription="carousel" aria-label="Forge solution stories"><div className="solution-viewport"><div className="solution-track" style={{ transform: `translateX(-${solutionIndex * 100}%)` }}>{solutionStories.map(([number, label, title, text], index) => <article className="solution-slide" aria-hidden={solutionIndex !== index} key={number}><div className="solution-index"><span>{number}</span><i /></div><div className="solution-copy"><p>{label}</p><h3>{title}</h3><p>{text}</p><a className="text-link" href="#contact" tabIndex={solutionIndex === index ? 0 : -1}>Discuss this system <Icon name="arrow" /></a></div><div className="solution-art has-flow-image" aria-hidden="true">
+  {number === "01" && <Image className="solution-art-image" unoptimized src="/images/forge-digital-presence.jpg" alt="" width={960} height={601} sizes="(max-width: 900px) 100vw, 33vw" />}
+  {number === "02" && <Image className="solution-art-image" unoptimized src="/images/forge-business-systems.jpg" alt="" width={960} height={601} sizes="(max-width: 900px) 100vw, 33vw" />}
+  {number === "03" && <Image className="solution-art-image" unoptimized src="/images/forge-delivery-flow.webp" alt="" width={960} height={601} sizes="(max-width: 900px) 100vw, 33vw" />}
+  {number === "04" && <Image className="solution-art-image" unoptimized src="/images/forge-product-ventures.jpg" alt="" width={960} height={601} sizes="(max-width: 900px) 100vw, 33vw" />}
+  <div className="solution-orbit" />
+  <div className="solution-line line-a" />
+  <div className="solution-line line-b" />
+  <span>{number}</span>
+</div></article>)}</div></div><div className="solution-controls"><p aria-live="polite">{String(solutionIndex + 1).padStart(2, "0")} <span>/ 0{solutionStories.length}</span></p><div><button type="button" aria-label="Show previous solution story" onClick={() => setSolutionIndex((index) => (index - 1 + solutionStories.length) % solutionStories.length)}><Icon name="arrow" /></button><button type="button" aria-label="Show next solution story" onClick={() => setSolutionIndex((index) => (index + 1) % solutionStories.length)}><Icon name="arrow" /></button></div><div className="solution-dots">{solutionStories.map(([number], index) => <button type="button" className={solutionIndex === index ? "is-active" : undefined} aria-label={`Show solution story ${index + 1}`} aria-current={solutionIndex === index ? "true" : undefined} key={number} onClick={() => setSolutionIndex(index)} />)}</div></div></div></div></section>
 
       <section className="section principles" data-reveal><div className="container principles-grid"><div><p className="eyebrow">Why work with us</p><h2>Built for clear decisions<br />and <em>long-term growth.</em></h2><p className="section-note">Technology should make your business simpler, not more complicated. We build with the context and care that makes each next move easier.</p></div><div className="principle-list principle-bento">{principles.map(([number, title, text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+
+      <section className="section testimonials" id="testimonials" data-reveal>
+        <div className="container">
+          <div className="section-intro">
+            <div>
+              <p className="eyebrow">Client feedback</p>
+              <h2>What our partners<br /><em>say about us.</em></h2>
+            </div>
+            <p className="section-note">Direct feedback from the founders and product owners we collaborate with to build custom applications and automations.</p>
+          </div>
+          
+          <div className="testimonials-grid">
+            {testimonials.map((item, index) => (
+              <article className="testimonial-card glass-card" key={index}>
+                <div className="testimonial-content">
+                  <span className="quote-icon">“</span>
+                  <p>{item.text}</p>
+                </div>
+                <footer className="testimonial-footer">
+                  {item.image ? (
+                    <span className="quote-avatar" style={{ overflow: "hidden", display: "grid", placeItems: "center" }}>
+                      <Image unoptimized src={item.image} alt={item.author} width={36} height={36} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                    </span>
+                  ) : (
+                    <span className={`quote-avatar ${item.avatarClass}`}>{item.initials}</span>
+                  )}
+                  <div className="meta">
+                    <strong>{item.author}</strong>
+                    <small>{item.role}</small>
+                    {item.phone && <small>{item.phone}</small>}
+                    {item.websites && (
+                      <small className="links">
+                        {item.websites.map((web, idx) => (
+                          <a href={`http://${web}`} target="_blank" rel="noopener noreferrer" key={web}>
+                            {web}
+                          </a>
+                        ))}
+                      </small>
+                    )}
+                  </div>
+                </footer>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="section faq" id="faq" data-reveal><div className="container faq-grid"><div><p className="eyebrow">Questions, answered</p><h2>A little more<br /><em>context.</em></h2><p className="section-note">Tell us whether you need development, strategy, AI automation, or the full connected solution.</p><a className="button button-outline" href="#contact">Ask us anything <Icon name="arrow" /></a></div><div className="faq-list">{faqs.map(([question, answer], index) => <div className={openFaq === index ? "faq-item open" : "faq-item"} key={question}><button type="button" onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index} aria-controls={`faq-answer-${index}`}><span>{question}</span><i>+</i></button><div className="faq-answer" id={`faq-answer-${index}`} role="region" aria-label={question}><p>{answer}</p></div></div>)}</div></div></section>
 
