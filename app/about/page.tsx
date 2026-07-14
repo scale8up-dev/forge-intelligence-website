@@ -39,12 +39,21 @@ const team = [
   },
   {
     name: "Muhammad Hamza Adnan",
-    role: "Founding Member & CTO",
-    bio: "CEO of Osmium Labs. Hamza directs software engineering, generative AI model integrations, and security orchestration frameworks.",
+    role: "Co-Founder & CTO",
+    bio: "Machine Learning Engineer expert in GenAI, LLMs, and MLOps. AWS Solutions Architect building scalable AI-powered systems.",
     image: "/images/hamza-adnan.png",
     links: [
       { label: "Website", url: "https://businessevolutionai.com/" },
       { label: "Email", url: "mailto:hamza@businessevolutionai.com" }
+    ]
+  },
+  {
+    name: "Gregory Vaughn",
+    role: "COO - Director of Operations",
+    bio: "Over 30 years of leadership in large-scale project management, ensuring operational excellence and scalable AI solutions with measurable impact.",
+    image: "/images/greg-vaughn.png",
+    links: [
+      { label: "Email", url: "mailto:greg@forgeintelligenceai.com" }
     ]
   }
 ];
@@ -139,7 +148,7 @@ export default function AboutPage() {
       <section className="team-section" aria-labelledby="team-heading">
         <div className="container">
           <header className="team-section-head">
-            <span className="team-count">03</span>
+            <span className="team-count">04</span>
             <h2 id="team-heading">Founding Members</h2>
           </header>
 

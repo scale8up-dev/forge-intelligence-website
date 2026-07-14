@@ -1599,7 +1599,7 @@ body.menu-open { overflow: hidden; }
 
 .team-grid {
   display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-columns: repeat(4, 1fr) !important;
   gap: 32px !important;
 }
 
@@ -1764,7 +1764,7 @@ body.menu-open { overflow: hidden; }
     gap: 24px !important;
   }
   .method-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(4, 1fr) !important;
     gap: 16px !important;
   }
 }
