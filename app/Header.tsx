@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   ["Home", "/"],
+  ["About", "/about"],
   ["Services", "/services"],
   ["Projects", "/projects"],
-  ["About", "/about"],
 ];
 
 function Arrow() {

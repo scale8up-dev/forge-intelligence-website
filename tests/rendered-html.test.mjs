@@ -128,7 +128,7 @@ test("keeps the production page free of starter preview dependencies", async () 
   assert.match(page, /useForm\("mkodnbyq"\)/);
   assert.match(page, /@formspree\/react/);
   assert.match(page, /formState\.submitting/);
-  assert.match(headerFile, /\["Home", "\/"\],\s+\["Services", "\/services"\],\s+\["Projects", "\/projects"\],\s+\["About", "\/about"\]/);
+  assert.match(headerFile, /\["Home", "\/"\],\s+\["About", "\/about"\],\s+\["Services", "\/services"\],\s+\["Projects", "\/projects"\]/);
   assert.match(page, /What can you help us build/);
   assert.match(page, /forge-intelligence-logo\.png/);
   assert.match(page, /mailto:domingo@oneenterprise\.ai/);

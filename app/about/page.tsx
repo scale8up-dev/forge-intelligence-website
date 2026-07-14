@@ -103,9 +103,35 @@ export default function AboutPage() {
               <em>Custom execution.</em>
             </h1>
           </div>
-          <p className="about-hero-description">
-            Forge Intelligence AI was founded to bridge the gap between ambitious business vision and custom AI execution. We combine strategic product thinking, enterprise software development, and deep AI automation to build tools that work.
-          </p>
+          
+          <div className="about-visual-panel">
+            <p className="about-hero-description">
+              Forge Intelligence AI was founded to bridge the gap between ambitious business vision and custom AI execution. We combine strategic product thinking, enterprise software development, and deep AI automation to build tools that work.
+            </p>
+            
+            <div className="about-visual-deco glass-card">
+              <div className="deco-header">
+                <span className="dot" />
+                <span className="dot" />
+                <span className="dot" />
+                <span className="deco-title">Forge Method™ Nodes</span>
+              </div>
+              <div className="deco-body">
+                <div className="node-line">
+                  <span className="node-label">Frame</span>
+                  <span className="node-status green">Audit Ready</span>
+                </div>
+                <div className="node-line">
+                  <span className="node-label">Orchestrate</span>
+                  <span className="node-status blue">Multi-Agent</span>
+                </div>
+                <div className="node-line">
+                  <span className="node-label">Evolve</span>
+                  <span className="node-status cyan">Optimization</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -196,7 +222,7 @@ export default function AboutPage() {
             <span className="brand-mark">
               <Image
                 unoptimized
-                src="/forge-mark.png"
+                src="/forge-intelligence-logo.png"
                 alt=""
                 width={42}
                 height={42}
