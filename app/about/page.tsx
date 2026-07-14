@@ -21,40 +21,25 @@ const team = [
     name: "Dr. Kelley Gurley",
     role: "Founding Member & Partner",
     bio: "Leads business integration strategy, model alignment, and client readiness programs to ensure high-impact AI deployment across enterprise workflows.",
-    image: "/images/kelley-gurley.jpg",
-    links: [
-      { label: "LinkedIn", url: "https://www.linkedin.com/in/kelleygurley" }
-    ]
+    image: "/images/kelley-gurley.jpg"
   },
   {
     name: "Domingo Silvas",
     role: "Founding Member & CEO",
     bio: "CEO of Silvas Enterprise and Founder of Results Driven Strategy. Domingo directs business strategy, project scoping, and enterprise solution alignment.",
-    image: "/images/domingo-silvas.jpg",
-    links: [
-      { label: "Website", url: "https://www.resultsdrivenstrategy.com/" },
-      { label: "Email", url: "mailto:domingo@resultsdrivenstrategy.com" },
-      { label: "Phone", url: "tel:5615420047" }
-    ]
+    image: "/images/domingo-silvas.jpg"
   },
   {
     name: "Muhammad Hamza Adnan",
     role: "Co-Founder & CTO",
     bio: "Machine Learning Engineer expert in GenAI, LLMs, and MLOps. AWS Solutions Architect building scalable AI-powered systems.",
-    image: "/images/hamza-adnan.png",
-    links: [
-      { label: "Website", url: "https://businessevolutionai.com/" },
-      { label: "Email", url: "mailto:hamza@businessevolutionai.com" }
-    ]
+    image: "/images/hamza-adnan.png"
   },
   {
     name: "Gregory Vaughn",
     role: "COO - Director of Operations",
     bio: "Over 30 years of leadership in large-scale project management, ensuring operational excellence and scalable AI solutions with measurable impact.",
-    image: "/images/greg-vaughn.png",
-    links: [
-      { label: "Email", url: "mailto:greg@forgeintelligenceai.com" }
-    ]
+    image: "/images/greg-vaughn.png"
   }
 ];
 
@@ -169,13 +154,7 @@ export default function AboutPage() {
                   <span className="team-role">{member.role}</span>
                   <h3>{member.name}</h3>
                   <p>{member.bio}</p>
-                  <div className="team-links">
-                    {member.links.map((link) => (
-                      <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
-                        {link.label}
-                      </a>
-                    ))}
-                  </div>
+
                 </div>
               </div>
             ))}
