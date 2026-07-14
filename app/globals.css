@@ -1347,10 +1347,10 @@ body.menu-open { overflow: hidden; }
 }
 
 .hologram-logo-wrap img {
-  width: 54px !important;
-  height: 54px !important;
+  width: 90px !important;
+  height: 90px !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 8px 16px rgba(23, 105, 255, 0.22)) !important;
+  filter: drop-shadow(0 10px 20px rgba(23, 105, 255, 0.26)) !important;
   animation: logoPulse 4s ease-in-out infinite alternate !important;
 }
 
