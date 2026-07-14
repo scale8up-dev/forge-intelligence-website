@@ -184,6 +184,8 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+
+
   return (
     <main className="site-main">
       <div className="ambient-field" aria-hidden="true"><i /><i /><i /></div>
