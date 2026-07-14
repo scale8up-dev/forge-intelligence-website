@@ -8,6 +8,7 @@ const navItems = [
   ["Home", "/"],
   ["Services", "/services"],
   ["Projects", "/projects"],
+  ["About", "/about"],
 ];
 
 function Arrow() {
