@@ -19,7 +19,7 @@ const services = [
   { number: "01", icon: "layers", title: "Development", description: "High-performing digital products that are fast, scalable, easy to use, and ready for the real work behind them.", flow: ["Scope", "Build", "Release"] },
   { number: "02", icon: "spark", title: "Strategy", description: "The product, features, technology, and roadmap shaped around the business outcome before development begins.", flow: ["Discover", "Prioritize", "Align"] },
   { number: "03", icon: "chart", title: "AI automations", description: "Practical AI systems that reduce manual work, connect your tools, and help the team operate more efficiently.", flow: ["Signal", "Route", "Assist"] },
-  { number: "04", icon: "shield", title: "Launch & scale", description: "Reliable integrations, testing, optimisation, and ongoing improvement as the product and business grow.", flow: ["Test", "Launch", "Improve"] },
+  { number: "04", icon: "shield", title: "Launch & scale", description: "Reliable integrations, testing, optimization, and ongoing improvement as the product and business grow.", flow: ["Test", "Launch", "Improve"] },
 ];
 
 const principles = [
@@ -33,7 +33,7 @@ const principles = [
 const faqs = [
   ["What can you help us build?", "We build conversion-focused websites, custom digital platforms, AI-powered workflows, and scalable SaaS products—from an early MVP through to a production-ready system."],
   ["How do you approach strategy?", "We begin with the business, users, opportunities, and constraints. Then we define the right solution, scope, priorities, user experience, and technical roadmap."],
-  ["Do you work with an existing product or codebase?", "Yes. We can extend an existing platform, modernise its foundations, or shape a new product from a validated idea. We start with a pragmatic product and technical review."],
+  ["Do you work with an existing product or codebase?", "Yes. We can extend an existing platform, modernize its foundations, or shape a new product from a validated idea. We start with a pragmatic product and technical review."],
   ["What AI automations do you build?", "We create practical workflows for operations, CRM and sales, support, lead qualification, reporting, knowledge assistance, and third-party integrations."],
   ["Can you support the product after launch?", "Yes. We support launch, monitor performance, and continue improving the product as your business grows—or hand over a documented, maintainable system to your team."],
 ];
@@ -42,7 +42,7 @@ const processSteps = [
   ["01", "Discover", "We begin by understanding your business, users, challenges, and goals."],
   ["02", "Strategise", "We define the solution, scope, priorities, user experience, and technical roadmap."],
   ["03", "Design", "We create clear, intuitive interfaces that make your product easy and enjoyable to use."],
-  ["04", "Develop", "We build, integrate, test, and optimise your solution using reliable technologies."],
+  ["04", "Develop", "We build, integrate, test, and optimize your solution using reliable technologies."],
   ["05", "Launch and improve", "We support the launch, monitor performance, and continue improving the product as your business grows."],
 ];
 

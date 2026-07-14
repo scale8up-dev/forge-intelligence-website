@@ -17,7 +17,7 @@ const serviceDetails = [
       "Mobile application development",
       "E-commerce solutions",
       "API and third-party integrations",
-      "Platform maintenance and optimisation",
+      "Platform maintenance and optimization",
     ],
     flow: ["Scope", "Build", "Integrate", "Release"],
     note: "A product path shaped around the people using it and the work it needs to support.",
