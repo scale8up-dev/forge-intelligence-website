@@ -1178,35 +1178,20 @@ body.menu-open { overflow: hidden; }
   }
 }
 
-/* Increase top padding on heroes to clear the floating pill header */
-.hero {
-  padding-top: 154px !important;
-}
-.services-hero {
-  padding-top: 144px !important;
-}
-.projects-hero {
+/* Increase top padding on heroes for consistent alignment under floating pill header */
+.hero, .services-hero, .projects-hero, .about-hero {
   padding-top: 192px !important;
 }
 
 @media (max-width: 850px) {
-  .services-hero {
-    padding-top: 112px !important;
-  }
-  .projects-hero {
+  .hero, .services-hero, .projects-hero, .about-hero {
     padding-top: 158px !important;
   }
 }
 
 @media (max-width: 650px) {
-  .hero {
-    padding-top: 104px !important;
-  }
-  .services-hero {
-    padding-top: 94px !important;
-  }
-  .projects-hero {
-    padding-top: 142px !important;
+  .hero, .services-hero, .projects-hero, .about-hero {
+    padding-top: 132px !important;
   }
 }
 

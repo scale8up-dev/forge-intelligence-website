@@ -40,7 +40,7 @@ const faqs = [
 
 const processSteps = [
   ["01", "Discover", "We begin by understanding your business, users, challenges, and goals."],
-  ["02", "Strategise", "We define the solution, scope, priorities, user experience, and technical roadmap."],
+  ["02", "Strategize", "We define the solution, scope, priorities, user experience, and technical roadmap."],
   ["03", "Design", "We create clear, intuitive interfaces that make your product easy and enjoyable to use."],
   ["04", "Develop", "We build, integrate, test, and optimize your solution using reliable technologies."],
   ["05", "Launch and improve", "We support the launch, monitor performance, and continue improving the product as your business grows."],
@@ -207,7 +207,7 @@ export default function Home() {
               <strong>One clear path.<br />Built to move.</strong>
               <p>Strategy, development, and automation in one delivery loop.</p>
               <div className="delivery-stack" aria-hidden="true">
-                <div className="delivery-step"><span>01</span><strong>Strategise</strong><small>Define the right move</small></div>
+                <div className="delivery-step"><span>01</span><strong>Strategize</strong><small>Define the right move</small></div>
                 <div className="delivery-step active"><span>02</span><strong>Develop</strong><small>Build the useful system</small></div>
                 <div className="delivery-step"><span>03</span><strong>Automate</strong><small>Keep work moving</small></div>
               </div>
@@ -216,7 +216,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="trust-strip" data-reveal><div className="container trust-inner"><p>From strategy to scalable digital solutions</p><div className="trust-items"><span>DISCOVER</span><span>STRATEGISE</span><span>DESIGN</span><span>DEVELOP</span><span>IMPROVE</span></div></div></section>
+      <section className="trust-strip" data-reveal><div className="container trust-inner"><p>From strategy to scalable digital solutions</p><div className="trust-items"><span>DISCOVER</span><span>STRATEGIZE</span><span>DESIGN</span><span>DEVELOP</span><span>IMPROVE</span></div></div></section>
 
       <section className="capability-ticker" aria-label="Forge capabilities"><div className="ticker-track">{[0, 1, 2, 3, 4, 5].map((group) => <div className="ticker-group" aria-hidden={group > 0} key={group}><i>✦</i><span>PRODUCT STRATEGY</span><i>✦</i><span>SOFTWARE DEVELOPMENT</span><i>✦</i><span>AI AUTOMATIONS</span></div>)}</div></section>
 
