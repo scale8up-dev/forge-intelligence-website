@@ -2128,3 +2128,8 @@ body { background: #fff !important; }
   color: #fff !important;
   stroke: #fff !important;
 }
+
+/* Guarantee high readability/contrast for eyebrow text inside dark CTA section */
+.site-main .cta .eyebrow {
+  color: var(--text-on-dark-label) !important;
+}
