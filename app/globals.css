@@ -1166,12 +1166,13 @@ body.menu-open { overflow: hidden; }
 }
 
 .site-header .nav-wrap {
-  width: 100% !important;
-  max-width: 100% !important;
+  width: min(calc(100% - 32px), 1180px) !important;
+  max-width: 1180px !important;
+  margin: 0 auto !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  padding-inline: 24px !important;
+  padding: 0 10px 0 16px !important;
 }
 
 /* Remove internal pill layouts from main-nav and services-nav on desktop */
@@ -1998,11 +1999,9 @@ body.menu-open { overflow: hidden; }
 @keyframes pageReveal {
   from {
     opacity: 0;
-    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
