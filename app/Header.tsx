@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   ["Home", "/"],
+  ["About", "/about"],
   ["Services", "/services"],
   ["Projects", "/projects"],
-  ["About", "/about"],
 ];
 
 function Arrow() {
@@ -53,7 +53,13 @@ export default function Header({ isHome = false }: { isHome?: boolean }) {
           {menuOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
         <nav id="main-navigation" className={menuOpen ? "main-nav open" : "main-nav"} aria-label="Main navigation">
-          {navItems.map(([label, href]) => {
+          {navItems
+            .slice()
+            .sort((a, b) => {
+              const order = ["Home", "Services", "Projects", "About"];
+              return order.indexOf(a[0]) - order.indexOf(b[0]);
+            })
+            .map(([label, href]) => {
             const isActive = pathname === href;
             return (
               <a
