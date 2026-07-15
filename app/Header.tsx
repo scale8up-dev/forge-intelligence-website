@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   ["Home", "/"],
-  ["About", "/about"],
   ["Services", "/services"],
   ["Projects", "/projects"],
+  ["About", "/about"],
 ];
 
 function Arrow() {
@@ -66,7 +66,7 @@ export default function Header({ isHome = false }: { isHome?: boolean }) {
               </a>
             );
           })}
-          <a className="nav-cta" href="/#contact" onClick={() => setMenuOpen(false)}>Start with a pilot <Arrow /></a>
+          <a className="nav-cta" href="/#contact" onClick={() => setMenuOpen(false)}>Start a project <Arrow /></a>
         </nav>
       </div>
     </header>

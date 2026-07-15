@@ -35,7 +35,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .back-to-top.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .back-to-top:hover { background: #fff; transform: translateY(-3px); }
 
-.site-header { height: 78px; background: rgba(244, 247, 252, 0.78); border-bottom: 1px solid rgba(219, 227, 239, 0.7); display: flex; align-items: center; position: sticky !important; top: 0 !important; z-index: 100; backdrop-filter: blur(18px) saturate(140%); }
+/* .site-header reset for floating pill */
 .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
 .brand { display: inline-flex; align-items: center; gap: 10px; }
 .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; overflow: hidden; border-radius: 12px; background: #07101e; box-shadow: 0 0 0 1px rgba(19, 200, 236, 0.24), 0 8px 24px rgba(23, 105, 255, 0.2); }
@@ -1110,29 +1110,51 @@ body.menu-open { overflow: hidden; }
   .project-track > article { flex: 0 0 100%; min-width: 100%; }
 }
 
-/* Floating liquid glass navbar styles */
+/* Floating liquid glass navbar styles - Compact & Fixed on scroll */
 .site-header {
   position: fixed !important;
-  top: 20px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: min(calc(100% - 32px), 1180px) !important;
-  height: 68px !important;
-  background: rgba(255, 255, 255, 0.45) !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
-  border-radius: 99px !important;
-  box-shadow: 0 20px 48px rgba(29, 80, 159, 0.06), inset 0 1px rgba(255,255,255,.85) !important;
-  backdrop-filter: blur(24px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  padding: 16px 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  pointer-events: none !important;
   z-index: 200 !important;
-  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, top 0.3s ease !important;
+  transition: padding 0.3s ease !important;
 }
 
 .site-header.is-scrolled {
-  top: 10px !important;
+  padding: 8px 0 !important;
+}
+
+.site-header .nav-wrap {
+  width: min(calc(100% - 32px), 1180px) !important;
+  height: 56px !important;
+  min-height: 56px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 8px 0 14px !important;
+  border: 1px solid rgba(190, 214, 235, 0.7) !important;
+  border-radius: 99px !important;
   background: rgba(255, 255, 255, 0.65) !important;
-  box-shadow: 0 20px 48px rgba(29, 80, 159, 0.12), inset 0 1px rgba(255,255,255,.9) !important;
+  box-shadow: 0 20px 48px rgba(29, 80, 159, 0.05), inset 0 1px rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(24px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+  pointer-events: auto !important;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.site-header.is-scrolled .nav-wrap {
+  background: rgba(255, 255, 255, 0.82) !important;
   border-color: rgba(178, 202, 225, 0.72) !important;
+  box-shadow: 0 20px 48px rgba(29, 80, 159, 0.1), inset 0 1px rgba(255, 255, 255, 0.95) !important;
 }
 
 .site-header::before,
@@ -2054,4 +2076,55 @@ body { background: #fff !important; }
   .trust-feature-bottom { right: 24px; bottom: 28px; left: 24px; display: block; }
   .trust-feature-bottom p { font-size: 18px; }
   .trust-feature-badges { justify-content: start; margin-top: 24px; }
+}
+
+/* Slim Navbar Brand and Link styles to match user screenshot */
+.site-header .brand-mark {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+}
+.site-header .brand-mark img {
+  width: 36px !important;
+  height: 36px !important;
+  object-fit: contain !important;
+}
+.site-header .brand-name {
+  font-size: 13.5px !important;
+  gap: 3px !important;
+}
+.site-header .brand-name strong {
+  font-size: 15.5px !important;
+}
+.site-header .main-nav {
+  gap: clamp(12px, 2.5vw, 32px) !important;
+  font-size: 14px !important;
+  align-items: center !important;
+}
+.site-header .main-nav a:not(.nav-cta) {
+  padding: 0 !important;
+  color: #4a5568 !important;
+  font-weight: 550 !important;
+}
+.site-header .main-nav .nav-cta {
+  min-height: 40px !important;
+  height: 40px !important;
+  padding: 0 20px !important;
+  border: 0 !important;
+  border-radius: 99px !important;
+  color: #fff !important;
+  background: #1c2430 !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(28, 36, 48, 0.16) !important;
+  transition: all 0.28s ease !important;
+}
+.site-header .main-nav .nav-cta:hover {
+  background: #111a24 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(28, 36, 48, 0.25) !important;
+}
+.site-header .main-nav .nav-cta svg {
+  color: #fff !important;
+  stroke: #fff !important;
 }
