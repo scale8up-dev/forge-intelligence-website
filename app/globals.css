@@ -2078,16 +2078,22 @@ body { background: #fff !important; }
   .trust-feature-badges { justify-content: start; margin-top: 24px; }
 }
 
-/* Slim Navbar Brand and Link styles to match user screenshot */
-.site-header .brand-mark {
-  width: 36px !important;
-  height: 36px !important;
-  border-radius: 8px !important;
-}
-.site-header .brand-mark img {
-  width: 36px !important;
-  height: 36px !important;
-  object-fit: contain !important;
+/* Slim Navbar Brand and Link styles to match user screenshot (restoring sprite offsets) */
+@media (min-width: 901px) {
+  .site-header .brand-mark {
+    width: 38px !important;
+    height: 38px !important;
+    flex-basis: 38px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 9px !important;
+  }
+  .site-header .brand-mark img {
+    width: 135px !important;
+    height: auto !important;
+    transform: translate(-48px, -40px) !important;
+    padding: 0 !important;
+  }
 }
 .site-header .brand-name {
   font-size: 13.5px !important;
