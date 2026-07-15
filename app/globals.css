@@ -2133,3 +2133,11 @@ body { background: #fff !important; }
 .site-main .cta .eyebrow {
   color: var(--text-on-dark-label) !important;
 }
+
+/* Custom high contrast glowing gradient for eyebrow text in dark CTA section */
+.site-main .cta .eyebrow {
+  background: linear-gradient(105deg, #b8cae2, #8be1d0) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
