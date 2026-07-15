@@ -186,6 +186,15 @@ export default function AboutPage() {
       </section>
 
       {/* Call to Action */}
+      <section className="about-feature" aria-labelledby="about-feature-heading">
+        <div className="container">
+          <div className="about-feature-panel">
+            <p className="about-feature-kicker"><i /> Built for the work ahead</p>
+            <h2 id="about-feature-heading">The right technology should make the next decision clearer.</h2>
+            <p>Forge brings strategy, software development, and AI automation into one focused delivery loop, so ambitious teams can move from an important idea to a useful system with confidence.</p>
+          </div>
+        </div>
+      </section>
       <ProjectCta />
 
       {/* Footer */}

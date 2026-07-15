@@ -32,7 +32,7 @@ test("server-renders the Forge Intelligence AI landing page", async () => {
   assert.match(html, /<title>Forge Intelligence AI \| Development, strategy &amp; AI automations<\/title>/i);
   assert.match(html, /Build smarter/);
   assert.match(html, /Development · Strategy · AI automations/);
-  assert.match(html, /Build the right/);
+  assert.match(html, /Prove it before/);
   assert.match(html, /One clear path/);
   assert.match(html, /AI-powered workflows/);
   assert.match(html, /Selected projects/);
@@ -97,7 +97,7 @@ test("exports Netlify-ready static routes", async () => {
     readFile(new URL("../dist/client/_redirects", import.meta.url), "utf8"),
   ]);
 
-  assert.match(home, /Build the right/);
+  assert.match(home, /Prove it before/);
   assert.match(home, /\/_vinext(?:_fonts|\/fonts)\//);
   assert.match(services, /Three disciplines/);
   assert.match(projects, /Strategic Divorce Directory/);
