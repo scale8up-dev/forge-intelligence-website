@@ -66,7 +66,7 @@ export default function Header({ isHome = false }: { isHome?: boolean }) {
               </a>
             );
           })}
-          <a className="nav-cta" href="/#contact" onClick={() => setMenuOpen(false)}>Start a project <Arrow /></a>
+          <a className="nav-cta" href="/#contact" onClick={() => setMenuOpen(false)}>Start with a pilot <Arrow /></a>
         </nav>
       </div>
     </header>

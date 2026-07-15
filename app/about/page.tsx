@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Header from "../Header";
+import ProjectCta from "../ProjectCta";
 
 export const metadata: Metadata = {
   title: "About Us | Forge Intelligence AI",
@@ -133,8 +134,7 @@ export default function AboutPage() {
       <section className="team-section" aria-labelledby="team-heading">
         <div className="container">
           <header className="team-section-head">
-            <span className="team-count">04</span>
-            <h2 id="team-heading">Founding Members</h2>
+            <h2 id="team-heading">Our Team</h2>
           </header>
 
           <div className="team-grid">
@@ -186,22 +186,7 @@ export default function AboutPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="about-closing">
-        <div className="container about-closing-inner glass-card">
-          <div>
-            <p className="eyebrow">Prove it before you build it</p>
-            <h2>
-              Ready to scope your project?
-              <br />
-              <em>Start with a 2-week pilot.</em>
-            </h2>
-          </div>
-          <a className="button button-primary" href="/#contact">
-            Start a project
-            <Arrow />
-          </a>
-        </div>
-      </section>
+      <ProjectCta />
 
       {/* Footer */}
       <footer className="site-footer">

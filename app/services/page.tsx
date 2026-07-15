@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Static hosting uses document navigation between pre-rendered routes. */
 import Image from "next/image";
 import Header from "../Header";
+import ProjectCta from "../ProjectCta";
 
 const serviceDetails = [
   {
@@ -171,15 +172,7 @@ export default function ServicesPage() {
         ))}
       </section>
 
-      <section className="services-closing">
-        <div className="container services-closing-inner glass-card">
-          <div>
-            <p className="eyebrow">A connected approach</p>
-            <h2>Strategy, development, and automation—<em>in the same conversation.</em></h2>
-          </div>
-          <a className="button button-primary" href="/#contact">Tell us about your project <Arrow /></a>
-        </div>
-      </section>
+      <ProjectCta eyebrow="A connected approach" title="Strategy, development, and automation—" emphasis="in the same conversation." >Tell us about your project</ProjectCta>
 
       <footer className="site-footer">
         <div className="container footer-top">

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { projects } from "./data";
 import Header from "../Header";
+import ProjectCta from "../ProjectCta";
 
 export const metadata: Metadata = {
   title: "Projects | Forge Intelligence AI",
@@ -183,24 +184,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="projects-closing">
-        <div className="container projects-closing-inner glass-card">
-          <div>
-            <p className="eyebrow">Your project could be next</p>
-
-            <h2>
-              Bring us the challenge.
-              <br />
-              <em>We will shape the system.</em>
-            </h2>
-          </div>
-
-          <a className="button button-primary" href="/#contact">
-            Start a project
-            <Arrow />
-          </a>
-        </div>
-      </section>
+      <ProjectCta eyebrow="Your project could be next" title="Bring us the challenge." emphasis="We will shape the system." />
 
       <footer className="site-footer">
         <div className="container footer-top">

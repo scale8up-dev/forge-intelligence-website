@@ -35,7 +35,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .back-to-top.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .back-to-top:hover { background: #fff; transform: translateY(-3px); }
 
-.site-header { height: 78px; background: rgba(244, 247, 252, 0.78); border-bottom: 1px solid rgba(219, 227, 239, 0.7); display: flex; align-items: center; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(18px) saturate(140%); }
+.site-header { height: 78px; background: rgba(244, 247, 252, 0.78); border-bottom: 1px solid rgba(219, 227, 239, 0.7); display: flex; align-items: center; position: sticky !important; top: 0 !important; z-index: 100; backdrop-filter: blur(18px) saturate(140%); }
 .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
 .brand { display: inline-flex; align-items: center; gap: 10px; }
 .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; overflow: hidden; border-radius: 12px; background: #07101e; box-shadow: 0 0 0 1px rgba(19, 200, 236, 0.24), 0 8px 24px rgba(23, 105, 255, 0.2); }
@@ -1092,29 +1092,29 @@ body.menu-open { overflow: hidden; }
   .project-track > article { flex: 0 0 100%; min-width: 100%; }
 }
 
-/* Floating liquid glass navbar styles */
+/* Premium Full-Width Sticky Glass Navbar styles */
 .site-header {
   position: fixed !important;
-  top: 20px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: min(calc(100% - 32px), 1180px) !important;
-  height: 68px !important;
-  background: rgba(255, 255, 255, 0.45) !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
-  border-radius: 99px !important;
-  box-shadow: 0 20px 48px rgba(29, 80, 159, 0.06), inset 0 1px rgba(255,255,255,.85) !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  width: 100% !important;
+  height: 72px !important;
+  background: rgba(255, 255, 255, 0.65) !important;
+  border-bottom: 1px solid rgba(219, 227, 239, 0.5) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02), inset 0 -1px rgba(255, 255, 255, 0.5) !important;
   backdrop-filter: blur(24px) saturate(150%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
   z-index: 200 !important;
-  transition: all 0.35s cubic-bezier(0.2, 0.75, 0.25, 1) !important;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 .site-header.is-scrolled {
-  top: 10px !important;
-  background: rgba(255, 255, 255, 0.65) !important;
-  box-shadow: 0 20px 48px rgba(29, 80, 159, 0.12), inset 0 1px rgba(255,255,255,.9) !important;
-  border-color: rgba(178, 202, 225, 0.72) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 8px 32px rgba(29, 80, 159, 0.08), inset 0 -1px rgba(255, 255, 255, 0.6) !important;
+  border-bottom-color: rgba(178, 202, 225, 0.42) !important;
 }
 
 .site-header::before,
@@ -1123,12 +1123,12 @@ body.menu-open { overflow: hidden; }
 }
 
 .site-header .nav-wrap {
-  width: 100% !important;
-  max-width: 100% !important;
+  width: min(1160px, calc(100% - 64px)) !important;
+  margin: 0 auto !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  padding-inline: 24px !important;
+  padding-inline: 0 !important;
 }
 
 /* Remove internal pill layouts from main-nav and services-nav on desktop */
@@ -1156,16 +1156,17 @@ body.menu-open { overflow: hidden; }
 /* Mobile dropdown menu floats as its own card right below the floating header pill */
 @media (max-width: 650px) {
   .site-header {
-    height: 60px !important;
-    top: 12px !important;
+    height: 64px !important;
+    top: 0 !important;
+    border-radius: 0 !important;
   }
   .site-header.is-scrolled {
-    top: 8px !important;
+    top: 0 !important;
   }
   .site-header .main-nav {
     display: none;
     position: absolute !important;
-    top: 72px !important;
+    top: 64px !important;
     right: 0 !important;
     left: 0 !important;
     flex-direction: column !important;
@@ -1176,7 +1177,7 @@ body.menu-open { overflow: hidden; }
     margin: 0 !important;
     padding: 16px 20px 20px !important;
     border: 1px solid rgba(178, 202, 225, 0.42) !important;
-    border-radius: 24px !important;
+    border-radius: 0 0 20px 20px !important;
     background: rgba(255, 255, 255, 0.88) !important;
     box-shadow: 0 20px 48px rgba(29, 80, 159, 0.12) !important;
     backdrop-filter: blur(24px) !important;
@@ -1187,20 +1188,20 @@ body.menu-open { overflow: hidden; }
   }
 }
 
-/* Increase top padding on heroes for consistent alignment under floating pill header */
+/* Consistent top padding on heroes to align perfectly under sticky glass header */
 .hero, .services-hero, .projects-hero, .about-hero {
-  padding-top: 192px !important;
+  padding-top: 148px !important;
 }
 
 @media (max-width: 850px) {
   .hero, .services-hero, .projects-hero, .about-hero {
-    padding-top: 158px !important;
+    padding-top: 124px !important;
   }
 }
 
 @media (max-width: 650px) {
   .hero, .services-hero, .projects-hero, .about-hero {
-    padding-top: 132px !important;
+    padding-top: 108px !important;
   }
 }
 
@@ -1616,6 +1617,23 @@ body.menu-open { overflow: hidden; }
   box-shadow: 0 24px 56px rgba(29, 80, 159, 0.05), inset 0 1px #fff !important;
 }
 
+/* Team cards: modern editorial profile tiles with a stronger image-first hierarchy. */
+.about-page .team-section { background: #fff; }
+.about-page .team-section-head { align-items: center !important; justify-content: flex-start !important; gap: 18px !important; }
+.about-page .team-count { color: #087fab !important; background: rgba(19,200,236,.1) !important; }
+.about-page .team-section-head h2 { font-size: clamp(42px, 6vw, 68px) !important; font-weight: 580 !important; letter-spacing: -.07em !important; }
+.about-page .team-grid { gap: 22px !important; }
+.about-page .team-card { position: relative !important; padding: 12px !important; border-radius: 24px !important; background: rgba(255,255,255,.82) !important; border-color: rgba(190,214,235,.65) !important; box-shadow: 0 18px 40px rgba(24,75,127,.07), inset 0 1px #fff !important; overflow: hidden !important; }
+.about-page .team-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(135deg, rgba(20,201,233,.12), transparent 36%, rgba(117,103,255,.08)); opacity: 0; transition: opacity .3s ease; }
+.about-page .team-card:hover::after { opacity: 1; }
+.about-page .team-photo-wrap { position: relative; z-index: 1; aspect-ratio: 1 / 1.08 !important; margin-bottom: 0 !important; border-radius: 17px !important; background: linear-gradient(145deg, #dff8ff, #e9e7ff) !important; }
+.about-page .team-photo { transition: transform .5s cubic-bezier(.2,.75,.25,1), filter .5s ease !important; }
+.about-page .team-card:hover .team-photo { transform: scale(1.045); filter: saturate(1.08); }
+.about-page .team-info { position: relative; z-index: 1; padding: 23px 13px 16px !important; }
+.about-page .team-role { color: #0ca8ca !important; font-size: 10px !important; letter-spacing: .12em !important; }
+.about-page .team-info h3 { font-size: 23px !important; letter-spacing: -.045em !important; margin-bottom: 10px !important; }
+.about-page .team-info p { font-size: 14px !important; line-height: 1.58 !important; color: #667085 !important; }
+
 .team-photo-wrap {
   width: 100% !important;
   aspect-ratio: 1 / 1 !important;
@@ -1721,6 +1739,19 @@ body.menu-open { overflow: hidden; }
   line-height: 1.45 !important;
   margin: 0 !important;
 }
+
+/* Method cards: clearer step hierarchy and a more deliberate visual system. */
+.about-page .method-section { background: linear-gradient(180deg, #fff, #f7fbff) !important; }
+.about-page .method-section-head { align-items: baseline !important; gap: 22px !important; }
+.about-page .method-section-head h2 { font-size: clamp(42px, 6vw, 68px) !important; font-weight: 580 !important; letter-spacing: -.07em !important; }
+.about-page .method-grid { gap: 16px !important; }
+.about-page .method-card { position: relative !important; min-height: 292px !important; padding: 28px 26px !important; overflow: hidden !important; border: 1px solid rgba(190,214,235,.72) !important; border-radius: 22px !important; background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(244,250,255,.78)) !important; box-shadow: 0 16px 38px rgba(24,75,127,.065), inset 0 1px #fff !important; transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease !important; }
+.about-page .method-card::before { content: ""; position: absolute; top: 0; right: 26px; left: 26px; height: 3px; border-radius: 0 0 99px 99px; background: linear-gradient(90deg, #1769ff, #14c9e9); opacity: .72; }
+.about-page .method-card:nth-child(even)::before { background: linear-gradient(90deg, #14c9e9, #7567ff); }
+.about-page .method-card:hover { transform: translateY(-6px); border-color: rgba(20,201,233,.62) !important; box-shadow: 0 24px 52px rgba(24,104,160,.13), inset 0 1px #fff !important; }
+.about-page .method-step { margin-bottom: 28px !important; color: #087fab !important; background: rgba(20,201,233,.12) !important; font-size: 11px !important; letter-spacing: .1em !important; }
+.about-page .method-card h3 { font-size: 24px !important; letter-spacing: -.045em !important; margin-bottom: 14px !important; }
+.about-page .method-card p { color: #667085 !important; font-size: 14px !important; line-height: 1.58 !important; }
 
 .about-closing {
   padding-bottom: 120px !important;
@@ -1928,6 +1959,19 @@ body { background: #fff !important; }
 .site-main .ambient-field i { background: radial-gradient(circle, rgba(19,200,236,.25), transparent 68%); filter: blur(18px); }
 .site-main .trust-strip, .site-main .impact-band { background: rgba(255,255,255,.92) !important; }
 .site-main .trust-feature-panel { background: radial-gradient(ellipse at 15% 12%, rgba(20,145,220,.88), transparent 38%), radial-gradient(ellipse at 78% 35%, rgba(19,200,236,.4), transparent 34%), linear-gradient(140deg, #07569a 0%, #052c5e 48%, #03152d 100%); }
+.site-main .about { position: relative; z-index: 0; background: #fff !important; }
+.site-main .cta { position: relative; overflow: hidden; background: radial-gradient(ellipse at 15% 12%, rgba(20,145,220,.88), transparent 38%), radial-gradient(ellipse at 78% 35%, rgba(19,200,236,.4), transparent 34%), linear-gradient(140deg, #07569a 0%, #052c5e 48%, #03152d 100%) !important; }
+.site-main .cta::before { content: ""; position: absolute; inset: 0; opacity: .16; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"); mix-blend-mode: screen; }
+.site-main .cta-inner { position: relative; z-index: 1; }
+.site-main .cta-form-wrap { border-color: rgba(210,240,255,.42); background: linear-gradient(135deg, rgba(28,91,151,.56), rgba(8,37,87,.56)); box-shadow: 0 24px 70px rgba(1,18,45,.25), inset 0 1px rgba(255,255,255,.18); }
+.project-cta { padding: 0 0 120px; background: transparent; }
+.project-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; padding: 56px 64px; border: 1px solid rgba(190,214,235,.68); border-radius: 32px; background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(226,247,255,.76) 58%, rgba(240,238,255,.72)); box-shadow: 0 24px 60px rgba(24,75,127,.09), inset 0 1px #fff; }
+.project-cta h2 { margin: 0; color: var(--ink); font-size: clamp(38px, 4.5vw, 62px); line-height: .98; letter-spacing: -.07em; }
+.project-cta h2 em { color: #087fab; }
+.project-cta .eyebrow { margin-bottom: 18px; }
+.project-cta-meta { margin: 22px 0 0; color: #5e7892; font-size: 12px; letter-spacing: .04em; }
+.project-cta .button { flex: 0 0 auto; }
+@media (max-width: 650px) { .project-cta { padding-bottom: 76px; }.project-cta-inner { align-items: start; flex-direction: column; gap: 30px; padding: 32px 24px; border-radius: 22px; }.project-cta .button { width: 100%; justify-content: center; } }
 .site-main .section-note, .site-main .hero-lede { color: #526479; }
 .site-main .eyebrow { color: #1b789c; }
 .site-main .section-intro h2 em, .site-main .about-copy h2 em, .site-main .principles h2 em, .site-main .faq h2 em { color: #087fab; }
