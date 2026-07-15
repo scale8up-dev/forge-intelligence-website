@@ -222,6 +222,17 @@ export default function Home() {
 
       <section className="capability-ticker" aria-label="Forge capabilities"><div className="ticker-track">{[0, 1, 2, 3, 4, 5].map((group) => <div className="ticker-group" aria-hidden={group > 0} key={group}><i>✦</i><span>PRODUCT STRATEGY</span><i>✦</i><span>SOFTWARE DEVELOPMENT</span><i>✦</i><span>AI AUTOMATIONS</span></div>)}</div></section>
 
+      <section className="impact-band" data-reveal aria-label="Forge in numbers">
+        <div className="container">
+          <div className="impact-heading"><p className="eyebrow">Forge in numbers</p><p>One connected team for the work that moves your business forward.</p></div>
+          <div className="impact-grid">
+            <article><strong>03</strong><span>connected disciplines</span><p>Strategy, development, and automation working from the same brief.</p></article>
+            <article><strong>01</strong><span>clear delivery loop</span><p>From the first question to a system your team can actually use.</p></article>
+            <article><strong>∞</strong><span>room to grow</span><p>Flexible foundations that evolve as your customers and operations do.</p></article>
+          </div>
+        </div>
+      </section>
+
       <section className="section services" id="services" data-reveal><div className="container"><div className="section-intro"><div><p className="eyebrow">Our services</p><h2>Development-led.<br /><em>Strategy-backed.</em></h2></div><div><p className="section-note">We bring development, strategy, and AI automation together so the right solution moves from idea to execution without losing its purpose.</p><a className="text-link section-detail-link" href="/services">See detailed services <Icon name="arrow" /></a></div></div><div className="service-grid capability-deck">{services.map((service) => <article className="service-card glass-card" key={service.number}><div className="service-top"><span className="service-number">{service.number}</span><span className="icon-box"><Icon name={service.icon} /></span></div><h3>{service.title}</h3><p>{service.description}</p><div className="service-mini-flow" aria-label={`${service.title} workflow`}>{service.flow.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, "0")}</i>{step}</span>)}</div><a href={service.title === "Strategy" ? "/services#strategy" : service.title === "AI automations" ? "/services#ai-automations" : "/services#development"} className="card-link">Explore service <Icon name="arrow" /></a></article>)}</div></div></section>
 
       <section className="section about" id="about" data-reveal><div className="container about-grid"><div className="about-panel glass-card"><Image className="about-architecture" unoptimized src="/images/forge-glass-architecture.webp" alt="" aria-hidden="true" width={960} height={601} sizes="(max-width: 900px) 100vw, 48vw" /><div className="about-hologram"><div className="hologram-logo-wrap"><Image unoptimized src="/forge-mark.png" alt="Forge Intelligence AI Logo" width={96} height={96} /></div></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="about-panel-label">FROM IDEA TO EXECUTION</div><div className="about-panel-stat"><strong>3</strong><span>connected disciplines,<br />one practical solution</span></div></div><div className="about-copy"><p className="eyebrow">From strategy to scalable digital solutions</p><h2>Technology that works<br /><em>for your business.</em></h2><p>Great technology starts with a clear direction. We work closely with your team to understand your goals, identify opportunities, and create the right solution for your business.</p><p>Whether you need a new digital product, a stronger technology strategy, or smarter ways to automate daily operations, we help you move from idea to execution.</p><div className="stat-row"><div><strong>Discover</strong><span>understand the opportunity</span></div><div><strong>Build</strong><span>create the right solution</span></div><div><strong>Improve</strong><span>grow with confidence</span></div></div><a className="text-link" href="#process">How we work <Icon name="arrow" /></a></div></div></section>
@@ -333,6 +344,19 @@ export default function Home() {
                 </footer>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section trust-feature" data-reveal aria-labelledby="trust-feature-title">
+        <div className="container">
+          <div className="trust-feature-panel">
+            <div className="trust-feature-kicker"><i /> Built for the real world</div>
+            <h2 id="trust-feature-title">Your business depends on systems that are clear, reliable, and built to last.</h2>
+            <div className="trust-feature-bottom">
+              <p>We take that responsibility seriously. From the first architecture decision to the final handoff, we build with maintainability, sensible integrations, and long-term ownership in mind.</p>
+              <div className="trust-feature-badges" aria-label="Forge delivery principles"><span><strong>01</strong> Clear foundations</span><span><strong>02</strong> Secure workflows</span><span><strong>03</strong> Built to evolve</span></div>
+            </div>
           </div>
         </div>
       </section>
