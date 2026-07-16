@@ -137,6 +137,7 @@ export default function Home() {
   useEffect(() => {
     const root = document.documentElement;
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const heroTransition = document.querySelector<HTMLElement>("[data-hero-transition]");
 
     sections.forEach((section) => {
       if (section.getBoundingClientRect().top < window.innerHeight * 0.9) {
@@ -153,8 +154,20 @@ export default function Home() {
     );
     sections.forEach((section) => observer.observe(section));
 
+    const revealHeroTransition = () => {
+      if (!heroTransition || window.scrollY < 16) return;
+
+      if (heroTransition.getBoundingClientRect().top < window.innerHeight * 0.94) {
+        heroTransition.classList.add("is-visible");
+        window.removeEventListener("scroll", revealHeroTransition);
+      }
+    };
+
+    window.addEventListener("scroll", revealHeroTransition, { passive: true });
+
     return () => {
       observer.disconnect();
+      window.removeEventListener("scroll", revealHeroTransition);
       root.classList.remove("scroll-ready");
     };
   }, []);
@@ -194,7 +207,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="trust-strip" data-reveal><div className="container trust-inner"><p>From strategy to scalable digital solutions</p><div className="trust-items"><span>DISCOVER</span><span>STRATEGIZE</span><span>DESIGN</span><span>DEVELOP</span><span>IMPROVE</span></div></div></section>
+      <section className="trust-strip trust-strip-scroll-reveal" data-hero-transition><div className="container trust-inner"><p>From strategy to scalable digital solutions</p><div className="trust-items"><span>DISCOVER</span><span>STRATEGIZE</span><span>DESIGN</span><span>DEVELOP</span><span>IMPROVE</span></div></div></section>
 
       <section className="capability-ticker" aria-label="Forge capabilities"><div className="ticker-track">{[0, 1, 2, 3, 4, 5].map((group) => <div className="ticker-group" aria-hidden={group > 0} key={group}><i>✦</i><span>PRODUCT STRATEGY</span><i>✦</i><span>SOFTWARE DEVELOPMENT</span><i>✦</i><span>AI AUTOMATIONS</span></div>)}</div></section>
 

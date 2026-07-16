@@ -76,10 +76,10 @@ export default function AboutPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="about-hero">
+      <section className="about-hero" data-motion-reveal>
         <div className="about-hero-orb" aria-hidden="true" />
         <div className="container about-hero-grid">
-          <div className="about-hero-content">
+          <div className="about-hero-content motion-stagger">
             <p className="eyebrow">
               <span className="eyebrow-dot" />
               Forge Intelligence AI
@@ -99,7 +99,7 @@ export default function AboutPage() {
             </div>
           </div>
           
-          <aside className="about-hero-statement">
+          <aside className="about-hero-statement" data-motion-item>
             <p className="about-hero-card-label">Why Forge</p>
             <p className="about-hero-card-quote">
               Clear direction before code. A working system before scale.
@@ -115,9 +115,9 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="team-section" aria-labelledby="team-heading">
+      <section className="team-section" aria-labelledby="team-heading" data-motion-reveal>
         <div className="container">
-          <header className="team-section-head">
+          <header className="team-section-head" data-motion-item>
             <div>
               <p className="eyebrow"><span className="eyebrow-dot" />The team behind Forge</p>
               <h2 id="team-heading">The people you build with.</h2>
@@ -125,9 +125,9 @@ export default function AboutPage() {
             <p>Strategy, engineering, and operations in one delivery team, close enough to make the work move.</p>
           </header>
 
-          <div className="team-grid">
+          <div className="team-grid motion-stagger">
             {team.map((member, index) => (
-              <article key={member.name} className="team-card glass-card">
+              <article key={member.name} className="team-card glass-card" data-motion-item>
                 <span className="team-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <div className="team-photo-wrap">
                   <Image
@@ -151,9 +151,9 @@ export default function AboutPage() {
       </section>
 
       {/* Methodology Section */}
-      <section className="method-section" aria-labelledby="method-heading">
+      <section className="method-section" aria-labelledby="method-heading" data-motion-reveal>
         <div className="container">
-          <header className="method-section-head">
+          <header className="method-section-head" data-motion-item>
             <div>
               <p className="eyebrow">
                 <span className="eyebrow-dot" />
@@ -164,9 +164,9 @@ export default function AboutPage() {
             <p>A five-part operating rhythm that keeps strategy, build quality, and measurable progress connected.</p>
           </header>
 
-          <div className="method-grid">
+          <div className="method-grid motion-stagger">
             {methodology.map((m) => (
-              <div key={m.step} className="method-card glass-card">
+              <div key={m.step} className="method-card glass-card" data-motion-item>
                 <span className="method-step">{m.step}</span>
                 <h3>{m.name}</h3>
                 <p>{m.desc}</p>
@@ -177,9 +177,9 @@ export default function AboutPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="about-feature" aria-labelledby="about-feature-heading">
+      <section className="about-feature" aria-labelledby="about-feature-heading" data-motion-reveal>
         <div className="container">
-          <div className="about-feature-panel">
+          <div className="about-feature-panel" data-motion-item>
             <p className="about-feature-kicker"><i /> Built for the work ahead</p>
             <h2 id="about-feature-heading">The right technology should make the next decision clearer.</h2>
             <p>Forge brings strategy, software development, and AI automation into one focused delivery loop, so ambitious teams can move from an important idea to a useful system with confidence.</p>

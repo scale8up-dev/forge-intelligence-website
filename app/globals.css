@@ -3831,3 +3831,88 @@ body { background: #fff !important; }
 @media (max-width: 700px) {
   .site-main .trust-strip { margin-top: -32px; }
 }
+
+/* The process strip becomes part of the scroll journey, not the landing view. */
+.site-main .trust-strip-scroll-reveal {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 280ms ease-out, transform 340ms cubic-bezier(.2, .75, .25, 1);
+}
+
+.site-main .trust-strip-scroll-reveal.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-main .trust-strip-scroll-reveal { transition: none; }
+}
+
+/* Shared, one-time section reveals for the inner pages. */
+.motion-ready [data-motion-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 460ms ease-out, transform 500ms cubic-bezier(.2, .75, .25, 1);
+}
+
+.motion-ready [data-motion-reveal].is-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.motion-ready [data-motion-reveal] [data-motion-item] {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition: opacity 360ms ease-out, transform 420ms cubic-bezier(.2, .75, .25, 1);
+}
+
+.motion-ready .about-hero-content > *,
+.motion-ready .services-hero-copy > * {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition: opacity 360ms ease-out, transform 420ms cubic-bezier(.2, .75, .25, 1);
+}
+
+.motion-ready [data-motion-reveal].is-motion-visible [data-motion-item] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.motion-ready .about-hero.is-motion-visible .about-hero-content > *,
+.motion-ready .services-hero.is-motion-visible .services-hero-copy > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.motion-ready [data-motion-reveal].is-motion-visible .motion-stagger > [data-motion-item]:nth-child(1) { transition-delay: 0ms; }
+.motion-ready [data-motion-reveal].is-motion-visible .motion-stagger > [data-motion-item]:nth-child(2) { transition-delay: 55ms; }
+.motion-ready [data-motion-reveal].is-motion-visible .motion-stagger > [data-motion-item]:nth-child(3) { transition-delay: 110ms; }
+.motion-ready [data-motion-reveal].is-motion-visible .motion-stagger > [data-motion-item]:nth-child(4) { transition-delay: 165ms; }
+.motion-ready [data-motion-reveal].is-motion-visible .motion-stagger > [data-motion-item]:nth-child(5) { transition-delay: 220ms; }
+.motion-ready .about-hero.is-motion-visible .about-hero-content > :nth-child(1),
+.motion-ready .services-hero.is-motion-visible .services-hero-copy > :nth-child(1) { transition-delay: 0ms; }
+.motion-ready .about-hero.is-motion-visible .about-hero-content > :nth-child(2),
+.motion-ready .services-hero.is-motion-visible .services-hero-copy > :nth-child(2) { transition-delay: 45ms; }
+.motion-ready .about-hero.is-motion-visible .about-hero-content > :nth-child(3),
+.motion-ready .services-hero.is-motion-visible .services-hero-copy > :nth-child(3) { transition-delay: 90ms; }
+.motion-ready .about-hero.is-motion-visible .about-hero-content > :nth-child(4),
+.motion-ready .services-hero.is-motion-visible .services-hero-copy > :nth-child(4) { transition-delay: 135ms; }
+
+.motion-ready .about-hero.is-motion-visible .about-hero-statement,
+.motion-ready .services-hero.is-motion-visible .services-signal-board,
+.motion-ready .delivery-current.is-motion-visible .delivery-current-detail,
+.motion-ready .projects-hero.is-motion-visible .projects-visual-panel,
+.motion-ready .project-cta.is-motion-visible .button { transition-delay: 80ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready [data-motion-reveal],
+  .motion-ready [data-motion-reveal] [data-motion-item],
+  .motion-ready .about-hero-content > *,
+  .motion-ready .services-hero-copy > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

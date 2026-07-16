@@ -42,10 +42,10 @@ export default function ProjectsPage() {
 
       <Header />
 
-      <section className="projects-hero">
+      <section className="projects-hero" data-motion-reveal>
         <div className="projects-hero-orb" aria-hidden="true" />
         <div className="container projects-hero-grid">
-          <div className="projects-hero-content">
+          <div className="projects-hero-content" data-motion-item>
             <p className="eyebrow">
               <span className="eyebrow-dot" />
               Forge / Selected work
@@ -58,7 +58,7 @@ export default function ProjectsPage() {
             </h1>
           </div>
 
-          <div className="projects-visual-panel">
+          <div className="projects-visual-panel" data-motion-item>
             <p className="projects-hero-description">
               Digital products, AI systems, web platforms, and mobile
               experiences designed around real people and meaningful business
@@ -94,9 +94,10 @@ export default function ProjectsPage() {
       <section
         className="projects-catalogue"
         aria-labelledby="projects-heading"
+        data-motion-reveal
       >
         <div className="container">
-          <header className="projects-catalogue-head">
+          <header className="projects-catalogue-head" data-motion-item>
             <div>
               <span className="projects-count">
                 {String(projects.length).padStart(2, "0")}
@@ -110,7 +111,7 @@ export default function ProjectsPage() {
             </span>
           </header>
 
-          <div className="projects-grid">
+          <div className="projects-grid" data-motion-item>
             {projects.map((project, index) => (
               <article className="project-card" key={project.name}>
                 <a

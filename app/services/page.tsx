@@ -80,9 +80,9 @@ export default function ServicesPage() {
       <div className="services-ambient" aria-hidden="true"><i /><i /></div>
       <Header />
 
-      <section className="services-hero">
+      <section className="services-hero" data-motion-reveal>
         <div className="container services-hero-grid">
-          <div className="services-hero-copy">
+          <div className="services-hero-copy motion-stagger">
             <p className="eyebrow"><span className="eyebrow-dot" /> Forge / Capabilities</p>
             <h1>Three disciplines.<br /><em>One delivery loop.</em></h1>
             <p>Choose the support you need: strategy to set direction, development to bring it to life, or AI automation to keep it moving.</p>
@@ -91,7 +91,7 @@ export default function ServicesPage() {
               <a className="text-link" href="#development">Compare the services <Arrow /></a>
             </div>
           </div>
-          <div className="services-orbit-panel services-signal-board" role="img" aria-label="Forge capability signal board: strategy, development, and AI automations connected in one delivery loop">
+          <div className="services-orbit-panel services-signal-board" data-motion-item role="img" aria-label="Forge capability signal board: strategy, development, and AI automations connected in one delivery loop">
             <div className="signal-board-topline"><span>FORGE / CAPABILITY SIGNALS</span><i><b /></i></div>
             <div className="signal-route" aria-hidden="true"><i /><i /><i /></div>
             <div className="signal-modules">
@@ -104,9 +104,9 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="delivery-current" aria-labelledby="delivery-current-title">
+      <section className="delivery-current" aria-labelledby="delivery-current-title" data-motion-reveal>
         <div className="container delivery-current-shell">
-          <div className="delivery-current-visual" aria-hidden="true">
+          <div className="delivery-current-visual" data-motion-item aria-hidden="true">
             <div className="current-noise" />
             <div className="current-route current-route-one" />
             <div className="current-route current-route-two" />
@@ -115,7 +115,7 @@ export default function ServicesPage() {
             <div className="current-copy"><span>CONNECTED DELIVERY</span><strong>Work<br /><em>in motion.</em></strong><small>A clear path from the first decision to the system your team can use.</small></div>
             <div className="current-meter"><span>01</span><i><b /></i><span>03</span></div>
           </div>
-          <div className="delivery-current-detail">
+          <div className="delivery-current-detail" data-motion-item>
             <p className="eyebrow">How the work connects</p>
             <h2 id="delivery-current-title">A delivery system that keeps the <em>important work moving.</em></h2>
             <p className="delivery-current-lede">We connect business context, product development, and automation in one practical delivery loop.</p>
@@ -130,19 +130,19 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="services-jump" aria-label="Jump to a service">
-        <div className="container">
+      <section className="services-jump" aria-label="Jump to a service" data-motion-reveal>
+        <div className="container motion-stagger">
           {serviceDetails.map((service) => (
-            <a href={`#${service.id}`} key={service.id}><span>{service.number}</span>{service.eyebrow}<Arrow /></a>
+            <a href={`#${service.id}`} key={service.id} data-motion-item><span>{service.number}</span>{service.eyebrow}<Arrow /></a>
           ))}
         </div>
       </section>
 
-      <section className="services-detail-list" aria-label="Forge services">
+      <section className="services-detail-list" aria-label="Forge services" data-motion-reveal>
         {serviceDetails.map((service, serviceIndex) => (
-          <article className={serviceIndex % 2 === 0 ? "service-detail" : "service-detail service-detail-reversed"} id={service.id} key={service.id}>
+          <article className={serviceIndex % 2 === 0 ? "service-detail motion-stagger" : "service-detail service-detail-reversed motion-stagger"} id={service.id} key={service.id}>
             <div className="container service-detail-grid">
-              <div className="service-detail-copy">
+              <div className="service-detail-copy" data-motion-item>
                 <p className="eyebrow"><span className="service-detail-number">{service.number}</span> {service.eyebrow}</p>
                 <h2>{service.title}</h2>
                 <p className="service-detail-lede">{service.description}</p>
@@ -150,7 +150,7 @@ export default function ServicesPage() {
                   {service.services.map((item) => <li key={item}><span aria-hidden="true">↗</span>{item}</li>)}
                 </ul>
               </div>
-              <div className="service-flow-card glass-card">
+              <div className="service-flow-card glass-card" data-motion-item>
                 <div className="service-flow-heading"><span>FORGE / WORKFLOW</span><i><b /></i></div>
                 <p>{service.note}</p>
                 <ol aria-label={`${service.eyebrow} workflow`}>

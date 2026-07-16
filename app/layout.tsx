@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import SiteChrome from "./SiteChrome";
+import ScrollReveal from "./ScrollReveal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
         className={`${geistSans.variable} antialiased`}
       >
         <SiteChrome />
+        <ScrollReveal />
         {children}
       </body>
     </html>
