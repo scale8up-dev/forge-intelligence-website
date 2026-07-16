@@ -74,10 +74,6 @@ function Arrow() {
   );
 }
 
-function MenuIcon() {
-  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>;
-}
-
 export default function ServicesPage() {
   return (
     <main className="site-main services-page">
@@ -89,7 +85,7 @@ export default function ServicesPage() {
           <div className="services-hero-copy">
             <p className="eyebrow"><span className="eyebrow-dot" /> Forge / Capabilities</p>
             <h1>Three disciplines.<br /><em>One delivery loop.</em></h1>
-            <p>Choose the support you need—strategy to set direction, development to bring it to life, or AI automation to keep it moving.</p>
+            <p>Choose the support you need: strategy to set direction, development to bring it to life, or AI automation to keep it moving.</p>
             <div className="services-hero-actions">
               <a className="button button-primary" href="/#contact">Start your project <Arrow /></a>
               <a className="text-link" href="#development">Compare the services <Arrow /></a>
@@ -103,7 +99,7 @@ export default function ServicesPage() {
               <div className="signal-module is-active"><span>02 / Development</span><strong>Build the system.</strong><small>Digital products ready for real work.</small></div>
               <div className="signal-module"><span>03 / AI automation</span><strong>Keep work moving.</strong><small>Connected workflows for the team.</small></div>
             </div>
-            <div className="signal-board-foot"><span>ONE CONNECTED DELIVERY LOOP</span><span>01 — 03</span></div>
+            <div className="signal-board-foot"><span>ONE CONNECTED DELIVERY LOOP</span><span>01 to 03</span></div>
           </div>
         </div>
       </section>
@@ -172,7 +168,7 @@ export default function ServicesPage() {
         ))}
       </section>
 
-      <ProjectCta eyebrow="A connected approach" title="Strategy, development, and automation—" emphasis="in the same conversation." >Tell us about your project</ProjectCta>
+      <ProjectCta eyebrow="A connected approach" title="Strategy, development, and automation" emphasis="in the same conversation." >Tell us about your project</ProjectCta>
 
       <footer className="site-footer">
         <div className="container footer-top">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Header from "../Header";
 import ProjectCta from "../ProjectCta";
 
@@ -7,15 +8,6 @@ export const metadata: Metadata = {
   title: "About Us | Forge Intelligence AI",
   description: "Meet the founding team behind Forge Intelligence AI. We bridge the gap between ambitious business vision and custom AI execution.",
 };
-
-function Arrow() {
-  return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M5 12h13" />
-      <path d="m13 6 6 6-6 6" />
-    </svg>
-  );
-}
 
 const team = [
   {
@@ -90,43 +82,35 @@ export default function AboutPage() {
           <div className="about-hero-content">
             <p className="eyebrow">
               <span className="eyebrow-dot" />
-              The People Behind the Systems
+              Forge Intelligence AI
             </p>
             <h1>
-              Elite strategy.
+              Strategy, engineering,
               <br />
-              <em>Custom execution.</em>
+              <em>and AI, working as one team.</em>
             </h1>
-          </div>
-          
-          <div className="about-visual-panel">
-            <p className="about-hero-description">
-              Forge Intelligence AI was founded to bridge the gap between ambitious business vision and custom AI execution. We combine strategic product thinking, enterprise software development, and deep AI automation to build tools that work.
+            <p className="about-hero-lede">
+              We help ambitious businesses turn a real operational opportunity into a useful, dependable system.
             </p>
-            
-            <div className="about-visual-deco glass-card">
-              <div className="deco-header">
-                <span className="dot" />
-                <span className="dot" />
-                <span className="dot" />
-                <span className="deco-title">Forge Method™ Nodes</span>
-              </div>
-              <div className="deco-body">
-                <div className="node-line">
-                  <span className="node-label">Frame</span>
-                  <span className="node-status green">Audit Ready</span>
-                </div>
-                <div className="node-line">
-                  <span className="node-label">Orchestrate</span>
-                  <span className="node-status blue">Multi-Agent</span>
-                </div>
-                <div className="node-line">
-                  <span className="node-label">Evolve</span>
-                  <span className="node-status cyan">Optimization</span>
-                </div>
-              </div>
+            <div className="about-hero-principles" aria-label="Forge principles">
+              <span>01&nbsp;&nbsp; Start with evidence</span>
+              <span>02&nbsp;&nbsp; Build for adoption</span>
+              <span>03&nbsp;&nbsp; Improve in the open</span>
             </div>
           </div>
+          
+          <aside className="about-hero-statement">
+            <p className="about-hero-card-label">Why Forge</p>
+            <p className="about-hero-card-quote">
+              Clear direction before code. A working system before scale.
+            </p>
+            <p className="about-hero-description">
+              Forge was built to close the gap between a smart idea and the operational change it needs to create. Our team stays involved from the first decision through launch and improvement.
+            </p>
+            <div className="about-hero-card-footer">
+              <span>Strategy</span><i /><span>Software</span><i /><span>AI automation</span>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -134,12 +118,17 @@ export default function AboutPage() {
       <section className="team-section" aria-labelledby="team-heading">
         <div className="container">
           <header className="team-section-head">
-            <h2 id="team-heading">Our Team</h2>
+            <div>
+              <p className="eyebrow"><span className="eyebrow-dot" />The team behind Forge</p>
+              <h2 id="team-heading">The people you build with.</h2>
+            </div>
+            <p>Strategy, engineering, and operations in one delivery team, close enough to make the work move.</p>
           </header>
 
           <div className="team-grid">
-            {team.map((member) => (
-              <div key={member.name} className="team-card glass-card">
+            {team.map((member, index) => (
+              <article key={member.name} className="team-card glass-card">
+                <span className="team-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <div className="team-photo-wrap">
                   <Image
                     unoptimized
@@ -154,9 +143,8 @@ export default function AboutPage() {
                   <span className="team-role">{member.role}</span>
                   <h3>{member.name}</h3>
                   <p>{member.bio}</p>
-
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -166,11 +154,14 @@ export default function AboutPage() {
       <section className="method-section" aria-labelledby="method-heading">
         <div className="container">
           <header className="method-section-head">
-            <p className="eyebrow">
-              <span className="eyebrow-dot" />
-              Our Delivery Framework
-            </p>
-            <h2 id="method-heading">The FORGE Method™</h2>
+            <div>
+              <p className="eyebrow">
+                <span className="eyebrow-dot" />
+                Our delivery framework
+              </p>
+              <h2 id="method-heading">The FORGE Method™</h2>
+            </div>
+            <p>A five-part operating rhythm that keeps strategy, build quality, and measurable progress connected.</p>
           </header>
 
           <div className="method-grid">
@@ -200,7 +191,7 @@ export default function AboutPage() {
       {/* Footer */}
       <footer className="site-footer">
         <div className="container footer-top">
-          <a className="brand footer-brand" href="/">
+          <Link className="brand footer-brand" href="/">
             <span className="brand-mark">
               <Image
                 unoptimized
@@ -214,7 +205,7 @@ export default function AboutPage() {
               <strong>Forge</strong>
               <span>Intelligence AI</span>
             </span>
-          </a>
+          </Link>
           <p>
             Development, strategy, and AI automation
             <br />
@@ -223,14 +214,14 @@ export default function AboutPage() {
           <div className="footer-links">
             <div>
               <span>Explore</span>
-              <a href="/about">About</a>
-              <a href="/services">Services</a>
-              <a href="/projects">Projects</a>
+              <Link href="/about">About</Link>
+              <Link href="/services">Services</Link>
+              <Link href="/projects">Projects</Link>
             </div>
             <div>
               <span>Connect</span>
               <a href="mailto:domingo@oneenterprise.ai">Email us</a>
-              <a href="/#contact">Start your project</a>
+              <Link href="/#contact">Start your project</Link>
             </div>
           </div>
         </div>

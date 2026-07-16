@@ -5,16 +5,6 @@ import { ValidationError, useForm } from "@formspree/react";
 import { useEffect, useState } from "react";
 import { featuredProjects } from "./projects/data";
 import Header from "./Header";
-import ProjectCta from "./ProjectCta";
-
-const navItems = [
-  ["About", "about"],
-  ["Services", "services"],
-  ["Approach", "process"],
-  ["Projects", "projects"],
-  ["What we build", "outcomes"],
-  ["FAQ", "faq"],
-];
 
 const services = [
   { number: "01", icon: "layers", title: "Development", description: "High-performing digital products that are fast, scalable, easy to use, and ready for the real work behind them.", flow: ["Scope", "Build", "Release"] },
@@ -32,11 +22,11 @@ const principles = [
 ];
 
 const faqs = [
-  ["What can you help us build?", "We build conversion-focused websites, custom digital platforms, AI-powered workflows, and scalable SaaS products—from an early MVP through to a production-ready system."],
+  ["What can you help us build?", "We build conversion-focused websites, custom digital platforms, AI-powered workflows, and scalable SaaS products, from an early MVP through to a production-ready system."],
   ["How do you approach strategy?", "We begin with the business, users, opportunities, and constraints. Then we define the right solution, scope, priorities, user experience, and technical roadmap."],
   ["Do you work with an existing product or codebase?", "Yes. We can extend an existing platform, modernize its foundations, or shape a new product from a validated idea. We start with a pragmatic product and technical review."],
   ["What AI automations do you build?", "We create practical workflows for operations, CRM and sales, support, lead qualification, reporting, knowledge assistance, and third-party integrations."],
-  ["Can you support the product after launch?", "Yes. We support launch, monitor performance, and continue improving the product as your business grows—or hand over a documented, maintainable system to your team."],
+  ["Can you support the product after launch?", "Yes. We support launch, monitor performance, and continue improving the product as your business grows, or hand over a documented, maintainable system to your team."],
 ];
 
 const processSteps = [
@@ -190,32 +180,17 @@ export default function Home() {
   return (
     <main className="site-main">
       <div className="ambient-field" aria-hidden="true"><i /><i /><i /></div>
-      <Header isHome />
+      <Header />
 
-      <section className="hero" id="top">
-        <div className="container hero-grid">
-          <div className="hero-copy reveal-up">
-            <p className="eyebrow"><span className="eyebrow-dot" /> Development · Strategy · AI automations</p>
-            <div className="availability-note"><i /> Build smarter. Move faster. Automate more.</div>
-            <h1>Prove it before you<br /><em>build it.</em></h1>
-            <p className="hero-lede">We turn one real business workflow into a working AI system, then build the product, agent, or automation that earns its next step.</p>
-            <div className="hero-actions"><a className="button button-primary" href="#contact">Reserve a pilot slot <Icon name="arrow" /></a><a className="text-link" href="/services">Explore our services <Icon name="arrow" /></a></div>
-            <div className="capability-rail" aria-label="Forge core capabilities"><span>Digital products</span><span>SaaS development</span><span>AI workflows</span></div>
-          </div>
-          <div className="hero-visual holo-shell" role="img" aria-label="Forge delivery system: strategy, development, and AI automations working together">
-            <div className="holo-orb holo-orb-one" /><div className="holo-orb holo-orb-two" /><div className="liquid-ribbon liquid-ribbon-one" />
-            <div className="visual-topline"><span>FORGE / DELIVERY SYSTEM</span><span className="live-status"><i /> BUILD READY</span></div>
-            <div className="hero-visual-core">
-              <span>FROM BRIEF TO BUSINESS VALUE</span>
-              <strong>One clear path.<br />Built to move.</strong>
-              <p>Strategy, development, and automation in one delivery loop.</p>
-              <div className="delivery-stack" aria-hidden="true">
-                <div className="delivery-step"><span>01</span><strong>Strategize</strong><small>Define the right move</small></div>
-                <div className="delivery-step active"><span>02</span><strong>Develop</strong><small>Build the useful system</small></div>
-                <div className="delivery-step"><span>03</span><strong>Automate</strong><small>Keep work moving</small></div>
-              </div>
-            </div>
-          </div>
+      <section className="hero forge-hero forge-field-hero" id="top">
+        <div className="forge-field" aria-hidden="true"><i /><i /><i /></div>
+        <div className="forge-hero-rings" aria-hidden="true"><i /><i /><i /></div>
+        <div className="container forge-field-content reveal-up">
+          <p className="eyebrow">Forge Intelligence AI</p>
+          <p className="forge-field-proof">Strategy · Development · AI automation</p>
+          <h1>Technology that moves<br /><em>the work forward.</em></h1>
+          <p className="hero-lede">We combine strategy, software development, and AI automation to turn important opportunities into useful systems.</p>
+          <div className="hero-actions"><a className="button button-primary" href="#contact">Reserve a pilot slot <Icon name="arrow" /></a><a className="text-link" href="/services">Explore our services <Icon name="arrow" /></a></div>
         </div>
       </section>
 
@@ -334,7 +309,7 @@ export default function Home() {
                     {item.phone && <small>{item.phone}</small>}
                     {item.websites && (
                       <small className="links">
-                        {item.websites.map((web, idx) => (
+                        {item.websites.map((web) => (
                           <a href={`http://${web}`} target="_blank" rel="noopener noreferrer" key={web}>
                             {web}
                           </a>

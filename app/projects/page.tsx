@@ -131,7 +131,6 @@ export default function ProjectsPage() {
                       (max-width: 1280px) 33vw,
                       25vw
                     "
-                    priority={index < 4}
                     unoptimized
                   />
 

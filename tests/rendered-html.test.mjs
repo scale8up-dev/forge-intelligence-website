@@ -31,10 +31,10 @@ test("server-renders the Forge Intelligence AI landing page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Forge Intelligence AI \| Development, strategy &amp; AI automations<\/title>/i);
   assert.match(html, /Build smarter/);
-  assert.match(html, /Development · Strategy · AI automations/);
-  assert.match(html, /Prove it before/);
-  assert.match(html, /One clear path/);
-  assert.match(html, /AI-powered workflows/);
+  assert.match(html, /Strategy · Development · AI automation/);
+  assert.match(html, /Technology that moves/);
+  assert.match(html, /the work forward/);
+  assert.match(html, /Forge in numbers/);
   assert.match(html, /Selected projects/);
   assert.match(html, /CORY AI Premium Intelligence/);
   assert.match(html, /CuerPOWER/);
@@ -97,7 +97,7 @@ test("exports Netlify-ready static routes", async () => {
     readFile(new URL("../dist/client/_redirects", import.meta.url), "utf8"),
   ]);
 
-  assert.match(home, /Prove it before/);
+  assert.match(home, /Technology that moves/);
   assert.match(home, /\/_vinext(?:_fonts|\/fonts)\//);
   assert.match(services, /Three disciplines/);
   assert.match(projects, /Strategic Divorce Directory/);
