@@ -85,8 +85,8 @@ test("server-renders detailed Forge services without placeholder proof", async (
   assert.doesNotMatch(html, /Northstar|Pulse financial|Jordan Lee|Samira Patel|Marcus Reed/);
 });
 
-test("exports Netlify-ready static routes", async () => {
-  const [home, services, projects, homeRsc, servicesRsc, projectsRsc, headers, redirects] = await Promise.all([
+test("exports static routes with RSC fallbacks", async () => {
+  const [home, services, projects, homeRsc, servicesRsc, projectsRsc, headers, redirects, vercelConfig] = await Promise.all([
     readFile(new URL("../dist/client/index.html", import.meta.url), "utf8"),
     readFile(new URL("../dist/client/services/index.html", import.meta.url), "utf8"),
     readFile(new URL("../dist/client/projects/index.html", import.meta.url), "utf8"),
@@ -95,6 +95,7 @@ test("exports Netlify-ready static routes", async () => {
     readFile(new URL("../dist/client/projects.rsc", import.meta.url), "utf8"),
     readFile(new URL("../dist/client/_headers", import.meta.url), "utf8"),
     readFile(new URL("../dist/client/_redirects", import.meta.url), "utf8"),
+    readFile(new URL("../vercel.json", import.meta.url), "utf8"),
   ]);
 
   assert.match(home, /Technology that moves/);
@@ -106,6 +107,8 @@ test("exports Netlify-ready static routes", async () => {
   assert.match(projectsRsc, /"__route":"route:\/projects"/);
   assert.match(headers, /Content-Type: text\/x-component/);
   assert.match(redirects, /^\/.rsc \/index\.rsc 200$/m);
+  assert.match(vercelConfig, /"source": "\/.rsc"/);
+  assert.match(vercelConfig, /"destination": "\/index\.rsc"/);
 });
 
 test("keeps the production page free of starter preview dependencies", async () => {

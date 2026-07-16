@@ -1,0 +1,21 @@
+{
+  "buildCommand": "npm run build:static",
+  "outputDirectory": "dist/client",
+  "headers": [
+    {
+      "source": "/.rsc",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/x-component; charset=utf-8"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/.rsc",
+      "destination": "/index.rsc"
+    }
+  ]
+}
