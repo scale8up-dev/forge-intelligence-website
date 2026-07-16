@@ -12,6 +12,8 @@ const navItems = [
   ["Projects", "/projects"],
 ];
 
+const rootContactHref = "/#contact";
+
 function Arrow() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -83,7 +85,7 @@ export default function Header() {
               </Link>
             );
           })}
-          <Link className="nav-cta" href="/#contact" onClick={() => setMenuOpen(false)}>Start a project <Arrow /></Link>
+          <a className="nav-cta" href={rootContactHref} onClick={() => setMenuOpen(false)}>Start a project <Arrow /></a>
         </nav>
       </div>
     </header>

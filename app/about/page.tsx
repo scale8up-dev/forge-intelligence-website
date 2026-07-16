@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Meet the founding team behind Forge Intelligence AI. We bridge the gap between ambitious business vision and custom AI execution.",
 };
 
+const rootContactHref = "/#contact";
+
 const team = [
   {
     name: "Dr. Kelley Gurley",
@@ -221,7 +223,7 @@ export default function AboutPage() {
             <div>
               <span>Connect</span>
               <a href="mailto:domingo@oneenterprise.ai">Email us</a>
-              <Link href="/#contact">Start your project</Link>
+              <a href={rootContactHref}>Start your project</a>
             </div>
           </div>
         </div>
