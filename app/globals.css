@@ -5834,3 +5834,25 @@ body { background: #fff !important; }
   padding-top: 20px !important;
   align-items: flex-start !important;
 }
+
+/* ============================================================
+   Trust feature panel: a statement interlude, not a second
+   finale. Tighter stage, honest layout — the bottom row moves
+   from absolute positioning into flex flow (auto-margin pins it
+   to the panel base and headline overlap becomes impossible),
+   and the headline no longer competes with the closing CTA.
+   ============================================================ */
+.site-main .trust-feature-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 580px !important;
+}
+.site-main .trust-feature-panel h2 {
+  font-size: clamp(42px, 4.6vw, 70px) !important;
+}
+.site-main .trust-feature-bottom {
+  position: static !important;
+  inset: auto !important;
+  margin-top: auto !important;
+  padding-top: 56px;
+}
