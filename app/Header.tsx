@@ -12,7 +12,7 @@ const navItems = [
   ["Projects", "/projects"],
 ];
 
-const rootContactHref = "/#contact";
+const rootContactHref = "/contact";
 
 function Arrow() {
   return (
@@ -33,36 +33,49 @@ function CloseIcon() {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname() || "/";
 
   useEffect(() => {
-    let frameId = 0;
-    let previousState = window.scrollY > 20;
-
-    const updateScrolledState = () => {
-      frameId = 0;
-      const nextState = window.scrollY > 20;
-      if (nextState !== previousState) {
-        previousState = nextState;
-        setIsScrolled(nextState);
-      }
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        setScrolled(window.scrollY > 24);
+      });
     };
-
-    const handleScroll = () => {
-      if (!frameId) frameId = window.requestAnimationFrame(updateScrolledState);
-    };
-
-    updateScrolledState();
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (frameId) window.cancelAnimationFrame(frameId);
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
     };
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    const closeOnOutsidePress = (event: PointerEvent) => {
+      const target = event.target;
+      if (target instanceof Element && !target.closest(".site-header")) setMenuOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener("pointerdown", closeOnOutsidePress);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("pointerdown", closeOnOutsidePress);
+    };
+  }, [menuOpen]);
+
   return (
-    <header className={isScrolled ? "site-header is-scrolled" : "site-header"}>
+    <header className={scrolled ? "site-header is-scrolled" : "site-header"}>
       <div className="container nav-wrap">
         <Link className="brand" href="/" aria-label="Forge Intelligence AI home">
           <span className="brand-mark"><Image src="/forge-intelligence-logo.png" alt="" width={48} height={48} preload unoptimized /></span>

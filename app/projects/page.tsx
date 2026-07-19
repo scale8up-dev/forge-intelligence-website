@@ -52,9 +52,8 @@ export default function ProjectsPage() {
             </p>
 
             <h1>
-              Useful systems.
-              <br />
-              <em>Built to move.</em>
+              <span className="reveal-line"><span className="reveal-line-text">Useful systems.</span></span>
+              <span className="reveal-line"><span className="reveal-line-text"><em>Built to move.</em></span></span>
             </h1>
           </div>
 
@@ -86,6 +85,10 @@ export default function ProjectsPage() {
                   <span className="val">Scale Stage</span>
                 </div>
               </div>
+              <div className="deco-foot">
+                <span>{String(projects.length).padStart(2, "0")} projects in the field</span>
+                <span>AI · Web · Mobile</span>
+              </div>
             </div>
           </div>
         </div>
@@ -113,7 +116,11 @@ export default function ProjectsPage() {
 
           <div className="projects-grid" data-motion-item>
             {projects.map((project, index) => (
-              <article className="project-card" key={project.name}>
+              <article
+                className="project-card"
+                data-discipline={project.category}
+                key={project.name}
+              >
                 <a
                   className="project-image"
                   href={project.url}
@@ -186,13 +193,13 @@ export default function ProjectsPage() {
 
       <ProjectCta eyebrow="Your project could be next" title="Bring us the challenge." emphasis="We will shape the system." />
 
-      <footer className="site-footer">
-        <div className="container footer-top">
+      <footer className="site-footer" data-motion-reveal="flow">
+        <div className="container footer-top" data-motion-item>
           <a className="brand footer-brand" href="/">
             <span className="brand-mark">
               <Image
                 unoptimized
-                src="/forge-intelligence-logo.png"
+                src="/forge-mark.png"
                 alt=""
                 width={42}
                 height={42}
@@ -222,13 +229,13 @@ export default function ProjectsPage() {
             <div>
               <span>Connect</span>
               <a href="mailto:domingo@oneenterprise.ai">Email us</a>
-              <a href="/#contact">Start a project</a>
+              <a href="/contact">Start a project</a>
               <a href="/#faq">FAQ</a>
             </div>
           </div>
         </div>
 
-        <div className="container footer-bottom">
+        <div className="container footer-bottom" data-motion-item>
           <span>© 2026 Forge Intelligence AI</span>
 
           <span>

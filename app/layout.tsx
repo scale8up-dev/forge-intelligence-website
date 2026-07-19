@@ -26,6 +26,18 @@ export const metadata: Metadata = {
   },
 };
 
+// Speculation Rules (progressive enhancement, Chromium): prefetch
+// same-origin documents on navigation intent so full-document loads
+// feel instant. Conservative on purpose — prefetch, not prerender.
+const speculationRules = JSON.stringify({
+  prefetch: [
+    {
+      where: { href_matches: "/*" },
+      eagerness: "moderate",
+    },
+  ],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,6 +51,10 @@ export default function RootLayout({
         <SiteChrome />
         <ScrollReveal />
         {children}
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{ __html: speculationRules }}
+        />
       </body>
     </html>
   );

@@ -1,0 +1,121 @@
+/* Scroll choreography: reveal coverage and scroll-driven ambience. Owned by the scroll workstream. */
+
+/*
+ * Namespace contract — [data-motion-reveal="flow"]
+ * ------------------------------------------------
+ * Sections marked with data-motion-reveal="flow" are observed by ScrollReveal.tsx
+ * (same IntersectionObserver as the bare data-motion-reveal sections) and get
+ * .is-motion-visible once. Everything below is scoped to the "flow" value plus the
+ * `html.motion-ready` gate, so:
+ *   - without JS (.motion-ready absent) every flow section is fully visible;
+ *   - bare [data-motion-reveal] sections styled by globals.css are never touched
+ *     (the html type selector + value match give these rules higher specificity
+ *     than the generic rules in globals.css, which is imported after this file).
+ */
+
+/* Section-level: gentle rise for the whole flow section. */
+html.motion-ready [data-motion-reveal="flow"] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 640ms cubic-bezier(.2, .75, .25, 1),
+    transform 640ms cubic-bezier(.2, .75, .25, 1);
+}
+
+html.motion-ready [data-motion-reveal="flow"].is-motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Item-level: marked children ride in behind the section. */
+html.motion-ready [data-motion-reveal="flow"] [data-motion-item] {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition:
+    opacity 600ms cubic-bezier(.2, .75, .25, 1),
+    transform 600ms cubic-bezier(.2, .75, .25, 1);
+}
+
+html.motion-ready [data-motion-reveal="flow"].is-motion-visible [data-motion-item] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Per-item stagger keyed on the item's position among its siblings. */
+html.motion-ready [data-motion-reveal="flow"].is-motion-visible [data-motion-item]:nth-child(1) { transition-delay: 0ms; }
+html.motion-ready [data-motion-reveal="flow"].is-motion-visible [data-motion-item]:nth-child(2) { transition-delay: 60ms; }
+html.motion-ready [data-motion-reveal="flow"].is-motion-visible [data-motion-item]:nth-child(3) { transition-delay: 120ms; }
+html.motion-ready [data-motion-reveal="flow"].is-motion-visible [data-motion-item]:nth-child(4) { transition-delay: 180ms; }
+html.motion-ready [data-motion-reveal="flow"].is-motion-visible [data-motion-item]:nth-child(5) { transition-delay: 240ms; }
+html.motion-ready [data-motion-reveal="flow"].is-motion-visible [data-motion-item]:nth-child(6) { transition-delay: 300ms; }
+
+/* Reduced motion: everything visible, no movement, no transitions. */
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready [data-motion-reveal="flow"],
+  html.motion-ready [data-motion-reveal="flow"] [data-motion-item] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/*
+ * Header on scroll — Header.tsx toggles .is-scrolled past 24px.
+ * globals.css already defines the scrolled pill (tighter padding, deeper pill);
+ * here we deepen it slightly further and smooth the state change.
+ * Note: .services-ambient, .about-hero-orb and .projects-hero-orb are
+ * display:none in globals.css, so they get no scroll ambience.
+ */
+html .site-header {
+  transition: padding 340ms cubic-bezier(.2, .75, .25, 1);
+}
+
+html .site-header .nav-wrap {
+  transition:
+    box-shadow 340ms cubic-bezier(.2, .75, .25, 1),
+    border-color 340ms cubic-bezier(.2, .75, .25, 1);
+}
+
+html .site-header.is-scrolled .nav-wrap {
+  border-color: rgba(164, 199, 226, .88) !important;
+  background: linear-gradient(112deg, rgba(255, 255, 255, .96), rgba(249, 253, 255, .9) 52%, rgba(240, 250, 255, .95)) !important;
+  box-shadow: 0 22px 52px rgba(24, 75, 127, .18), inset 0 1px rgba(255, 255, 255, .98), inset 0 -1px rgba(151, 205, 234, .44) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html .site-header,
+  html .site-header .nav-wrap {
+    transition: none !important;
+  }
+}
+
+/*
+ * Scroll-driven ambience (progressive enhancement).
+ * Transform-only, zero layout shift; skipped entirely when the browser lacks
+ * scroll-driven animation support or the visitor prefers reduced motion.
+ */
+@keyframes flow-ambient-drift {
+  from { transform: translate3d(0, 20px, 0) scale(1.06); }
+  to { transform: translate3d(0, -20px, 0) scale(1.06); }
+}
+
+@keyframes flow-orbit-drift {
+  from { transform: translate3d(0, 26px, 0); }
+  to { transform: translate3d(0, -34px, 0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* Fixed ambient glow field (home, about, projects) drifts with page scroll. */
+    html .site-main > .ambient-field {
+      animation: flow-ambient-drift linear both;
+      animation-timeline: scroll(root block);
+    }
+
+    /* Contact page orbit rings ease upward as the hero scrolls by. */
+    html .contact-hero .contact-orbit {
+      animation: flow-orbit-drift linear both;
+      animation-timeline: view();
+    }
+  }
+}

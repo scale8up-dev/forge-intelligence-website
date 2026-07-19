@@ -1,0 +1,123 @@
+/* ============================================================
+   Page flow — cross-document view transitions + first-load
+   smoothing. Owned by the page-flow workstream.
+   Progressive enhancement only: every rule here degrades to a
+   plain instant document load in unsupported browsers.
+
+   Cascade note: this file is imported BEFORE the body of
+   globals.css, so on equal specificity globals wins. Rules that
+   must beat globals' `body { animation: pageReveal ... }` use
+   the `html body` prefix.
+   ============================================================ */
+
+/* ---- 1. Cross-document view transitions ------------------------
+   The opt-in also exists in globals.css (`@view-transition
+   { navigation: auto }`, plus `view-transition-name: site-header`
+   on the pill header). Declared here as well so the page-flow
+   layer is self-sufficient; gated on no-preference so a
+   standalone opt-in never animates for reduced-motion users. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+/* Keep the page interactive while the (short) transition plays. */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Quick, elegant cross-fade with a barely-perceptible upward
+   drift on the incoming page. The UA keeps `plus-lighter`
+   blending on the isolated image pair, so the fade stays clean
+   with no mid-transition brightness dip. */
+
+@keyframes pf-page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes pf-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+::view-transition-old(root) {
+  animation: pf-page-out 320ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: pf-page-in 320ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+/* The floating pill header is snapshotted separately (named
+   `site-header` in globals.css), which excludes it from the root
+   drift — it reads as one continuous element while content moves
+   beneath it. Old/new header pixels are near-identical, so the
+   pair cross-fade is invisible; just sync its clock with root so
+   nothing finishes out of step. */
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+/* ---- 2. First-load smoothing -----------------------------------
+   One-time body-level fade on real document loads. An animation
+   (not a transition) so bfcache restores paint instantly with no
+   replay. Opacity only — a transform on <body> would become the
+   containing block for the fixed pill header. No layout is
+   touched, so there is zero layout shift and paint is not
+   blocked; the first frame simply starts transparent.
+   `html body` (0,0,2) outranks globals' `body` pageReveal rule,
+   so exactly one entrance animation plays. */
+
+@keyframes pf-first-load {
+  from {
+    opacity: 0;
+  }
+}
+
+html body {
+  animation: pf-first-load 300ms cubic-bezier(0.2, 0.75, 0.25, 1) backwards;
+}
+
+/* When a cross-document view transition is driving the entrance,
+   the ::view-transition layer owns the fade — fast-forward the
+   body entrance so the two opacity ramps don't compound into a
+   heavy double fade. Duration change only (never animation-name):
+   the animation must not restart when the transition finishes.
+   Kept as a standalone rule — an unrecognized pseudo-class here
+   must not invalidate neighbouring selectors. */
+html:active-view-transition body {
+  animation-duration: 1ms;
+}
+
+/* ---- 3. Reduced motion: everything collapses to instant --------
+   globals' universal reduced-motion rule does not reach the
+   ::view-transition pseudo-tree, so it is handled explicitly.
+   Killing all snapshot animations makes an active transition
+   finish immediately (instant swap, no motion). */
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  html body {
+    animation: none !important;
+  }
+}

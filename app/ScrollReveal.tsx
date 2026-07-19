@@ -27,8 +27,17 @@ export default function ScrollReveal() {
 
     targets.forEach((target) => observer.observe(target));
 
+    // bfcache restore: the effect does not re-run, so make sure the reveal
+    // gate is still present and in-viewport sections are not left hidden.
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (!event.persisted) return;
+      root.classList.add("motion-ready");
+    };
+    window.addEventListener("pageshow", handlePageShow);
+
     return () => {
       observer.disconnect();
+      window.removeEventListener("pageshow", handlePageShow);
       root.classList.remove("motion-ready");
     };
   }, []);

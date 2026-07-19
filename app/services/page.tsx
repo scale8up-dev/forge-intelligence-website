@@ -84,10 +84,10 @@ export default function ServicesPage() {
         <div className="container services-hero-grid">
           <div className="services-hero-copy motion-stagger">
             <p className="eyebrow"><span className="eyebrow-dot" /> Forge / Capabilities</p>
-            <h1>Three disciplines.<br /><em>One delivery loop.</em></h1>
+            <h1><span className="reveal-line"><span className="reveal-line-text">Three disciplines.</span></span><span className="reveal-line"><span className="reveal-line-text"><em>One delivery loop.</em></span></span></h1>
             <p>Choose the support you need: strategy to set direction, development to bring it to life, or AI automation to keep it moving.</p>
             <div className="services-hero-actions">
-              <a className="button button-primary" href="/#contact">Start your project <Arrow /></a>
+              <a className="button button-primary" href="/contact">Start your project <Arrow /></a>
               <a className="text-link" href="#development">Compare the services <Arrow /></a>
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function ServicesPage() {
               <li><span>03</span><strong>Automate useful work</strong><p>Connect the workflow so the team can move with less manual effort.</p></li>
             </ol>
             <div className="delivery-current-output"><span>DELIVERY FOCUS</span><strong>Strategy → software → automation</strong></div>
-            <a className="text-link" href="/#contact">Start a conversation <Arrow /></a>
+            <a className="text-link" href="/contact">Start a conversation <Arrow /></a>
           </div>
         </div>
       </section>
@@ -170,13 +170,13 @@ export default function ServicesPage() {
 
       <ProjectCta eyebrow="A connected approach" title="Strategy, development, and automation" emphasis="in the same conversation." >Tell us about your project</ProjectCta>
 
-      <footer className="site-footer">
-        <div className="container footer-top">
-          <a className="brand footer-brand" href="/"><span className="brand-mark"><Image unoptimized src="/forge-intelligence-logo.png" alt="" width={42} height={42} /></span><span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span></a>
+      <footer className="site-footer" data-motion-reveal="flow">
+        <div className="container footer-top" data-motion-item>
+          <a className="brand footer-brand" href="/"><span className="brand-mark"><Image unoptimized src="/forge-mark.png" alt="" width={42} height={42} /></span><span className="brand-name"><strong>Forge</strong><span>Intelligence AI</span></span></a>
           <p>Development, strategy, and AI automation<br />for ambitious businesses.</p>
-          <div className="footer-links"><div><span>Explore</span><a href="/#about">About</a><a href="#development">Development</a><a href="#strategy">Strategy</a><a href="/projects">Projects</a></div><div><span>Connect</span><a href="mailto:domingo@oneenterprise.ai">Email us</a><a href="/#contact">Start a project</a><a href="/#faq">FAQ</a></div></div>
+          <div className="footer-links"><div><span>Explore</span><a href="/#about">About</a><a href="#development">Development</a><a href="#strategy">Strategy</a><a href="/projects">Projects</a></div><div><span>Connect</span><a href="mailto:domingo@oneenterprise.ai">Email us</a><a href="/contact">Start a project</a><a href="/#faq">FAQ</a></div></div>
         </div>
-        <div className="container footer-bottom"><span>© 2026 Forge Intelligence AI</span><span>Built with intent <span className="footer-dot">●</span></span><span><a href="/">Privacy</a><a href="/">Terms</a></span></div>
+        <div className="container footer-bottom" data-motion-item><span>© 2026 Forge Intelligence AI</span><span>Built with intent <span className="footer-dot">●</span></span><span><a href="/">Privacy</a><a href="/">Terms</a></span></div>
       </footer>
     </main>
   );

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-const rootContactHref = "/#contact";
+const rootContactHref = "/contact";
 
 function Arrow() {
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h13" /><path d="m13 6 6 6-6 6" /></svg>;
