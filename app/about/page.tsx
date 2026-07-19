@@ -14,18 +14,6 @@ const rootContactHref = "/contact";
 
 const team = [
   {
-    name: "Dr. Kelley Gurley",
-    role: "COO & Founder",
-    bio: "Dr. Kelley Gurley is COO and Co-Founder of Forge Intelligence AI, where she turns strategy into systems that move real work forward.",
-    details: [
-      "She brings 25 years of enterprise technology and digital transformation leadership to a simple belief: technology should make a business clearer, not more complicated.",
-      "Before founding Forge Intelligence AI, Dr. Kelley led large-scale transformation initiatives across healthcare and life sciences, including roles at Takeda, Fresenius, and MedStar. She currently serves as Head of the Transformation and Technology PMO at McCormick and Company, where she connects business outcomes to the systems that deliver them. She holds a Ph.D. in Human-Centered Computing and teaches as an adjunct professor at Northeastern University and Bentley University.",
-      "At Forge, Dr. Kelley keeps strategy, development, and AI automation in the same conversation. She works closely with founders and product owners to understand the business problem first, then shapes the product, roadmap, and automation around it. Her focus reflects what guides everything Forge builds: clear foundations, practical AI, and solutions that scale as the business grows.",
-      "Dr. Kelley is also a bestselling author, TEDx speaker, and international keynote speaker. She invests in and mentors early-stage founders and is a longtime advocate for microenterprise lending for women entrepreneurs worldwide. She writes and speaks widely about the human side of transformation and why the systems that last are the ones built with care."
-    ],
-    image: "/images/kelley-gurley-team.png"
-  },
-  {
     name: "Domingo Silvas",
     role: "CEO & Co-Founder",
     bio: "Domingo Silvas is CEO and Co-Founder of Forge Intelligence AI, where he turns complex business challenges into clear strategies and practical systems.",
@@ -36,6 +24,18 @@ const team = [
       "Domingo is also an international speaker, business strategist, podcast host, and author of The Infinite Climb. He has spoken in more than 20 countries and developed business frameworks that help leaders move from ideas to execution with greater clarity and accountability. Throughout his work, he remains focused on helping entrepreneurs and organizations build stronger foundations, embrace practical innovation, and create businesses that can grow beyond their founders."
     ],
     image: "/images/domingo-silvas-team.png"
+  },
+  {
+    name: "Dr. Kelley Gurley",
+    role: "COO & Founder",
+    bio: "Dr. Kelley Gurley is COO and Co-Founder of Forge Intelligence AI, where she turns strategy into systems that move real work forward.",
+    details: [
+      "She brings 25 years of enterprise technology and digital transformation leadership to a simple belief: technology should make a business clearer, not more complicated.",
+      "Before founding Forge Intelligence AI, Dr. Kelley led large-scale transformation initiatives across healthcare and life sciences, including roles at Takeda, Fresenius, and MedStar. She currently serves as Head of the Transformation and Technology PMO at McCormick and Company, where she connects business outcomes to the systems that deliver them. She holds a Ph.D. in Human-Centered Computing and teaches as an adjunct professor at Northeastern University and Bentley University.",
+      "At Forge, Dr. Kelley keeps strategy, development, and AI automation in the same conversation. She works closely with founders and product owners to understand the business problem first, then shapes the product, roadmap, and automation around it. Her focus reflects what guides everything Forge builds: clear foundations, practical AI, and solutions that scale as the business grows.",
+      "Dr. Kelley is also a bestselling author, TEDx speaker, and international keynote speaker. She invests in and mentors early-stage founders and is a longtime advocate for microenterprise lending for women entrepreneurs worldwide. She writes and speaks widely about the human side of transformation and why the systems that last are the ones built with care."
+    ],
+    image: "/images/kelley-gurley-team.png"
   },
   {
     name: "Hamza Adnan",
@@ -52,7 +52,7 @@ const team = [
   },
   {
     name: "Gregory Vaughn",
-    role: "COO - Director of Operations",
+    role: "Director of Operations",
     bio: "Gregory Vaughn keeps Forge's delivery running, bringing over 30 years of large-scale project leadership to every engagement.",
     details: [
       "Gregory brings more than 30 years of leadership in large-scale project management to Forge, with a career spent keeping complex programs on schedule, on budget, and accountable to the outcomes they promised.",
