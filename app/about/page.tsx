@@ -38,9 +38,9 @@ const team = [
     image: "/images/domingo-silvas-team.png"
   },
   {
-    name: "Muhammad Hamza Adnan",
+    name: "Hamza Adnan",
     role: "CTO",
-    bio: "Muhammad Hamza Adnan leads Forge's technology vision, turning architecture, AI systems, and engineering into products that grow with the business.",
+    bio: "Hamza Adnan leads Forge's technology vision, turning architecture, AI systems, and engineering into products that grow with the business.",
     details: [
       "Alongside his work at Forge, Hamza is CEO and Founder of Osmium Labs and has held technology leadership roles as CTO and Co-Founder of Scale8UP and Business Evolution AI. His experience spans software and AI architecture, engineering management, scalable SaaS development, rapid product delivery, and technical team leadership. Through Osmium Labs, he leads practical AI-powered MVP development, combining product strategy, rapid prototyping, integrations, and automation to move ideas from concept to production.",
       "At Forge, Hamza works closely with founders, executives, product owners, and engineering teams to translate business requirements into dependable technical systems. He helps define the architecture, technology roadmap, development approach, and AI capabilities behind each solution, keeping technical decisions connected to the outcomes the business is trying to achieve.",
