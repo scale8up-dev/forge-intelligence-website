@@ -28,7 +28,7 @@ const team = [
   {
     name: "Domingo Silvas",
     role: "CEO & Co-Founder",
-    bio: "Domingo Silvas is CEO and Co-Founder of Forge Intelligence AI, where he helps organizations turn complex business challenges into clear strategies, scalable systems, and practical AI solutions.",
+    bio: "Domingo Silvas is CEO and Co-Founder of Forge Intelligence AI, where he turns complex business challenges into clear strategies and practical systems.",
     details: [
       "He brings more than 25 years of entrepreneurial, operational, and technology leadership to a simple belief: technology should solve meaningful problems, create measurable value, and move a business forward.",
       "Before co-founding Forge Intelligence AI, Domingo built and led more than a dozen companies across technology, consulting, marketing, and business development, achieving seven successful exits ranging from seven to ten figures. His experience includes supporting technology initiatives connected to NASA's manned space program, advising organizations through enterprise growth and transformation, and helping founders move ideas from early-stage concepts into market-ready businesses.",
@@ -40,7 +40,7 @@ const team = [
   {
     name: "Muhammad Hamza Adnan",
     role: "CTO",
-    bio: "Muhammad Hamza Adnan leads Forge's technology vision, bringing software architecture, AI systems, and engineering leadership into practical products that grow with the business.",
+    bio: "Muhammad Hamza Adnan leads Forge's technology vision, turning architecture, AI systems, and engineering into products that grow with the business.",
     details: [
       "Alongside his work at Forge, Hamza is CEO and Founder of Osmium Labs and has held technology leadership roles as CTO and Co-Founder of Scale8UP and Business Evolution AI. His experience spans software and AI architecture, engineering management, scalable SaaS development, rapid product delivery, and technical team leadership. Through Osmium Labs, he leads practical AI-powered MVP development, combining product strategy, rapid prototyping, integrations, and automation to move ideas from concept to production.",
       "At Forge, Hamza works closely with founders, executives, product owners, and engineering teams to translate business requirements into dependable technical systems. He helps define the architecture, technology roadmap, development approach, and AI capabilities behind each solution, keeping technical decisions connected to the outcomes the business is trying to achieve.",
@@ -53,7 +53,12 @@ const team = [
   {
     name: "Gregory Vaughn",
     role: "COO - Director of Operations",
-    bio: "Over 30 years of leadership in large-scale project management, ensuring operational excellence and scalable AI solutions with measurable impact.",
+    bio: "Gregory Vaughn keeps Forge's delivery running, bringing over 30 years of large-scale project leadership to every engagement.",
+    details: [
+      "Gregory brings more than 30 years of leadership in large-scale project management to Forge, with a career spent keeping complex programs on schedule, on budget, and accountable to the outcomes they promised.",
+      "As Director of Operations, he owns the operating rhythm behind Forge's delivery loop — coordinating the strategy, development, and AI automation workstreams so every engagement moves with clear ownership and dependable timelines.",
+      "His focus is operational excellence with measurable impact: making sure the systems Forge ships are not only built well, but land well — adopted by the team, measured against the baseline, and improved after launch."
+    ],
     image: "/images/greg-vaughn-team.png"
   }
 ];
