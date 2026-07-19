@@ -5760,3 +5760,9 @@ body { background: #fff !important; }
     animation: none !important;
   }
 }
+
+/* Mobile drawer: hide the active-page dot — in the stacked menu it
+   renders as a detached floating dot instead of an underline cue. */
+@media (max-width: 650px) {
+  .site-header .main-nav a:not(.nav-cta)::after { display: none !important; }
+}
