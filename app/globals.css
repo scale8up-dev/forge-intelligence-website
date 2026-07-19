@@ -5766,3 +5766,71 @@ body { background: #fff !important; }
 @media (max-width: 650px) {
   .site-header .main-nav a:not(.nav-cta)::after { display: none !important; }
 }
+
+/* ============================================================
+   Team bio actions: quiet glass pill buttons.
+   The previous treatment was a caps text-link whose border-top
+   spanned only the text width, reading as a detached floating
+   dash. Pills match the site's action language ("Start a
+   project") instead of its label language.
+   ============================================================ */
+.about-page .team-profile-button {
+  min-height: 0 !important;
+  gap: 9px !important;
+  padding: 11px 18px !important;
+  border: 1px solid #c9e0ee !important;
+  border-radius: 999px !important;
+  color: #0b5683 !important;
+  background: rgba(255, 255, 255, .78) !important;
+  box-shadow: 0 6px 16px rgba(29, 84, 142, .06), inset 0 1px #fff !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  letter-spacing: .01em !important;
+  text-transform: none !important;
+  transition: border-color 220ms cubic-bezier(.2, .75, .25, 1), box-shadow 220ms ease, background-color 220ms ease, transform 220ms cubic-bezier(.2, .75, .25, 1) !important;
+}
+.about-page .team-profile-button span {
+  color: #0aa3cc;
+  font-size: 17px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .about-page .team-profile-button:hover {
+    transform: translateY(-2px) !important;
+    border-color: #93d9ed !important;
+    background: #ffffff !important;
+    box-shadow: 0 12px 26px rgba(24, 104, 160, .13), inset 0 1px #fff !important;
+  }
+}
+.about-page .team-profile-button:active {
+  transform: translateY(0) scale(.97) !important;
+  transition-duration: 85ms !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-page .team-profile-button,
+  .about-page .team-profile-button:hover,
+  .about-page .team-profile-button:active { transform: none !important; transition: none !important; }
+}
+
+/* Bio pills sit close under the copy instead of sinking to the
+   bottom of the stretched card. The card is a legacy flex column
+   with gap: 32px and a flex-growing team-info absorbing the grid
+   row's slack — neutralize both so the action follows the bio,
+   and let the leftover space fall invisibly below the button. */
+.about-page .team-card,
+.about-page .team-card:nth-child(n) { gap: 0 !important; }
+.about-page .team-photo-wrap { margin-bottom: 18px !important; }
+.about-page .team-info,
+.about-page .team-card:nth-child(n) .team-info {
+  display: block !important;
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding-bottom: 0 !important;
+}
+.about-page .team-info > p { min-height: 0 !important; }
+.about-page .team-profile-action {
+  min-height: 0 !important;
+  margin: auto 0 0 !important;
+  padding-top: 20px !important;
+  align-items: flex-start !important;
+}
