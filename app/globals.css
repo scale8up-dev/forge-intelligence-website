@@ -5856,3 +5856,156 @@ body { background: #fff !important; }
   margin-top: auto !important;
   padding-top: 56px;
 }
+
+/* ============================================================
+   Solution stories refinement (home "Systems built around
+   real work" carousel). The lone index numeral becomes a
+   chapter rail listing all four stories — dead space turns
+   into orientation and navigation. Copy staggers up on each
+   slide change, the art numeral becomes an outlined ghost so
+   it stops covering the imagery, and the control bar names
+   the current story.
+   ============================================================ */
+
+/* --- Chapter rail ------------------------------------------------ */
+.site-main .outcomes .solution-index {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center;
+  gap: 6px !important;
+  align-self: stretch;
+}
+.site-main .outcomes .solution-index button {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+  padding: 8px 0 8px 15px;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: #8ba4b8;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .09em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  transition: color .25s ease-out;
+}
+.site-main .outcomes .solution-index button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+  width: 2px;
+  border-radius: 999px;
+  background: rgba(139, 164, 184, .3);
+  transition: background .25s ease-out;
+}
+.site-main .outcomes .solution-index button span {
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 720;
+  letter-spacing: .12em;
+  color: inherit;
+}
+.site-main .outcomes .solution-index button:hover { color: #2f638e; }
+.site-main .outcomes .solution-index button.is-active { color: #17527f; }
+.site-main .outcomes .solution-index button.is-active::before {
+  background: linear-gradient(180deg, var(--blue), var(--cyan));
+}
+
+/* --- Copy column cohesion ---------------------------------------- */
+.site-main .outcomes .solution-copy > p:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--cyan);
+  vertical-align: 1px;
+  box-shadow: 0 0 0 4px rgba(19, 200, 236, .14), 0 0 14px rgba(19, 200, 236, .7);
+}
+
+/* --- Art panel: ghost numeral + settled zoom ---------------------- */
+.site-main .outcomes .solution-art > span {
+  right: 9%;
+  bottom: 8%;
+  font-size: clamp(64px, 8vw, 118px);
+}
+@supports (-webkit-text-stroke: 1px #fff) {
+  .site-main .outcomes .solution-art.has-flow-image > span {
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(228, 248, 255, .6);
+  }
+}
+.site-main .outcomes .solution-art-image {
+  transition: transform .8s cubic-bezier(.2, .75, .25, 1);
+}
+.site-main .outcomes .solution-carousel:hover .solution-art-image {
+  transform: scale(1.035);
+}
+
+/* --- Control bar: name the current story -------------------------- */
+.site-main .outcomes .solution-controls > p .solution-controls-label {
+  margin-left: 14px;
+  padding-left: 14px;
+  border-left: 1px solid rgba(47, 99, 142, .24);
+  color: #2f638e;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: none;
+}
+
+/* --- Per-slide entrance motion ------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-ready .outcomes[data-reveal].is-visible .solution-slide[aria-hidden="false"] .solution-copy > * {
+    animation: forge-solution-rise .6s cubic-bezier(.2, .75, .25, 1) backwards;
+  }
+  .scroll-ready .outcomes[data-reveal].is-visible .solution-slide[aria-hidden="false"] .solution-copy > *:nth-child(1) { animation-delay: .08s; }
+  .scroll-ready .outcomes[data-reveal].is-visible .solution-slide[aria-hidden="false"] .solution-copy > *:nth-child(2) { animation-delay: .16s; }
+  .scroll-ready .outcomes[data-reveal].is-visible .solution-slide[aria-hidden="false"] .solution-copy > *:nth-child(3) { animation-delay: .24s; }
+  .scroll-ready .outcomes[data-reveal].is-visible .solution-slide[aria-hidden="false"] .solution-copy > *:nth-child(4) { animation-delay: .32s; }
+  .scroll-ready .outcomes[data-reveal].is-visible .solution-slide[aria-hidden="false"] .solution-art {
+    animation: forge-solution-art .7s cubic-bezier(.2, .75, .25, 1) .12s backwards;
+  }
+}
+@keyframes forge-solution-rise {
+  from { opacity: 0; transform: translateY(16px); }
+}
+@keyframes forge-solution-art {
+  from { opacity: 0; transform: translateY(10px) scale(.985); }
+}
+
+/* --- Responsive --------------------------------------------------- */
+@media (max-width: 900px) {
+  /* Rail labels don't fit the 110px column: numbers only */
+  .site-main .outcomes .solution-index button { font-size: 0; letter-spacing: 0; }
+  .site-main .outcomes .solution-index button span { font-size: 11px; letter-spacing: .12em; }
+  .site-main .outcomes .solution-controls > p .solution-controls-label { display: none; }
+}
+@media (max-width: 650px) {
+  .site-main .outcomes .solution-index {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 2px !important;
+  }
+  .site-main .outcomes .solution-index button { padding: 8px 12px 14px 12px; }
+  .site-main .outcomes .solution-index button:first-child { padding-left: 0; }
+  .site-main .outcomes .solution-index button::before {
+    top: auto;
+    left: 12px;
+    right: 12px;
+    bottom: 6px;
+    width: auto;
+    height: 2px;
+  }
+  .site-main .outcomes .solution-index button:first-child::before { left: 0; }
+  .site-main .outcomes .solution-index button.is-active::before {
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+  }
+}
