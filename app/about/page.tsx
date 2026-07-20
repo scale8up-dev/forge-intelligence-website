@@ -27,7 +27,7 @@ const team = [
   },
   {
     name: "Dr. Kelley Gurley",
-    role: "COO & Founder",
+    role: "COO & Co-Founder",
     bio: "Dr. Kelley Gurley is COO and Co-Founder of Forge Intelligence AI, where she turns strategy into systems that move real work forward.",
     details: [
       "She brings 25 years of enterprise technology and digital transformation leadership to a simple belief: technology should make a business clearer, not more complicated.",
